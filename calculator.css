@@ -1,0 +1,448 @@
+/* ===================================== */
+/* LOAN CALCULATOR MODAL STYLES */
+/* 대출계산기 모달 스타일 */
+/* ===================================== */
+
+/* Modal Overlay */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 24, 38, 0.85);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.modal-header {
+    background: var(--accent-gradient);
+    color: white;
+    padding: 25px 30px;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-header i {
+    font-size: 1.8rem;
+}
+
+.close-modal,
+.modal-close {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    padding: 0;
+    line-height: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    color: inherit;
+}
+
+.close-modal:hover,
+.modal-close:hover {
+    background: white;
+    color: var(--accent-color);
+    transform: rotate(90deg);
+    border-color: white;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 35px 30px;
+}
+
+/* Calculator Container */
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* Input Group */
+.calculator-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calculator-input-group label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calculator-input-group label i {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input[type="number"] {
+    width: 100%;
+    padding: 14px 60px 14px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: var(--transition);
+    background: var(--bg-light);
+}
+
+.input-wrapper input[type="number"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+.input-unit {
+    position: absolute;
+    right: 18px;
+    font-weight: 700;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Range Slider */
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(to right, var(--accent-light), var(--accent-color));
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--accent-color);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--accent-color);
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Range Labels */
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* Select */
+.calculator-select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    background: var(--bg-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.calculator-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+/* Calculate Button */
+.calculate-btn {
+    width: 100%;
+    padding: 18px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.calculate-btn i {
+    font-size: 1.3rem;
+}
+
+/* Calculator Result */
+.calculator-result {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--accent-light);
+    margin-top: 20px;
+    animation: slideDown 0.5s ease;
+}
+
+.calculator-result.is-hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calculator-result h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+}
+
+.calculator-result h3 i {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+}
+
+/* Result Grid */
+.result-grid {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.result-item {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.result-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+.result-label {
+    font-size: 1rem;
+    color: var(--text-medium);
+    font-weight: 600;
+}
+
+.result-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    font-feature-settings: "tnum";
+}
+
+.result-value.highlight {
+    color: #e74c3c;
+    font-size: 1.5rem;
+}
+
+/* Result Note */
+.result-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px 18px;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-color);
+}
+
+.result-note i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.result-note p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+}
+
+/* Scrollbar for Modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--accent-gradient);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal-body {
+        padding: 25px 20px;
+    }
+
+    .result-value {
+        font-size: 1.2rem;
+    }
+
+    .result-value.highlight {
+        font-size: 1.3rem;
+    }
+}
+
+/* Number Input Spinner Remove */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
