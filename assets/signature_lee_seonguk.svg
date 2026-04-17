@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="104" viewBox="0 0 340 104" role="img" aria-label="이성욱 서명">
+  <defs>
+    <style>
+      .sig-shadow {
+        font-family: 'Nanum Pen Script', 'Nanum Brush Script', 'Apple SD Gothic Neo', 'Malgun Gothic', cursive;
+        font-size: 64px;
+        font-weight: 500;
+        fill: #000;
+        opacity: 0.14;
+      }
+      .sig-main {
+        font-family: 'Nanum Pen Script', 'Nanum Brush Script', 'Apple SD Gothic Neo', 'Malgun Gothic', cursive;
+        font-size: 64px;
+        font-weight: 500;
+        fill: #1a1a1a;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(10 74)">
+    <text x="1.2" y="1.2" class="sig-shadow">이성욱</text>
+    <text x="0" y="0" class="sig-main">이성욱</text>
+  </g>
+</svg>
