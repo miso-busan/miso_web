@@ -6,13 +6,22 @@
 /* Phone Modal Specific */
 .phone-modal {
     box-shadow: none;
-    max-width: 400px;
+    max-width: none;
+    padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+}
+
+.phone-modal.show {
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 /* Smartphone Frame */
 .smartphone-frame {
-    width: 360px;
-    height: 720px;
+    width: min(360px, calc(100vw - 32px));
+    height: min(720px, calc(100vh - 32px));
+    height: min(720px, calc(100dvh - 32px));
     background: #1a1a1a;
     border-radius: 40px;
     padding: 12px;
@@ -22,6 +31,7 @@
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     position: relative;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .smartphone-frame::before {
@@ -47,6 +57,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    min-height: 0;
 }
 
 /* Status Bar */
@@ -76,6 +87,13 @@
     align-items: center;
     gap: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.phone-modal .chat-header {
+    padding: 10px 14px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .consultant-info {
@@ -97,6 +115,12 @@
     align-items: center;
     justify-content: center;
     font-size: 1.3rem;
+}
+
+.phone-modal .consultant-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
 }
 
 .consultant-info h4 {
@@ -131,6 +155,15 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    min-height: 0;
+    scroll-padding-top: 20px;
+}
+
+.phone-modal .chat-messages {
+    padding: 16px;
+    gap: 14px;
+    min-height: 0;
+    scroll-padding-top: 16px;
 }
 
 .message-date {
@@ -244,6 +277,14 @@
     margin-top: 10px;
 }
 
+.phone-modal .quick-replies {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+}
+
 .quick-reply-btn {
     background: white;
     border: 1px solid var(--border-color);
@@ -258,6 +299,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+}
+
+.phone-modal .quick-reply-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 10px 14px;
+    font-size: 0.86rem;
+    line-height: 1.4;
 }
 
 .quick-reply-btn:hover {
@@ -383,10 +434,25 @@
 
 /* Responsive */
 @media (max-width: 480px) {
+    .phone-modal {
+        padding: max(12px, env(safe-area-inset-top)) 10px max(12px, env(safe-area-inset-bottom));
+    }
+
     .smartphone-frame {
-        width: 95%;
+        width: min(95vw, 360px);
         max-width: 360px;
-        height: 650px;
+        height: min(650px, calc(100vh - 24px));
+        height: min(650px, calc(100dvh - 24px));
+        padding: 10px;
+        border-radius: 34px;
+    }
+
+    .phone-screen {
+        border-radius: 26px;
+    }
+
+    .chat-messages {
+        padding: 16px;
     }
 
     .phone-modal .close-chat-modal {

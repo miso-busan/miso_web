@@ -1467,11 +1467,7 @@ document.addEventListener('DOMContentLoaded', () => {
         msg.className = `message ${side}${isRichReceivedMessage ? ' message-rich' : ''}`;
         const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-        // Use Image for Bot, Icon for User
-        const avatarPath = (window.location.pathname.includes('/about/') || window.location.pathname.includes('/services/') || window.location.pathname.includes('/process/') || window.location.pathname.includes('/notice/')) ? '../assets/mascot_consulting.png' : 'assets/mascot_consulting.png';
-        const avatar = side === 'received'
-            ? `<img src="${avatarPath}" class="msg-avatar-img" alt="상담사" style="object-fit: cover;">`
-            : '<div style="display:none;"></div>'; // Hide user avatar to keep it clean or use icon
+        const avatar = '';
 
         msg.innerHTML = `${avatar}<div class="message-bubble">${text}</div><span class="message-time">${timeStr}</span>`;
         chatMessages.appendChild(msg);
@@ -1482,6 +1478,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Smooth scroll
         setTimeout(() => {
+            if (chatMessages.dataset.initializing === 'true') return;
             chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
         }, 10);
     }
@@ -1502,6 +1499,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.appendChild(div);
         
         setTimeout(() => {
+            if (chatMessages.dataset.initializing === 'true') return;
             chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
         }, 10);
     }
@@ -1513,6 +1511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.appendChild(typing);
         
         setTimeout(() => {
+            if (chatMessages.dataset.initializing === 'true') return;
             chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
         }, 10);
         
@@ -1576,14 +1575,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // 매번 모달을 열 때마다 채팅 내역을 초기화하여 새로운 상담 시작
         if (chatMessages) {
             chatMessages.innerHTML = '';
+            chatMessages.dataset.initializing = 'true';
             
             // Set initial clock
             const timeEl = document.querySelector('.status-bar .time');
             if (timeEl) timeEl.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
             handleLogic('start');
-            // Reset scroll instantly
-            chatMessages.scrollTo({ top: 0, behavior: 'instant' });
+            // Keep the first 안내 문구 visible instead of auto-jumping to quick replies.
+            setTimeout(() => {
+                chatMessages.scrollTop = 0;
+                delete chatMessages.dataset.initializing;
+            }, 1400);
         }
     };
 });
