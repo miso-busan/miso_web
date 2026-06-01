@@ -1590,3 +1590,107 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
+
+// --- 2026 상반기 워크숍 갤러리 라이트박스 ---
+document.addEventListener('DOMContentLoaded', () => {
+    const lightbox     = document.getElementById('workshopLightbox');
+    const lightboxImg  = document.getElementById('lightboxImg');
+    const lightboxCap  = document.getElementById('lightboxCaption');
+    const closeBtn     = document.getElementById('lightboxClose');
+    const prevBtn      = document.getElementById('lightboxPrev');
+    const nextBtn      = document.getElementById('lightboxNext');
+
+    if (!lightbox) return;
+
+    const items = Array.from(document.querySelectorAll('.workshop-item[data-lightbox="workshop"]'));
+    let current = 0;
+
+    function open(index) {
+        current = index;
+        const item = items[current];
+        lightboxImg.src    = item.dataset.src  || item.querySelector('img').src;
+        lightboxImg.alt    = item.dataset.caption || '';
+        lightboxCap.textContent = item.dataset.caption || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.style.opacity = '0';
+        lightboxImg.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => lightboxImg.style.opacity = '1', 50);
+    }
+
+    function close() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showPrev() { open((current - 1 + items.length) % items.length); }
+    function showNext() { open((current + 1) % items.length); }
+
+    items.forEach((item, i) => {
+        item.addEventListener('click', () => open(i));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+        });
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `사진 확대: ${item.dataset.caption || ''}`);
+    });
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+});
+
+// --- 히어로 섹션 타이핑 애니메이션 ---
+document.addEventListener('DOMContentLoaded', () => {
+    const typingElement = document.getElementById('hero-typing');
+    if (!typingElement) return;
+
+    const words = [
+        "사회연대금융",
+        "소상공인 미소금융",
+        "사회적경제기업 지원"
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 150;
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 70;
+        } else {
+            typingElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 150;
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    setTimeout(type, 1000);
+});

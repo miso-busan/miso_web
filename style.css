@@ -5825,3 +5825,638 @@ header.scrolled {
     min-height: 0;
   }
 }
+
+/* =============================================== */
+/* 2026 상반기 워크숍 갤러리 */
+/* =============================================== */
+.workshop-gallery-section {
+  background: #f8fafc;
+}
+
+.workshop-gallery-section .section-header .sub-heading {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.workshop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 260px 260px 220px;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+/* 첫 번째 사진(단체사진)을 왼쪽 전체 행 차지 */
+.workshop-item--main {
+  grid-row: 1 / 3;
+  grid-column: 1;
+}
+
+/* 마지막 사진(워크숍 전체)은 하단 전체 너비 */
+.workshop-item:last-child {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+
+.workshop-item {
+  position: relative;
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 48, 91, 0.12);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.workshop-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 48px rgba(0, 48, 91, 0.2);
+}
+
+.workshop-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.workshop-item:hover img {
+  transform: scale(1.06);
+}
+
+.workshop-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 18px;
+  background: linear-gradient(to top, rgba(0, 30, 60, 0.82) 0%, transparent 100%);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.workshop-item:hover figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 클릭 힌트 오버레이 */
+.workshop-item::before {
+  content: "\f00e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 48, 91, 0.55);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2;
+  line-height: 60px;
+  text-align: center;
+}
+
+.workshop-item:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* =============================================== */
+/* 라이트박스 */
+/* =============================================== */
+.workshop-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.workshop-lightbox.active {
+  display: flex;
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: min(90vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: lightboxIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes lightboxIn {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-inner img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.lightbox-caption {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100000;
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 20px;
+}
+
+.lightbox-prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-close:hover { background: rgba(255, 80, 80, 0.5); }
+.lightbox-prev:hover,
+.lightbox-next:hover  { background: rgba(255, 255, 255, 0.28); }
+
+/* =============================================== */
+/* 워크숍 갤러리 반응형 */
+/* =============================================== */
+@media (max-width: 768px) {
+  .workshop-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
+  }
+
+  .workshop-item--main {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .workshop-item:last-child {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .workshop-item {
+    height: 240px;
+  }
+
+  .workshop-item figcaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+}
+
+/* --- 히어로 타이핑 애니메이션 커서 및 텍스트 스타일 --- */
+.typing-wrap {
+  white-space: nowrap;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 4px;
+  height: 0.85em;
+  background: #3b82f6;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: typing-blink 0.8s infinite;
+  -webkit-text-fill-color: #3b82f6 !important;
+  background-clip: initial !important;
+}
+
+@keyframes typing-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* --- 미소금융 공적 정체성 & 대부업체 비교 섹션 (#miso-identity) --- */
+.miso-identity-section {
+  background-color: var(--bg-secondary);
+  position: relative;
+  padding: 100px 0;
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.identity-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 40px 30px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.identity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+.identity-card .card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: var(--secondary-color);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.identity-card:hover .card-icon {
+  background: var(--accent-color);
+  color: var(--white);
+}
+
+.identity-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.identity-card .card-desc {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-medium);
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.identity-card .card-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+.tag-kinfa {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--accent-color);
+}
+
+.tag-public {
+  background-color: rgba(0, 180, 216, 0.1);
+  color: #0077b2;
+}
+
+.tag-rate {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+/* 비교 표 스타일 */
+.identity-comparison {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.comparison-table th, 
+.comparison-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+}
+
+.comparison-table th {
+  font-weight: 700;
+  color: var(--text-dark);
+  background-color: var(--bg-secondary);
+}
+
+.comparison-table th:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.comparison-table th:last-child {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+.comparison-table th.highlight {
+  background-color: rgba(79, 70, 229, 0.05);
+  color: var(--accent-color);
+  border-left: 2px solid var(--accent-color);
+  border-right: 2px solid var(--accent-color);
+}
+
+.comparison-table td.highlight-val {
+  background-color: rgba(79, 70, 229, 0.02);
+  color: var(--accent-dark);
+  font-weight: 500;
+  border-left: 2px solid var(--accent-color);
+  border-right: 2px solid var(--accent-color);
+}
+
+.comparison-table td.feature {
+  font-weight: 700;
+  color: var(--text-dark);
+  width: 20%;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 992px) {
+  .identity-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .comparison-table th, 
+  .comparison-table td {
+    padding: 15px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .identity-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .identity-card {
+    padding: 30px 20px;
+  }
+  
+  .miso-identity-section {
+    padding: 70px 0;
+  }
+
+  .identity-comparison {
+    padding: 20px;
+  }
+
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .comparison-table {
+    min-width: 600px;
+  }
+}
+
+/* --- 미소금융 제도 정의 및 배경 섹션 (#miso-concept) --- */
+.concept-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.concept-content {
+  text-align: left;
+}
+
+.concept-content h2 {
+  font-size: 2.2rem;
+  line-height: 1.4;
+  color: var(--text-dark);
+  font-weight: 800;
+  margin-bottom: 25px;
+  word-break: keep-all;
+}
+
+.concept-body {
+  margin-bottom: 35px;
+}
+
+.concept-body p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-medium);
+  margin-bottom: 15px;
+  word-break: keep-all;
+}
+
+.concept-body p strong {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.concept-features {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 30px;
+}
+
+.feat-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.feat-item i {
+  font-size: 1.6rem;
+  color: var(--accent-color);
+  background: var(--white);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  border: 1px solid var(--border-color);
+}
+
+.feat-item h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.feat-item p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-medium);
+  margin: 0;
+  word-break: keep-all;
+}
+
+/* 비주얼 카드 영역 */
+.concept-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.visual-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1e293b 100%);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 45px 35px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.visual-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--white);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 15px;
+}
+
+.value-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.value-list li {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.value-list li i {
+  color: #38bdf8;
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 992px) {
+  .concept-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .concept-visual {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-content h2 {
+    font-size: 1.75rem;
+  }
+  
+  .visual-card {
+    padding: 35px 25px;
+  }
+  
+  .feat-item {
+    gap: 15px;
+  }
+}
+
