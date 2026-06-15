@@ -12,6 +12,12 @@
     const locationBtn = document.getElementById('locationBtn');
     const closeConsultBtns = document.querySelectorAll('[data-consult-close], #closeConsultModal');
 
+    function trackEvent(eventName, params) {
+        if (typeof window.misoTrackEvent === 'function') {
+            window.misoTrackEvent(eventName, params);
+        }
+    }
+
     function showModal(targetModal) {
         if (!targetModal) return;
         if (window.modalManager && typeof window.modalManager.showModal === 'function') {
@@ -37,6 +43,10 @@
         if (typeof window.openChatbotModal === 'function') {
             window.openChatbotModal();
         } else {
+            trackEvent('chatbot_open', {
+                modal_name: 'consult',
+                source: 'fallback_consult_modal'
+            });
             showModal(consultModal);
         }
     }
@@ -53,6 +63,12 @@
 
         // 네이버 지도 검색 URL
         const naverMapUrl = `https://map.naver.com/v5/search/${address}`;
+
+        trackEvent('branch_map_click', {
+            map_provider: 'naver',
+            link_url: naverMapUrl,
+            transport_type: 'beacon'
+        });
 
         // 새 창으로 열기
         window.open(naverMapUrl, '_blank');
