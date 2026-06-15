@@ -19,6 +19,43 @@ function closeManagedModal(modalEl) {
     document.body.style.overflow = 'auto';
 }
 
+(function () {
+    const MAX_TRACKING_VALUE_LENGTH = 140;
+
+    const cleanTrackingValue = (value) => {
+        if (value === null || value === undefined) return undefined;
+        if (typeof value === 'number') return Number.isFinite(value) ? value : undefined;
+        if (typeof value === 'boolean') return value ? 'true' : 'false';
+        const cleaned = String(value).replace(/\s+/g, ' ').trim();
+        return cleaned ? cleaned.slice(0, MAX_TRACKING_VALUE_LENGTH) : undefined;
+    };
+
+    window.misoTrackEvent = function (eventName, params = {}) {
+        const cleanEventName = cleanTrackingValue(eventName);
+        if (!cleanEventName) return;
+
+        const payload = {
+            page_path: window.location.pathname,
+            page_location: window.location.href,
+            page_title: document.title
+        };
+
+        Object.entries(params).forEach(([key, value]) => {
+            const cleanValue = cleanTrackingValue(value);
+            if (cleanValue !== undefined) payload[key] = cleanValue;
+        });
+
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', cleanEventName, payload);
+            return;
+        }
+
+        if (Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({ event: cleanEventName, ...payload });
+        }
+    };
+})();
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Header & Mobile Menu
@@ -53,6 +90,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const sfPopupEl = document.getElementById('socialFinancePopup');
     const sfPopupCloseBtn = document.getElementById('sfPopupClose');
     const sfPopupNoShow = document.getElementById('sfPopupNoShowToday');
+    const trackEvent = window.misoTrackEvent || function () {};
+    const GROWTH_SUPPORT_URL = 'https://cutypsh.github.io/miso-busan/';
+    const ENABLE_SOCIAL_FINANCE_POPUP = false;
+
+    const getTrackingText = (el) => {
+        const rawText = el ? (el.getAttribute('aria-label') || el.textContent || el.title || '') : '';
+        return rawText.replace(/\s+/g, ' ').trim().slice(0, 80);
+    };
+
+    const getLinkPlacement = (link) => {
+        if (!link) return 'unknown';
+        if (link.closest('#growthSupportPopup')) return 'growth_popup';
+        if (link.closest('#socialFinancePopup')) return 'social_finance_popup';
+        if (link.closest('#notice-item-social-growth-support')) return 'growth_notice';
+        if (link.closest('.quick-menu')) return 'quick_menu';
+        if (link.closest('.nav-list')) return 'navigation';
+        if (link.closest('.top-links')) return 'top_links';
+        if (link.closest('footer')) return 'footer';
+        return 'content';
+    };
 
     const SF_POPUP_STORAGE_KEY = 'miso-sf-popup-hidden-date';
     let shouldShowSfPopup = false;
@@ -69,8 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
     };
 
-    const closeSfPopup = () => {
+    const closeSfPopup = (method = 'button') => {
         if (!sfPopupEl) return;
+        trackEvent('popup_close', {
+            popup_name: 'social_finance',
+            close_method: method,
+            no_show_today: Boolean(sfPopupNoShow && sfPopupNoShow.checked),
+            transport_type: 'beacon'
+        });
         if (sfPopupNoShow && sfPopupNoShow.checked) {
             setSfPopupHiddenDate(getTodayDateStr());
         }
@@ -79,30 +142,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showSfPopup = () => {
         sfPopupTimer = null;
-        if (!sfPopupEl || !shouldShowSfPopup) return;
+        if (!ENABLE_SOCIAL_FINANCE_POPUP || !sfPopupEl || !shouldShowSfPopup) return;
         openManagedModal(sfPopupEl);
+        trackEvent('popup_view', {
+            popup_name: 'social_finance',
+            popup_context: 'home_entry'
+        });
     };
 
     const scheduleSfPopup = (delay = 600) => {
-        if (!sfPopupEl || !shouldShowSfPopup || sfPopupTimer) return;
+        if (!ENABLE_SOCIAL_FINANCE_POPUP || !sfPopupEl || !shouldShowSfPopup || sfPopupTimer) return;
         sfPopupTimer = setTimeout(showSfPopup, delay);
     };
 
-    const closeGrowthPopup = () => {
+    const closeGrowthPopup = (method = 'button') => {
         if (!growthPopupEl) return;
+        trackEvent('popup_close', {
+            popup_name: 'growth_support_2026',
+            close_method: method,
+            transport_type: 'beacon'
+        });
         closeManagedModal(growthPopupEl);
         scheduleSfPopup(450);
     };
 
     if (growthPopupEl) {
-        setTimeout(() => openManagedModal(growthPopupEl), 500);
+        setTimeout(() => {
+            openManagedModal(growthPopupEl);
+            trackEvent('popup_view', {
+                popup_name: 'growth_support_2026',
+                popup_context: 'home_entry'
+            });
+        }, 500);
 
         if (growthPopupCloseBtn) {
-            growthPopupCloseBtn.addEventListener('click', closeGrowthPopup);
+            growthPopupCloseBtn.addEventListener('click', () => closeGrowthPopup('button'));
         }
 
         growthPopupEl.addEventListener('click', (e) => {
-            if (e.target === growthPopupEl) closeGrowthPopup();
+            if (e.target === growthPopupEl) closeGrowthPopup('backdrop');
         });
     };
 
@@ -113,21 +191,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!growthPopupEl) scheduleSfPopup();
 
         if (sfPopupCloseBtn) {
-            sfPopupCloseBtn.addEventListener('click', closeSfPopup);
+            sfPopupCloseBtn.addEventListener('click', () => closeSfPopup('button'));
         }
 
         // 배경 클릭 시 닫기
         sfPopupEl.addEventListener('click', (e) => {
-            if (e.target === sfPopupEl) closeSfPopup();
+            if (e.target === sfPopupEl) closeSfPopup('backdrop');
         });
 
         // 자세히 보기 클릭 시 팝업 닫기
         const sfDetailBtn = document.getElementById('sfPopupDetailBtn');
         if (sfDetailBtn) {
             sfDetailBtn.addEventListener('click', () => {
+                trackEvent('popup_cta_click', {
+                    popup_name: 'social_finance',
+                    cta_name: 'detail',
+                    link_url: sfDetailBtn.href,
+                    transport_type: 'beacon'
+                });
                 if (sfPopupNoShow && sfPopupNoShow.checked) {
                     setSfPopupHiddenDate(getTodayDateStr());
                 }
+                trackEvent('popup_close', {
+                    popup_name: 'social_finance',
+                    close_method: 'detail_click',
+                    no_show_today: Boolean(sfPopupNoShow && sfPopupNoShow.checked),
+                    transport_type: 'beacon'
+                });
                 closeManagedModal(sfPopupEl);
             });
         }
@@ -617,6 +707,13 @@ document.addEventListener('DOMContentLoaded', () => {
             resultBtn.appendChild(pathEl);
             resultBtn.appendChild(snippetEl);
             resultBtn.addEventListener('click', () => {
+                trackEvent('site_search_result_click', {
+                    search_term: searchInput ? searchInput.value : '',
+                    result_title: result.title,
+                    result_path: `${result.path || currentPath}${result.hash || ''}`,
+                    result_type: result.action ? 'quick_action' : 'page',
+                    transport_type: 'beacon'
+                });
                 closeManagedModal(searchModal);
                 setTimeout(() => {
                     if (typeof result.action === 'function') {
@@ -666,6 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openSearchModal = () => {
         if (!searchModal) return;
+        trackEvent('site_search_open', {
+            source: 'header'
+        });
         closeMobileMenu();
         openManagedModal(searchModal);
         updateQuickMenuVisibility();
@@ -800,7 +900,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            runSiteSearch(searchInput ? searchInput.value : '');
+            const results = runSiteSearch(searchInput ? searchInput.value : '');
+            trackEvent('site_search', {
+                search_term: searchInput ? searchInput.value : '',
+                results_count: results.length,
+                search_method: 'form'
+            });
         });
     }
 
@@ -809,10 +914,82 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 const keyword = btn.dataset.keyword || btn.textContent || '';
                 searchInput.value = keyword.trim();
-                runSiteSearch(searchInput.value);
+                const results = runSiteSearch(searchInput.value);
+                trackEvent('site_search', {
+                    search_term: searchInput.value,
+                    results_count: results.length,
+                    search_method: 'suggested_keyword'
+                });
             });
         });
     }
+
+    document.addEventListener('click', (e) => {
+        const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
+        if (!link) return;
+
+        const rawHref = link.getAttribute('href');
+        if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:')) return;
+
+        const linkText = getTrackingText(link);
+        const linkPlacement = getLinkPlacement(link);
+
+        if (rawHref.startsWith('tel:')) {
+            trackEvent('contact_click', {
+                contact_type: 'phone',
+                contact_value: rawHref.replace(/^tel:/, ''),
+                link_text: linkText,
+                link_placement: linkPlacement,
+                transport_type: 'beacon'
+            });
+            return;
+        }
+
+        if (rawHref.startsWith('mailto:')) {
+            trackEvent('contact_click', {
+                contact_type: 'email',
+                contact_value: rawHref.replace(/^mailto:/, '').split('?')[0],
+                link_text: linkText,
+                link_placement: linkPlacement,
+                transport_type: 'beacon'
+            });
+            return;
+        }
+
+        let url = null;
+        try {
+            url = new URL(rawHref, window.location.href);
+        } catch (error) {
+            return;
+        }
+
+        const linkParams = {
+            link_url: url.href,
+            link_text: linkText,
+            link_placement: linkPlacement,
+            transport_type: 'beacon'
+        };
+
+        if (url.href.startsWith(GROWTH_SUPPORT_URL)) {
+            trackEvent('growth_support_click', {
+                ...linkParams,
+                campaign_name: 'growth_support_2026'
+            });
+            return;
+        }
+
+        if (url.hash === '#social_finance' && /\/services(?:\/index\.html|\/)?$/i.test(url.pathname)) {
+            trackEvent('service_interest_click', {
+                ...linkParams,
+                service_name: 'social_finance'
+            });
+            return;
+        }
+
+        if (url.origin !== window.location.origin) {
+            trackEvent('external_link_click', linkParams);
+        }
+    }, true);
 
     if (dropdownItems.length) {
         dropdownItems.forEach((item) => {
@@ -1072,6 +1249,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Finance Guide Modal
     const openFinanceGuide = () => {
         if (!financeGuideModal) return;
+        trackEvent('finance_guide_open', {
+            modal_name: 'finance_guide'
+        });
         openManagedModal(financeGuideModal);
     };
 
@@ -1139,6 +1319,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const chatMessages = document.getElementById('chatMessages');
     if (!chatMessages) return;
+    const trackEvent = window.misoTrackEvent || function () {};
+    let currentChatbotStep = 'start';
 
     // --- Knowledge Base (Brain) ---
     const botBrain = {
@@ -1507,7 +1689,13 @@ document.addEventListener('DOMContentLoaded', () => {
             b.className = 'quick-reply-btn';
             b.innerHTML = o.label;
             b.onclick = () => {
-                addMessage(o.label.replace(/<[^>]*>/g, ''), 'sent');
+                const optionLabel = o.label.replace(/<[^>]*>/g, '');
+                trackEvent('chatbot_option_select', {
+                    chatbot_step: currentChatbotStep,
+                    option_value: o.value,
+                    option_label: optionLabel
+                });
+                addMessage(optionLabel, 'sent');
                 handleLogic(o.value);
             };
             div.appendChild(b);
@@ -1540,6 +1728,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleLogic(key) {
+        if (/^calc_(\d+)$/.test(key)) {
+            trackEvent('chatbot_calculator_submit', {
+                loan_amount_manwon: parseInt(key.replace('calc_', ''), 10)
+            });
+        } else {
+            trackEvent('chatbot_step_view', {
+                chatbot_step: key
+            });
+        }
+
         showTyping(() => {
             const calcMatch = /^calc_(\d+)$/.exec(key);
             if (calcMatch) {
@@ -1548,6 +1746,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = botBrain[key] || { text: "죄송합니다. 처리할 수 없는 요청입니다.", options: [{ label: "처음으로", value: "start" }] };
+            currentChatbotStep = key;
             addMessage(data.text, 'received');
             if (data.options) addOptions(data.options);
         });
@@ -1577,6 +1776,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initBtns.forEach(b => {
         b.onclick = () => {
             const r = b.getAttribute('data-reply');
+            trackEvent('chatbot_option_select', {
+                chatbot_step: currentChatbotStep,
+                option_value: r,
+                option_label: b.innerText.trim(),
+                source: 'initial_quick_reply'
+            });
             addMessage(b.innerText.trim(), 'sent');
             handleLogic(r);
         };
@@ -1585,6 +1790,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openChatbotModal = function () {
         const consultModal = document.getElementById('consultModal');
         if (consultModal) {
+            trackEvent('chatbot_open', {
+                modal_name: 'consult'
+            });
             openManagedModal(consultModal);
         }
 

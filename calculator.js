@@ -27,6 +27,12 @@
     const totalPaymentSpan = document.getElementById('totalPayment');
     const totalInterestSpan = document.getElementById('totalInterest');
 
+    function trackEvent(eventName, params) {
+        if (typeof window.misoTrackEvent === 'function') {
+            window.misoTrackEvent(eventName, params);
+        }
+    }
+
     function showModal(targetModal) {
         if (!targetModal) return;
         if (window.modalManager && typeof window.modalManager.showModal === 'function') {
@@ -50,6 +56,9 @@
     // 모달 열기
     function openModal() {
         showModal(modal);
+        trackEvent('loan_calculator_open', {
+            modal_name: 'loan_calculator'
+        });
     }
 
     // 모달 닫기
@@ -139,7 +148,7 @@
     }
 
     // 대출 계산 함수
-    function calculateLoan() {
+    function calculateLoan(trigger = 'button') {
         // 입력값 가져오기 (대출금액은 콤마 포함 text이므로 파싱)
         const principal = parseAmount(loanAmountInput.value);
         const annualRate = parseFloat(interestRateInput.value);
@@ -193,6 +202,13 @@
 
         // 결과 표시
         displayResults(monthlyPayment, totalPayment, totalInterest, method);
+        trackEvent('loan_calculator_calculate', {
+            loan_amount_won: principal,
+            interest_rate: annualRate,
+            loan_period_months: months,
+            repayment_method: method,
+            trigger
+        });
     }
 
     // 결과 표시 함수
@@ -219,7 +235,7 @@
     // 계산 버튼 클릭
     if (calculateBtn) {
         calculateBtn.addEventListener('click', function() {
-            calculateLoan();
+            calculateLoan('button');
         });
     }
 
@@ -229,7 +245,7 @@
         input.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                calculateLoan();
+                calculateLoan('enter_key');
             }
         });
     });
