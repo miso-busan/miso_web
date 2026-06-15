@@ -6460,3 +6460,226 @@ header.scrolled {
   }
 }
 
+/* 사회적경제기업 성장지원사업 모집공고 팝업 */
+.growth-popup-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9100;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  padding-top: max(22px, env(safe-area-inset-top));
+  padding-bottom: max(22px, env(safe-area-inset-bottom));
+  background: rgba(10, 20, 40, 0.66);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.growth-popup-modal.show {
+  display: flex;
+  animation: growthPopupIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes growthPopupIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.growth-popup-card {
+  position: relative;
+  width: min(726px, calc(100vw - 44px));
+  max-height: calc(100vh - 44px);
+  max-height: calc(100dvh - 44px);
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.34), 0 10px 28px rgba(15, 23, 42, 0.18);
+}
+
+.growth-popup-link {
+  display: block;
+  overflow: hidden;
+  border-radius: inherit;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.growth-popup-link:focus-visible {
+  outline: 4px solid rgba(37, 99, 235, 0.72);
+  outline-offset: 4px;
+}
+
+.growth-popup-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 44px);
+  max-height: calc(100dvh - 44px);
+  object-fit: contain;
+}
+
+.growth-popup-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #10213d;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.22);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.growth-popup-close:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.28);
+}
+
+/* 사회연대금융 재원 소진 안내 */
+.sf-popup-funding-alert {
+  display: grid;
+  gap: 5px;
+  max-width: 330px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--sf-navy);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.2);
+}
+
+.sf-popup-funding-alert span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #9a3412;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.sf-popup-funding-alert strong {
+  color: var(--sf-navy);
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.42;
+  word-break: keep-all;
+}
+
+.sf-funding-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px 12px;
+  max-width: 760px;
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-left: 5px solid #f97316;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #10213d;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+}
+
+.sf-funding-strip i {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff7ed;
+  color: #ea580c;
+  flex: 0 0 auto;
+}
+
+.sf-funding-strip strong {
+  color: #9a3412;
+  font-size: 0.95rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.sf-funding-strip span {
+  flex: 1 1 320px;
+  color: #304059;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+#miso_startup,
+#miso_youth,
+#miso_living {
+  scroll-margin-top: 118px;
+}
+
+@media (max-width: 560px) {
+  .growth-popup-modal {
+    align-items: flex-start;
+    padding: 14px;
+    padding-top: max(18px, env(safe-area-inset-top));
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  .growth-popup-card {
+    width: min(100%, 726px);
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+    border-radius: 14px;
+  }
+
+  .growth-popup-link img {
+    max-height: calc(100vh - 36px);
+    max-height: calc(100dvh - 36px);
+  }
+
+  .growth-popup-close {
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .sf-popup-funding-alert {
+    max-width: 100%;
+    padding: 9px 11px;
+  }
+
+  .sf-popup-funding-alert strong {
+    font-size: 0.8rem;
+  }
+
+  .sf-funding-strip {
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 13px 14px;
+  }
+
+  .sf-funding-strip strong {
+    white-space: normal;
+  }
+
+  .sf-funding-strip span {
+    flex-basis: 100%;
+    font-size: 0.86rem;
+  }
+
+  #miso_startup,
+  #miso_youth,
+  #miso_living {
+    scroll-margin-top: 88px;
+  }
+}

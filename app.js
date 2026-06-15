@@ -47,12 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const quickMenuMq = window.matchMedia('(max-width: 768px)');
     const reduceMotionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    // ── 사회연대금융 팝업 ──────────────────────────────────────────
+    // ── 모집공고/사회연대금융 팝업 ────────────────────────────────
+    const growthPopupEl = document.getElementById('growthSupportPopup');
+    const growthPopupCloseBtn = document.getElementById('growthSupportPopupClose');
     const sfPopupEl = document.getElementById('socialFinancePopup');
     const sfPopupCloseBtn = document.getElementById('sfPopupClose');
     const sfPopupNoShow = document.getElementById('sfPopupNoShowToday');
 
     const SF_POPUP_STORAGE_KEY = 'miso-sf-popup-hidden-date';
+    let shouldShowSfPopup = false;
+    let sfPopupTimer = null;
 
     const getSfPopupHiddenDate = () => {
         try { return localStorage.getItem(SF_POPUP_STORAGE_KEY); } catch (e) { return null; }
@@ -70,27 +74,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sfPopupNoShow && sfPopupNoShow.checked) {
             setSfPopupHiddenDate(getTodayDateStr());
         }
-        if (window.modalManager) {
-            window.modalManager.hideModal(sfPopupEl);
-        } else {
-            sfPopupEl.classList.remove('show');
+        closeManagedModal(sfPopupEl);
+    };
+
+    const showSfPopup = () => {
+        sfPopupTimer = null;
+        if (!sfPopupEl || !shouldShowSfPopup) return;
+        openManagedModal(sfPopupEl);
+    };
+
+    const scheduleSfPopup = (delay = 600) => {
+        if (!sfPopupEl || !shouldShowSfPopup || sfPopupTimer) return;
+        sfPopupTimer = setTimeout(showSfPopup, delay);
+    };
+
+    const closeGrowthPopup = () => {
+        if (!growthPopupEl) return;
+        closeManagedModal(growthPopupEl);
+        scheduleSfPopup(450);
+    };
+
+    if (growthPopupEl) {
+        setTimeout(() => openManagedModal(growthPopupEl), 500);
+
+        if (growthPopupCloseBtn) {
+            growthPopupCloseBtn.addEventListener('click', closeGrowthPopup);
         }
+
+        growthPopupEl.addEventListener('click', (e) => {
+            if (e.target === growthPopupEl) closeGrowthPopup();
+        });
     };
 
     if (sfPopupEl) {
         const hiddenDate = getSfPopupHiddenDate();
-        const shouldShow = hiddenDate !== getTodayDateStr();
+        shouldShowSfPopup = hiddenDate !== getTodayDateStr();
 
-        if (shouldShow) {
-            setTimeout(() => {
-                if (window.modalManager) {
-                    window.modalManager.showModal(sfPopupEl);
-                } else {
-                    sfPopupEl.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                }
-            }, 600);
-        }
+        if (!growthPopupEl) scheduleSfPopup();
 
         if (sfPopupCloseBtn) {
             sfPopupCloseBtn.addEventListener('click', closeSfPopup);
@@ -108,11 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sfPopupNoShow && sfPopupNoShow.checked) {
                     setSfPopupHiddenDate(getTodayDateStr());
                 }
-                if (window.modalManager) {
-                    window.modalManager.hideModal(sfPopupEl);
-                } else {
-                    sfPopupEl.classList.remove('show');
-                }
+                closeManagedModal(sfPopupEl);
             });
         }
     }
