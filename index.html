@@ -6,7 +6,7 @@
     <title>(사)미소금융부산중구법인 - 사회연대금융·서민금융 지원</title>
     <meta
       name="description"
-      content="부산 중구 미소금융. 사회적경제기업을 위한 사회연대금융 상담과 서민금융진흥원 미소금융 창업·운영자금 지원 안내."
+      content="부산 중구 미소금융. 사회적경제기업을 위한 사회연대금융 상담과 서민금융진흥원 미소금융 창업·운영자금 지원 안내. 반기별 배정 재원 범위 내 지원."
     />
     <meta
       name="keywords"
@@ -24,7 +24,7 @@
     />
     <meta
       property="og:description"
-      content="사회적경제기업을 위한 사회연대금융 상담과 미소금융 창업·운영자금 지원을 안내합니다."
+      content="사회적경제기업을 위한 사회연대금융 상담과 미소금융 창업·운영자금 지원을 안내합니다. 반기별 배정 재원 범위 내에서 지원됩니다."
     />
     <meta
       property="og:image"
@@ -44,7 +44,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=20260520c" />
+    <link rel="stylesheet" href="style.css?v=20260615a" />
     <link rel="stylesheet" href="enhanced-styles.css?v=20260601a" />
     <link rel="stylesheet" href="calculator.css" />
     <link rel="stylesheet" href="consult.css" />
@@ -964,7 +964,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>    
     </section>
     <section id="partners" class="section bg-light">
       <div class="container">
@@ -1047,7 +1047,7 @@
               <li><a href="about/index.html">법인소개</a></li>
               <li><a href="about/index.html#history">법인연혁</a></li>
               <li><a href="about/index.html#orgchart">조직도</a></li>
-              <li><a href="about/index.html#map-section">오시는 길</a></li>
+              <li><a href="#contact">오시는 길</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -1350,6 +1350,35 @@
         </div>
       </div>
 
+      <!-- 사회적경제기업 성장지원사업 모집공고 팝업 -->
+      <div
+        id="growthSupportPopup"
+        class="modal growth-popup-modal"
+        aria-label="사회적경제기업 성장지원사업 모집공고 팝업"
+      >
+        <div class="growth-popup-card">
+          <button
+            type="button"
+            class="growth-popup-close"
+            id="growthSupportPopupClose"
+            aria-label="모집공고 팝업 닫기"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <a
+            href="https://cutypsh.github.io/miso-busan/"
+            class="growth-popup-link"
+            id="growthSupportPopupLink"
+            aria-label="사회적경제기업 성장지원사업 모집공고 페이지로 이동"
+          >
+            <img
+              src="assets/social-growth-support-popup.png"
+              alt="2026년 서민금융진흥원과 함께하는 사회적경제기업 성장지원사업 모집공고. 접수기간 2026.6.15.~7.15., 1차 제출 필수 2종, 지원한도 최대 1억원"
+            />
+          </a>
+        </div>
+      </div>
+
       <!-- 사회연대금융 팝업 -->
       <div id="socialFinancePopup" class="modal sf-popup-modal" aria-label="사회연대금융 안내 팝업">
         <div class="sf-popup-card">
@@ -1368,6 +1397,10 @@
             </div>
             <h2 class="sf-popup-hero-title">세상을 바꾸는 금융,<br><span>사회연대금융</span>이 앞장섭니다</h2>
             <p class="sf-popup-hero-sub">운전자금·시설자금·임차자금이 필요하신<br>사회적기업·예비사회적기업·사회적협동조합을 지원합니다.</p>
+            <div class="sf-popup-funding-alert" role="note">
+              <span><i class="fa-solid fa-circle-exclamation"></i> 반기별 배정 재원 내 지원</span>
+              <strong>재원 소진 시 조기 마감될 수 있습니다.</strong>
+            </div>
           </div>
 
           <!-- 핵심 수치 요약보드 (전단지 summary-board 스타일) -->
@@ -1451,7 +1484,7 @@
 
     <!-- Scripts -->
     <script src="modal-manager.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=20260615b"></script>
     <script src="calculator.js"></script>
     <script src="consult.js"></script>
   </body>

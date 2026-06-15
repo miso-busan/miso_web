@@ -541,6 +541,196 @@
     object-fit: cover;
 }
 
+.growth-notice {
+    color: var(--text-dark);
+}
+
+.growth-notice-head {
+    margin-bottom: 24px;
+    padding: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border: 1px solid #bbf7d0;
+}
+
+.growth-notice-kicker {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #166534;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.growth-notice-head h2 {
+    margin: 0 0 12px;
+    color: var(--text-dark);
+    font-size: 1.65rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+.growth-notice-head p {
+    margin: 0;
+    color: var(--text-medium);
+    font-size: 1.02rem;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+
+.growth-notice-visual {
+    margin: 0 0 24px;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    box-shadow: var(--shadow-xs);
+}
+
+.growth-notice-visual a {
+    display: block;
+}
+
+.growth-notice-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.growth-notice-facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.growth-notice-facts div {
+    min-width: 0;
+    padding: 18px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-xs);
+}
+
+.growth-notice-facts span {
+    display: block;
+    margin-bottom: 8px;
+    color: #15803d;
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+.growth-notice-facts strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 0.96rem;
+    line-height: 1.45;
+    word-break: keep-all;
+}
+
+.growth-notice h3 {
+    margin: 28px 0 12px;
+    color: #166534;
+    font-size: 1.15rem;
+}
+
+.growth-notice-list {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 24px;
+}
+
+.growth-notice-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--text-medium);
+    word-break: keep-all;
+}
+
+.growth-notice-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+.growth-notice-callout {
+    display: flex;
+    gap: 16px;
+    margin: 0 0 24px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.growth-notice-callout i {
+    color: #16a34a;
+    font-size: 1.4rem;
+    margin-top: 3px;
+}
+
+.growth-notice-callout p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.75;
+    word-break: keep-all;
+}
+
+.growth-notice-process {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin: 24px 0;
+}
+
+.growth-notice-process div {
+    min-width: 0;
+    padding: 16px 12px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #dcfce7;
+    text-align: center;
+}
+
+.growth-notice-process span {
+    display: block;
+    margin-bottom: 8px;
+    color: #16a34a;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.growth-notice-process strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    word-break: keep-all;
+}
+
+.growth-notice-body {
+    margin: 0;
+    color: var(--text-medium);
+    line-height: 1.75;
+    word-break: keep-all;
+}
+
+.growth-notice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0 0;
+}
+
 /* Pagination */
 .pagination {
     display: flex;
@@ -600,20 +790,26 @@
     .mou-notice-visual,
     .mou-notice-facts,
     .mou-impact-grid,
-    .mou-notice-gallery {
+    .mou-notice-gallery,
+    .growth-notice-facts,
+    .growth-notice-process {
         grid-template-columns: 1fr;
     }
 
-    .mou-notice-head {
+    .mou-notice-head,
+    .growth-notice-head {
         padding: 22px;
     }
 
-    .mou-notice-head h2 {
+    .mou-notice-head h2,
+    .growth-notice-head h2 {
         font-size: 1.35rem;
     }
 
     .mou-notice-actions .btn,
-    .mou-notice-actions .btn-secondary-soft {
+    .mou-notice-actions .btn-secondary-soft,
+    .growth-notice-actions .btn,
+    .growth-notice-actions .btn-secondary-soft {
         width: 100%;
         text-align: center;
     }
