@@ -1545,7 +1545,7 @@ img:hover {
 }
 
 .badge {
-    font-size: 0.75rem;
+    font-size: 0.86rem;
     padding: 3px 8px;
     border-radius: 20px;
     background: #e9ecef;
@@ -1678,5 +1678,457 @@ img:hover {
     .map-box {
         height: auto;
         min-height: 320px;
+    }
+}
+
+/* Readability and density pass */
+html {
+    font-size: 17px;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.68;
+}
+
+.container {
+    max-width: 1240px;
+    padding-right: clamp(20px, 3vw, 32px);
+    padding-left: clamp(20px, 3vw, 32px);
+}
+
+.section {
+    padding: 76px 0;
+}
+
+.section-header {
+    margin-bottom: 36px;
+}
+
+.section-header h2 {
+    margin-bottom: 14px;
+    font-size: clamp(2.05rem, 2.6vw, 2.52rem);
+    line-height: 1.18;
+}
+
+.section-header p {
+    max-width: 780px;
+    font-size: 1.08rem;
+    line-height: 1.72;
+}
+
+.divider {
+    margin-bottom: 16px;
+}
+
+#hero {
+    min-height: 690px;
+    padding-top: 96px;
+}
+
+.hero-container {
+    min-height: 580px;
+    padding: 60px 24px 64px;
+    gap: 40px;
+}
+
+.badge-pill {
+    margin-bottom: 18px;
+    font-size: 0.98rem;
+}
+
+.hero-text h1 {
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    margin-bottom: 28px;
+    font-size: 1.16rem;
+    line-height: 1.72;
+}
+
+.hero-buttons .btn-primary,
+.hero-buttons .btn-outline-dark,
+.btn,
+.view-all-btn {
+    min-height: 50px;
+    font-size: 1.04rem;
+}
+
+.quick-item {
+    width: 64px;
+    min-height: 64px;
+}
+
+.quick-item i {
+    font-size: 1.16rem;
+}
+
+.quick-item span {
+    font-size: 0.72rem;
+    line-height: 1.25;
+}
+
+.sub-page-header {
+    padding: 72px 0 36px;
+}
+
+.sub-page-header p {
+    font-size: 1.12rem;
+}
+
+.about-grid,
+.stories-wrapper,
+.partners-grid,
+.identity-grid,
+.eligibility-grid,
+.documents-grid {
+    gap: 22px;
+}
+
+.about-card,
+.identity-card,
+.eligibility-card,
+.doc-card {
+    padding: 30px 24px;
+}
+
+.about-card p,
+.identity-card .card-desc,
+.eligibility-card p,
+.doc-list li,
+.doc-note p,
+.timeline-content p,
+.concept-body p,
+.feat-item p,
+.service-info p,
+.service-info li,
+.special-service-card p,
+.story-text,
+.step-item p,
+.faq-answer p,
+.case-box p,
+.finance-table,
+.partner-text {
+    font-size: 1.02rem;
+    line-height: 1.68;
+}
+
+.more-btn,
+.date,
+.story-author .role,
+.sf-stat small,
+.search-result-path,
+.search-result-snippet,
+.bottom-info,
+.bottom-info .divider,
+.copyright {
+    font-size: 0.92rem;
+}
+
+.tag,
+.badge,
+.doc-label,
+.sf-badge,
+.sf-badge-light,
+.comparison-eyebrow,
+.identity-card .card-tag {
+    font-size: 0.86rem;
+}
+
+.service-img {
+    padding: 20px 0 16px;
+}
+
+.service-info,
+.story-content,
+.notice-box,
+.promo-banner,
+.timeline-content,
+.sf-detail-card,
+.sf-ps-step {
+    padding: 24px;
+}
+
+.notice-section {
+    padding: 64px 0;
+}
+
+.notice-list li {
+    padding: 10px 0;
+}
+
+.title,
+.banner-desc,
+.footer-col ul li a,
+.contact-info p,
+.lunch-notice-footer {
+    font-size: 1rem !important;
+}
+
+.footer-top {
+    padding: 44px 24px 38px;
+    gap: 38px;
+}
+
+.footer-slogan {
+    margin-bottom: 20px;
+    font-size: 1.03rem;
+}
+
+.footer-col h4 {
+    margin-bottom: 18px;
+}
+
+.developer-credit {
+    font-size: 0.88rem !important;
+}
+
+.mou-spotlight-section {
+    padding: 72px 0;
+}
+
+.miso-identity-section {
+    padding: 76px 0;
+}
+
+.identity-grid {
+    margin-bottom: 34px;
+}
+
+.identity-card .card-icon {
+    margin-bottom: 18px;
+}
+
+.identity-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.32rem;
+}
+
+.identity-card .card-desc {
+    margin-bottom: 18px;
+}
+
+.identity-comparison {
+    padding: 20px;
+}
+
+.comparison-board {
+    gap: 18px;
+}
+
+.comparison-panel {
+    padding: 24px;
+}
+
+.comparison-panel-head {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+}
+
+.comparison-list {
+    gap: 10px;
+}
+
+.comparison-list li {
+    min-height: 84px;
+    padding: 16px;
+}
+
+.comparison-list li span {
+    font-size: 1rem;
+}
+
+.comparison-list li strong {
+    font-size: 1.13rem;
+}
+
+.concept-wrapper {
+    gap: 38px;
+}
+
+.concept-content h2 {
+    margin-bottom: 20px;
+}
+
+.concept-body {
+    margin-bottom: 28px;
+}
+
+.concept-features {
+    gap: 18px;
+    padding-top: 24px;
+}
+
+.visual-card {
+    padding: 34px 28px;
+}
+
+.sf-feature-wrap {
+    margin-top: 20px;
+    margin-bottom: 56px;
+}
+
+.sf-feature-hero {
+    min-height: 300px;
+    padding: 44px 46px;
+}
+
+.sf-hero-desc,
+.sf-bullet-list li,
+.sf-ps-step p,
+.sf-ps-tip,
+.sf-flow-item,
+.sf-partnership-note p,
+.sf-funding-strip span {
+    font-size: 1.02rem;
+}
+
+.sf-hero-meta span,
+.sf-stat span {
+    font-size: 0.96rem;
+}
+
+.sf-feature-body {
+    padding: 0 28px;
+}
+
+.sf-stats-grid {
+    margin-bottom: 26px;
+}
+
+.sf-partnership-note,
+.sf-prescreening-section,
+.sf-process-flow {
+    margin-bottom: 26px;
+}
+
+.modern-org-chart {
+    padding: 44px 18px;
+}
+
+.org-node-desc {
+    font-size: 0.98rem;
+}
+
+@media (max-width: 1350px) {
+    .quick-item {
+        width: 58px;
+        min-height: 54px;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    .container {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .section {
+        padding: 56px 0;
+    }
+
+    .section-header {
+        margin-bottom: 28px;
+    }
+
+    .section-header h2 {
+        font-size: 1.9rem;
+    }
+
+    .section-header p {
+        font-size: 1.02rem;
+    }
+
+    #hero {
+        padding-top: 88px;
+    }
+
+    .hero-container {
+        min-height: auto;
+        padding: 48px 20px 54px;
+        gap: 30px;
+    }
+
+    .hero-text p {
+        font-size: 1.05rem;
+    }
+
+    .sub-page-header {
+        padding: 62px 0 28px;
+    }
+
+    .sub-page-header p {
+        font-size: 1.02rem;
+    }
+
+    .about-card,
+    .identity-card,
+    .eligibility-card,
+    .doc-card,
+    .service-info,
+    .story-content,
+    .notice-box,
+    .promo-banner,
+    .timeline-content,
+    .sf-detail-card,
+    .sf-ps-step {
+        padding: 22px;
+    }
+
+    .notice-section,
+    .miso-identity-section,
+    .mou-spotlight-section {
+        padding: 54px 0;
+    }
+
+    .comparison-panel {
+        padding: 18px;
+    }
+
+    .comparison-list li {
+        padding: 14px;
+    }
+
+    .sf-feature-wrap {
+        margin-bottom: 42px;
+    }
+
+    .sf-feature-hero {
+        min-height: auto;
+        padding: 34px 24px;
+    }
+
+    .sf-feature-body {
+        padding: 0 18px;
+    }
+
+    .footer-top {
+        padding: 34px 20px 30px;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section {
+        padding: 52px 0;
+    }
+
+    .section-header h2 {
+        font-size: 1.78rem;
+    }
+
+    .quick-item {
+        width: 52px;
+        min-height: 52px;
+    }
+
+    .comparison-vs {
+        width: 42px;
+        height: 42px;
     }
 }

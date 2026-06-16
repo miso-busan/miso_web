@@ -814,3 +814,229 @@
         text-align: center;
     }
 }
+
+/* Notice page readability and density pass */
+.sub-page-header {
+    padding: 76px 0 38px;
+}
+
+.sub-page-header h1 {
+    font-size: clamp(2rem, 3.2vw, 2.7rem);
+}
+
+.sub-page-header p {
+    font-size: 1.12rem;
+    line-height: 1.7;
+}
+
+.board-section {
+    padding: 42px 0 70px;
+}
+
+.board-tabs {
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+}
+
+.board-list {
+    margin-bottom: 32px;
+}
+
+.board-header,
+.board-item {
+    padding: 16px 0;
+}
+
+.col-title a,
+.col-title .notice-title {
+    font-size: 1.06rem;
+    font-weight: 650;
+}
+
+.col-date {
+    font-size: 0.98rem;
+}
+
+.notice-chevron,
+.badge-notice {
+    font-size: 0.88rem;
+}
+
+.badge-notice {
+    padding: 4px 10px;
+}
+
+.board-content {
+    padding: 24px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.board-gallery-btn {
+    font-size: 0.95rem;
+}
+
+.gallery-grid {
+    gap: 22px;
+    margin-bottom: 32px;
+}
+
+.gallery-info {
+    padding: 20px;
+}
+
+.gallery-info h3 {
+    font-size: 1.22rem;
+}
+
+.gallery-date {
+    font-size: 0.96rem;
+}
+
+.gallery-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.mou-notice-head,
+.growth-notice-head {
+    margin-bottom: 20px;
+    padding: 24px;
+}
+
+.mou-notice-kicker,
+.growth-notice-kicker {
+    font-size: 0.9rem;
+}
+
+.mou-notice-head h2,
+.growth-notice-head h2 {
+    font-size: 1.82rem;
+}
+
+.mou-notice-head p,
+.growth-notice-head p,
+.mou-notice-body,
+.growth-notice-body,
+.growth-notice-list li,
+.growth-notice-callout p {
+    font-size: 1.06rem;
+    line-height: 1.76;
+}
+
+.mou-notice-summary span,
+.mou-notice-facts span,
+.growth-notice-facts span,
+.growth-notice-process span {
+    font-size: 0.92rem;
+}
+
+.mou-notice-summary strong,
+.mou-notice-facts strong,
+.mou-impact-grid strong,
+.growth-notice-facts strong,
+.growth-notice-process strong {
+    font-size: 1.05rem;
+}
+
+.mou-notice-summary p,
+.mou-impact-grid span {
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.mou-notice h3,
+.growth-notice h3 {
+    margin-top: 24px;
+    font-size: 1.24rem;
+}
+
+.mou-notice-hero figcaption,
+.mou-notice-gallery figcaption {
+    font-size: 0.94rem;
+}
+
+.mou-notice-facts,
+.mou-impact-grid,
+.growth-notice-facts,
+.growth-notice-process {
+    margin: 20px 0;
+}
+
+.mou-notice-summary div,
+.mou-notice-facts div,
+.mou-impact-grid div,
+.growth-notice-facts div {
+    padding: 16px;
+}
+
+.growth-notice-process div {
+    padding: 14px 12px;
+}
+
+.growth-notice-callout {
+    margin-bottom: 20px;
+    padding: 18px;
+}
+
+.page-link {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .sub-page-header {
+        padding: 64px 0 30px;
+    }
+
+    .sub-page-header h1 {
+        font-size: 1.95rem;
+    }
+
+    .sub-page-header p {
+        font-size: 1.02rem;
+    }
+
+    .board-section {
+        padding: 34px 0 56px;
+    }
+
+    .board-tabs {
+        margin-bottom: 24px;
+    }
+
+    .tab-btn {
+        padding: 11px 18px;
+        font-size: 1rem;
+    }
+
+    .col-date {
+        font-size: 0.92rem;
+    }
+
+    .col-title {
+        padding: 0 10px 0 14px;
+    }
+
+    .board-content {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .mou-notice-head,
+    .growth-notice-head {
+        padding: 20px;
+    }
+
+    .mou-notice-head h2,
+    .growth-notice-head h2 {
+        font-size: 1.48rem;
+    }
+}
