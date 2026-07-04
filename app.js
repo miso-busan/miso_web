@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: '오시는 길',
                 pathLabel: '홈 > 오시는 길',
                 keywords: '주소 전화 운영시간 지도',
-                snippet: '부산광역시 중구 대청로 56, 4층 위치와 연락처를 안내합니다.'
+                snippet: '48955 부산광역시 중구 중앙대로 21 서민금융통합지원센터 위치와 연락처를 안내합니다.'
             }),
             createCatalogTarget({
                 path: '/about',
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 path: '/services',
                 title: '지원상품',
                 pathLabel: '지원상품',
-                keywords: '창업자금 운영자금 시설개선자금 사회연대금융',
+                keywords: '운영자금 청년운영자금 청년 미래이음 대출 금융취약계층 생계자금 사회연대금융',
                 snippet: '주요 지원상품과 상품별 대출한도, 금리, 상환기간을 안내합니다.'
             }),
             createCatalogTarget({
@@ -553,14 +553,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 path: '/notice',
                 title: '공지사항 및 갤러리',
                 pathLabel: '알림마당 > 공지사항',
-                keywords: '공지사항 갤러리 정기총회 업무협약 행사 사진',
+                keywords: '공지사항 갤러리 센터 개소 언론보도 업무협약 행사 사진',
                 snippet: '법인 공지사항과 주요 행사 사진, 최신 소식을 확인할 수 있습니다.'
+            }),
+            createCatalogTarget({
+                path: '/notice/20260703-center-open.html',
+                title: '전국 첫 부산 서민금융복합지원센터 개소 안내',
+                pathLabel: '알림마당 > 언론보도',
+                keywords: '부산 서민금융복합지원센터 금융 복지 고용 원스톱 상담',
+                snippet: '금융·복지·고용 상담을 한 곳에서 연결하는 부산 서민금융복합지원센터 개소 소식입니다.'
+            }),
+            createCatalogTarget({
+                path: '/notice/20260702-inclusive-finance-mou.html',
+                title: '부산형 포용·상생금융 생태계 구축 업무협약',
+                pathLabel: '알림마당 > 업무협약',
+                keywords: '부산형 포용 상생금융 사회연대경제조직 부경사련 업무협약',
+                snippet: '사회연대경제조직을 위한 현장 발굴형 금융지원 협력 체계 구축 소식입니다.'
             }),
             createCatalogTarget({
                 path: '/stories',
                 title: '성공사례',
                 pathLabel: '알림마당 > 성공사례',
-                keywords: '후기 사례 창업 운영 재기',
+                keywords: '후기 사례 운영 자립 재기',
                 snippet: '고객들의 실제 성공사례와 이용 후기를 소개합니다.'
             }),
             createCatalogTarget({
@@ -1329,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             options: [
                 { label: "🤝 사회연대금융 자격 진단", value: "social_step1" },
                 { label: "🎯 3분 완성! 맞춤 상담", value: "quick_consult" },
-                { label: "🆘 생계자금·청년대출 진단", value: "diag_vuln_step1" },
+                { label: "🆘 금융취약계층·청년 대출 진단", value: "diag_vuln_step1" },
                 { label: "💰 상품별 상세 안내", value: "find_product" },
                 { label: "🔢 대출금 계산기", value: "calc_start" },
                 { label: "📞 전화 번호 안내", value: "phone_info" }
@@ -1337,36 +1351,37 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         // === VULNERABLE CLASS & YOUTH DIAGNOSTIC ===
         'diag_vuln_step1': {
-            text: "<b>🆘 특화상품(생계/청년) 진단</b><br><br>먼저 고객님에게 해당하는 항목을 선택해 주세요.",
+            text: "<b>🆘 금융취약계층 생계자금·청년 미래이음 대출 진단</b><br><br>먼저 고객님에게 해당하는 항목을 선택해 주세요.",
             options: [
                 { label: "의료비, 전세사기 피해 등 생계 어려움", value: "diag_vuln_step2" },
-                { label: "만 19~34세 청년 (미취업/재직/창업)", value: "diag_youth_success" },
+                { label: "만 19~34세 청년 (미취업/재직/창업 1년 이내)", value: "diag_youth_success" },
                 { label: "해당사항 없음", value: "quick_consult" }
             ]
         },
         'diag_vuln_step2': {
-            text: "<b>[생계자금 요건 확인]</b><br><br>고객님의 신용평점과 소득 수준은 어떻게 되시나요?",
+            text: "<b>[금융취약계층 생계자금 요건 확인]</b><br><br>고객님의 개인신용평점과 소득 수준은 어떻게 되시나요?",
             options: [
                 { label: "신용 하위 50% & 연소득 3.5천만 이하", value: "diag_vuln_success" },
                 { label: "그 외 (소득 높음/신용 좋음)", value: "qc_fail_income" }
             ]
         },
         'diag_vuln_success': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>🎉 생계자금 신청 가능!</h3></div>
+            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>🎉 금융취약계층 생계자금 상담 가능!</h3></div>
             <br><b>📋 금융취약계층 생계자금</b><br><hr>
             어려운 시기, 미소금융이 함께합니다.<br>
-            • <b>용도</b>: 긴급 의료비, 주거비, 상조 등<br>
-            • <b>금리</b>: 연 4.5%<br>
-            • <b>필요 서류</b>: 해당 용도별 증빙 (진단서 등)<br><br>자세한 한도는 상담을 통해 결정됩니다.`,
+            • <b>한도</b>: 최대 500만원<br>
+            • <b>금리</b>: 거치기간 연 3.0% / 상환기간 연 4.5%<br>
+            • <b>필요 서류</b>: 대상 유형별 증빙 및 소득 관련 서류<br><br>최종 가능 여부는 상담 및 심사 결과에 따라 결정됩니다.`,
             options: [{ label: "📞 직통 전화 상담", value: "call" }, { label: "🏠 처음으로", value: "start" }]
         },
         'diag_youth_success': {
             text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✨ 청년 미래이음 대출 안내</h3></div>
             <br><b>📋 만 19~34세 맞춤 지원</b><br><hr>
             청년들의 든든한 출발을 응원합니다!<br>
-            • <b>조건</b>: '청년 모두를 위한 재무상담' 이수 필수<br>
-            • <b>한도</b>: 최대 500만원 내외<br><br>
-            ※ 만약 청년 창업/운영자금인 경우 한도가 <b>최대 3,000만원</b>까지 상향될 수 있습니다!`,
+            • <b>조건</b>: '청년 모두를 위한 재무상담' 이수 및 자금용도계획서 제출<br>
+            • <b>한도</b>: 최대 500만원<br>
+            • <b>금리</b>: 연 4.5%<br><br>
+            ※ 청년 자영업자의 운영자금은 별도 청년운영자금으로 상담할 수 있습니다.`,
             options: [{ label: "📞 맞춤 전화 상담", value: "call" }, { label: "🏠 처음으로", value: "start" }]
         },
 
@@ -1380,7 +1395,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         'social_fail_type': {
-            text: "<div style='background:#ff9800;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><b style='color:white;'>⚠️ 지원 대상 아님</b></div><br>사회연대금융은 <b>사회적기업 및 사회적협동조합</b> 전용 상품입니다.<br><br>일반 사업자이실 경우 <b>창업/운영자금</b>을 알아보시겠어요?",
+            text: "<div style='background:#ff9800;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><b style='color:white;'>⚠️ 지원 대상 아님</b></div><br>사회연대금융은 <b>사회적기업 및 사회적협동조합</b> 전용 상품입니다.<br><br>일반 사업자이실 경우 <b>자영업자 운영자금</b>을 알아보시겠어요?",
             options: [
                 { label: "💰 일반 상품 보기", value: "find_product" },
                 { label: "🏠 처음으로", value: "start" }
@@ -1403,9 +1418,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'social_step3': {
             text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:100%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 3/3</div><b>[매출 기준 충족]</b> ✅<br><br>필요하신 <b>자금의 용도</b>는 무엇인가요?",
             options: [
-                { label: "사업장 임차보증금", value: "diag_social_success" },
-                { label: "시설개선 (인테리어/장비)", value: "diag_social_success" },
-                { label: "운영자금 (물품구입 등)", value: "diag_social_success" }
+                { label: "사회적경제기업 운영 안정 자금", value: "diag_social_success" },
+                { label: "장비·공간 관련 자금", value: "diag_social_success" },
+                { label: "물품·원재료 구입 등", value: "diag_social_success" }
             ]
         },
         'diag_social_success': {
@@ -1441,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         'qc_step2_high': {
-            text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:50%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 2/4</div>신용점이 높으시네요! <b>저소득층</b>에 해당하시나요?<br><br>• 기초수급자/차상위<br>• 근로장려금 대상",
+            text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:50%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 2/4</div>개인신용평점이 높으시네요! <b>저소득층</b>에 해당하시나요?<br><br>• 기초수급자/차상위<br>• 근로장려금 대상",
             options: [
                 { label: "예, 해당됩니다", value: "qc_step3" },
                 { label: "아니요", value: "qc_fail_income" }
@@ -1450,71 +1465,55 @@ document.addEventListener('DOMContentLoaded', () => {
         'qc_step3': {
             text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:75%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 3/4</div><b>[연체 이력 없음]</b> ✅<br><br>고객님의 <b>사업 상황</b>은 무엇인가요?",
             options: [
-                { label: "🏢 창업 예정 (6개월 미만)", value: "qc_step4_startup" },
-                { label: "🏪 운영 중 (6개월 이상)", value: "qc_step4_operation" }
+                { label: "운영 중 (3개월 이상)", value: "qc_step4_operation" },
+                { label: "만 19~34세 청년 자영업자", value: "qc_result_youth_operation" },
+                { label: "사업자등록 3개월 미만", value: "qc_startup_unavailable" }
             ]
         },
-        'qc_step4_startup': {
-            text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:100%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 4/4</div><b>[창업자금]</b> 선택됨<br><br>업종을 선택해 주세요:",
+        'qc_startup_unavailable': {
+            text: "<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;'><b>2026년 7월 1일 기준 안내</b><br>창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다. 현재 상담 가능한 상품은 자영업자 운영자금, 청년운영자금, 청년 미래이음 대출, 금융취약계층 생계자금, 사회연대금융입니다.</div>",
             options: [
-                { label: "일반 소매/음식점", value: "qc_result_startup_general" },
-                { label: "전통시장 상인", value: "qc_result_startup_market" },
-                { label: "배달/운송업", value: "qc_result_startup_delivery" }
+                { label: "📞 전화 번호 안내", value: "phone_info" },
+                { label: "🏠 처음으로", value: "start" }
             ]
         },
         'qc_step4_operation': {
             text: "<div class='progress-bar-container'><div class='progress-bar-fill' style='width:100%'></div></div><div style='font-size:0.85em;color:#666;margin-bottom:10px;'>단계: 4/4</div><b>[운영자금]</b> 선택됨<br><br>필요한 자금 용도는?",
             options: [
-                { label: "식자재/물품 구입", value: "qc_result_operation_goods" },
-                { label: "시설 개선/인테리어", value: "qc_result_operation_facility" },
-                { label: "차량 구매 (1톤 트럭 등)", value: "qc_result_operation_vehicle" }
+                { label: "제품·원재료 구입", value: "qc_result_operation_goods" },
+                { label: "운영비 안정", value: "qc_result_operation_goods" },
+                { label: "중단 상품 여부 확인", value: "qc_startup_unavailable" }
             ]
         },
 
         // === RESULTS ===
         'qc_result_startup_general': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 대출 승인 가능성: <b>매우 높음</b></h3></div>
-            <br><b>📋 상담 결과 요약</b><br><hr>
-            • <b>추천 상품</b>: 창업자금 대출<br>
-            • <b>예상 한도</b>: 최대 7,000만원<br>
-            • <b>금리</b>: 연 4.5% (고정)<br>
-            • <b>상환 기간</b>: 5년 이내<br><br>
-            <b>⚠️ 주의사항</b><br>
-            점포 계약 전 반드시 사전 상담이 필요합니다!<br><br>
-            <b>다음 단계</b><br>
-            1. 필수 서류 준비<br>
-            2. 전화 문의 후 방문<br>
-            3. 심사 (약 3-5일)`,
+            text: `<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:#7a3b00;'>신규중단 상품 안내</h3></div>
+            <br><b>📋 2026년 7월 1일 기준 안내</b><br><hr>
+            • 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다.<br>
+            • <b>현재 가능 상품</b>: 자영업자 운영자금, 청년운영자금, 청년 미래이음 대출, 금융취약계층 생계자금, 사회연대금융<br><br>
+            정확한 가능 여부는 전화 상담으로 확인해 주세요.`,
             options: [
-                { label: "📄 필수 서류 보기", value: "doc_startup" },
                 { label: "📞 전화 번호 안내", value: "phone_info" },
-                { label: "💬 카톡 공유", value: "share_result" },
                 { label: "🔄 처음부터 다시", value: "start" }
             ]
         },
         'qc_result_startup_market': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 대출 승인 가능성: <b>매우 높음</b></h3></div>
-            <br><b>📋 전통시장 특화 지원</b><br><hr>
-            • <b>추천 상품</b>: 창업자금 대출<br>
-            • <b>예상 한도</b>: 최대 7,000만원<br>
-            • <b>금리</b>: 연 4.5% (전통시장 우대)<br><br>
-            <b>💡 혜택</b><br>
-            전통시장 상인회 가입 시 네트워킹 및 판로 확대 지원!`,
+            text: `<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:#7a3b00;'>신규중단 상품 안내</h3></div>
+            <br><b>📋 2026년 7월 1일 기준 안내</b><br><hr>
+            • 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다.<br>
+            • <b>현재 가능 상품</b>: 사업자등록 후 3개월 이상 운영 중인 경우 운영자금 상담이 가능합니다.`,
             options: [
-                { label: "📄 필수 서류 보기", value: "doc_startup" },
                 { label: "📞 전화 번호 안내", value: "phone_info" },
                 { label: "🔄 처음으로", value: "start" }
             ]
         },
         'qc_result_startup_delivery': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 승인 가능: 배달/운송업</h3></div>
-            <br><b>📋 특화 상담 결과</b><br><hr>
-            • <b>추천 상품</b>: 창업자금 + 시설개선(차량)<br>
-            • <b>예상 한도</b>: 최대 7,000만원<br>
-            • <b>차량 구매</b>: 1톤 트럭, 라보 등 가능<br><br>
-            ※ 차량 구매비용은 시설개선자금으로 신청 가능합니다.`,
+            text: `<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:#7a3b00;'>신규중단 상품 안내</h3></div>
+            <br><b>📋 2026년 7월 1일 기준 안내</b><br><hr>
+            • 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다.<br>
+            • <b>현재 가능 상품</b>: 자영업자 운영자금 또는 청년운영자금 상담을 권장합니다.`,
             options: [
-                { label: "🚛 차량 구매 상세", value: "prod_facility_pro" },
                 { label: "📞 전화 번호 안내", value: "phone_info" },
                 { label: "🔄 처음으로", value: "start" }
             ]
@@ -1522,13 +1521,28 @@ document.addEventListener('DOMContentLoaded', () => {
         'qc_result_operation_goods': {
             text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 대출 승인 가능성: <b>높음</b></h3></div>
             <br><b>📋 상담 결과 요약</b><br><hr>
-            • <b>추천 상품</b>: 운영자금 대출<br>
+            • <b>추천 상품</b>: 운영자금<br>
             • <b>예상 한도</b>: 최대 2,000만원 <span style='font-size:0.9em;color:var(--primary-color)'>(※ 청년 3,000만원)</span><br>
-            • <b>금리</b>: 연 4.5%<br>
+            • <b>금리</b>: 거치기간 연 2.0% / 상환기간 연 4.5%<br>
             • <b>인센티브</b>: 성실상환 시 금리 1%p 추가 인하<br><br>
             <b>⚠️ 필수 제출 서류</b><br>
-            • 최근 3개월 부가세 신고 내역<br>
-            • 거래처 증빙 (세금계산서 등)`,
+            • 사업자등록증명원<br>
+            • 사업장 소유 또는 임대 관계 확인서류<br>
+            • 경영교육 수료증`,
+            options: [
+                { label: "🔢 월 상환액 계산", value: "calc_start" },
+                { label: "📞 전화 번호 안내", value: "phone_info" },
+                { label: "🔄 처음으로", value: "start" }
+            ]
+        },
+        'qc_result_youth_operation': {
+            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 청년운영자금 상담 가능성</h3></div>
+            <br><b>📋 상담 결과 요약</b><br><hr>
+            • <b>추천 상품</b>: 청년운영자금<br>
+            • <b>대상</b>: 만 19세 이상 34세 이하 청년 자영업자<br>
+            • <b>예상 한도</b>: 최대 3,000만원<br>
+            • <b>금리</b>: 거치기간 연 2.0% / 상환기간 연 4.5%<br><br>
+            최종 가능 여부와 한도는 상담 및 심사 결과에 따라 확정됩니다.`,
             options: [
                 { label: "🔢 월 상환액 계산", value: "calc_start" },
                 { label: "📞 전화 번호 안내", value: "phone_info" },
@@ -1536,26 +1550,20 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         'qc_result_operation_facility': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 승인 가능: 시설개선</h3></div>
-            <br><b>📋 시설개선 자금 상담</b><br><hr>
-            • <b>추천 상품</b>: 시설개선자금<br>
-            • <b>예상 한도</b>: 최대 2,000만원<br>
-            • <b>금리</b>: 연 4.5%<br>
-            • <b>용도</b>: 인테리어, 설비, 간판 등<br><br>
-            <b>필수 서류</b><br>
-            시설 견적서 + 사업자등록증`,
+            text: `<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:#7a3b00;'>신규중단 상품 안내</h3></div>
+            <br><b>📋 신규중단 상품 안내</b><br><hr>
+            창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.<br><br>
+            운영 중인 사업자는 자영업자 운영자금 상담을 받아 주세요.`,
             options: [
                 { label: "🔢 상환액 계산", value: "calc_start" },
                 { label: "📞 전화 번호 안내", value: "phone_info" }
             ]
         },
         'qc_result_operation_vehicle': {
-            text: `<div style='background:#00305b;color:white;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:white;'>✅ 승인 가능: 차량 지원</h3></div>
-            <br><b>📋 사업용 차량 구매</b><br><hr>
-            • <b>추천 상품</b>: 시설개선자금<br>
-            • <b>예상 한도</b>: 최대 2,000만원<br>
-            • <b>가능 차종</b>: 1톤 트럭, 다마스, 라보 등 (생계형)<br><br>
-            ※ 자가용 번호판도 사업용도로 증빙 시 가능할 수 있습니다.`,
+            text: `<div style='background:#fff3e0;color:#7a3b00;padding:15px;border-radius:12px;margin:15px 0;text-align:center;'><h3 style='margin:0;color:#7a3b00;'>신규중단 상품 안내</h3></div>
+            <br><b>📋 신규중단 상품 안내</b><br><hr>
+            창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.<br><br>
+            현재 가능 상품과 자금 용도는 전화 상담으로 확인해 주세요.`,
             options: [
                 { label: "📄 필수 서류", value: "doc_operation" },
                 { label: "📞 전화 번호 안내", value: "phone_info" }
@@ -1574,7 +1582,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'phone_info': {
             text: "<b>📞 전화 번호 안내</b><br><br>" +
                 "<div style='background:#f0f7ff;padding:16px;border-radius:12px;margin:10px 0;border:1px solid #d0e3f7;'>" +
-                "☎️ <b style='font-size:1.15em;'><a href='tel:051-255-0005' style='color:#00305b;'>051-255-0005</a>, <a href='tel:051-255-7392' style='color:#00305b;'>7392</a></b></div><br>" +
+                "☎️ <b style='font-size:1.15em;'><a href='tel:051-255-0005' style='color:#00305b;'>051-255-0005</a><br><a href='tel:051-255-7392' style='color:#00305b;'>051-255-7392</a></b><br><span style='font-size:0.92em;color:#4b5563;'>팩스 051-255-0076</span></div><br>" +
                 "<b>🕘 상담 가능 시간</b><br>" +
                 "• 평일 <b>09:00 ~ 18:00</b><br>" +
                 "• 주말 및 공휴일 휴무<br><br>" +
@@ -1589,13 +1597,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // === CALCULATOR ===
         'calc_start': {
-            text: "<b>🔢 대출금 상환 계산기</b><br><br>대출 희망 금액을 선택해 주세요.",
+            text: "<b>🔢 대출금 상환 계산기</b><br><br>계산기는 참고용입니다. 2026년 7월 1일 기준 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다. 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.<br><br>대출 희망 금액을 선택해 주세요.",
             options: [
                 { label: "1,000만원", value: "calc_1000" },
                 { label: "2,000만원", value: "calc_2000" },
                 { label: "3,000만원", value: "calc_3000" },
                 { label: "5,000만원", value: "calc_5000" },
-                { label: "7,000만원", value: "calc_7000" }
+                { label: "1억원", value: "calc_10000" }
             ]
         },
 
@@ -1604,31 +1612,33 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "상품별 <b>상세 정보</b>를 확인하세요.",
             options: [
                 { label: "🤝 사회연대금융 (1억)", value: "diag_social" },
-                { label: "🏢 창업자금 (7천만)", value: "diag_startup" },
-                { label: "🏪 운영자금 (2/3천만)", value: "diag_operation" },
-                { label: "🛠 시설개선 (2천만)", value: "prod_facility_pro" },
-                { label: "🌟 특화상품 (생계/청년)", value: "diag_special" },
+                { label: "🏪 자영업자 운영자금", value: "diag_operation" },
+                { label: "👤 청년운영자금", value: "diag_youth_operation" },
+                { label: "🌱 청년 미래이음 대출", value: "diag_youth_future" },
+                { label: "🆘 금융취약계층 생계자금", value: "diag_vulnerable" },
                 { label: "↩ 뒤로가기", value: "start" }
             ]
         },
         'diag_social': { text: "<b>🤝 사회연대금융 (사회적경제기업)</b><br>사회적기업, 협동조합 등을 위한 전용 대출.<br>한도 1억원, 금리 연 4.5% (우수기업 4.0%).<br>※ 연평균 매출액 10억원 이하 대상", options: [{ label: "📄 서류 보기", value: "doc_social" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
-        'diag_startup': { text: "<b>🏢 창업자금</b><br>임차보증금(5천)+운영자금(2천) 지원.<br>사업자등록 6개월 미만 대상.", options: [{ label: "📄 서류 보기", value: "doc_startup" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
-        'diag_operation': { text: "<b>🏪 운영자금</b><br>제품/원재료 구매 자금 지원.<br>청년(만19~34세)은 최대 3,000만원까지 한도 부여.", options: [{ label: "📄 서류 보기", value: "doc_operation" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
-        'prod_facility_pro': { text: "<b>🛠 시설개선자금</b><br>인테리어, 차량 구매 등 지원.<br>사업자등록 6개월 이상 대상.", options: [{ label: "📄 서류 보기", value: "doc_operation" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
-        'diag_special': { text: "<b>🌟 금융취약계층 생계자금 및 청년 미래이음 대출</b><br>취약계층 의료비, 주거비 등 긴급자금 지원 및<br>청년(미취업, 1년 미만 이내) 미래 설계 자금 지원", options: [{ label: "📄 서류 보기", value: "doc_special" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_startup': { text: "<b>신규중단 상품 안내</b><br>창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.", options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_operation': { text: "<b>🏪 자영업자 운영자금</b><br>사업자등록 후 3개월 이상 운영 중인 자영업자의 제품·원재료 구입 등 운영자금 지원.<br>한도 최대 2,000만원, 금리 거치 연 2.0% / 상환 연 4.5%.", options: [{ label: "📄 서류 보기", value: "doc_operation" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_youth_operation': { text: "<b>👤 청년운영자금</b><br>만 19세 이상 34세 이하 청년 자영업자 대상.<br>한도 최대 3,000만원, 금리 거치 연 2.0% / 상환 연 4.5%.", options: [{ label: "📄 서류 보기", value: "doc_operation" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'prod_facility_pro': { text: "<b>신규중단 상품 안내</b><br>창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.", options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_youth_future': { text: "<b>🌱 청년 미래이음 대출</b><br>재직 또는 창업 1년 이내 청년, 미취업자 포함. '청년 모두를 위한 재무상담' 이수 및 자금용도계획서 제출이 필요합니다.<br>한도 최대 500만원, 금리 연 4.5%.", options: [{ label: "📄 서류 보기", value: "doc_special" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_vulnerable': { text: "<b>🆘 금융취약계층 생계자금</b><br>사회적 배려대상자, 특별재난지역 거주자, 전세사기 피해자, 불법사금융·보이스피싱 피해자, 미소금융 성실상환자 등을 위한 생계 안정 자금입니다.<br>한도 최대 500만원, 금리 거치 연 3.0% / 상환 연 4.5%.", options: [{ label: "📄 서류 보기", value: "doc_special" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
+        'diag_special': { text: "<b>🌟 금융취약계층 생계자금 및 청년 미래이음 대출</b><br>금융취약계층 생계 안정 자금과 청년 미래이음 대출을 안내합니다.", options: [{ label: "📄 서류 보기", value: "doc_special" }, { label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "find_product" }] },
 
         'doc_pro': {
             text: "<b>📜 필요 서류 안내</b><br><br>어떤 자금을 신청하시나요?",
             options: [
                 { label: "🤝 사회연대금융 서류", value: "doc_social" },
-                { label: "🏢 창업자금 서류", value: "doc_startup" },
-                { label: "🏪 운영/시설자금 서류", value: "doc_operation" },
-                { label: "🌟 특화상품(생계/청년)", value: "doc_special" },
+                { label: "🏪 운영자금 서류", value: "doc_operation" },
+                { label: "🌟 금융취약계층 생계자금·청년 미래이음", value: "doc_special" },
                 { label: "🏠 처음으로", value: "start" }
             ]
         },
         'doc_startup': {
-            text: "<b>🏢 창업자금 서류</b><div class='doc-checklist'><ol><li>신분증, 등/초본</li><li>사업계획서</li><li>임대차계약서 (예정지)</li><li>시설 견적서 (필요시)</li></ol><div class='doc-note'>※ 방문 시 서식 제공</div></div>",
+            text: "<b>신규중단 상품 안내</b><div class='doc-checklist'><p>창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.</p></div>",
             options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "doc_pro" }]
         },
         'doc_social': {
@@ -1636,11 +1646,11 @@ document.addEventListener('DOMContentLoaded', () => {
             options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "doc_pro" }]
         },
         'doc_operation': {
-            text: "<b>🏪 운영/시설자금 서류</b><div class='doc-checklist'><ol><li>신분증, 등/초본</li><li>사업자등록증명원</li><li>부가세과세표준증명 (최근 3개월)</li><li>사업장 임대차계약서</li></ol></div>",
+            text: "<b>🏪 운영자금 서류</b><div class='doc-checklist'><ol><li>사업자등록증명원: 최근 1개월 이내 발급분</li><li>사업장 소유 또는 임대 관계 확인서류 중 1개</li><li>교육수료증: 경영교육 4과목 또는 4시간 이상</li><li>프리랜서: 3개월 이상 동일 사업 영위 사실 확인서류, 재직증명서 또는 위촉계약서</li></ol></div>",
             options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "doc_pro" }]
         },
         'doc_special': {
-            text: "<b>🌟 특화상품(생계/청년) 서류</b><div class='doc-checklist'><ol><li>의료비 등 증빙 (생계자금)</li><li>'청년 모두를위한 재무상담' 이수증</li><li>연령(만19~34세) 확인 신분증</li><li>기초/차상위 등 증빙서류</li></ol></div>",
+            text: "<b>🌟 금융취약계층 생계자금·청년 미래이음 대출 서류</b><div class='doc-checklist'><ol><li>청년 미래이음: 자금용도계획서, '청년 모두를 위한 재무상담' 이수 확인자료</li><li>청년 미래이음: 재직증명서, 건강보험자격득실확인서, 위촉계약서, 사업자등록증명원 등 근로유형별 증빙서류</li><li>금융취약계층 생계자금: 사회적 배려대상자, 재난지역, 전세사기, 불법사금융·보이스피싱 피해 등 대상 유형별 증빙서류</li><li>근로유형별 증빙서류 또는 소득증명 관련 서류</li></ol></div>",
             options: [{ label: "📞 전화 번호 안내", value: "phone_info" }, { label: "↩ 뒤로", value: "doc_pro" }]
         },
         'rejection_pro': {
@@ -1648,7 +1658,7 @@ document.addEventListener('DOMContentLoaded', () => {
             options: [{ label: "자가진단 하기", value: "quick_consult" }, { label: "처음으로", value: "start" }]
         },
         'call': {
-            text: "<b>📞 상담 위원 직통</b><br><br>☎️ <b><a href='tel:051-255-0005' style='color:#00305b; font-weight:700; font-size:1.2em;'>051-255-0005</a>, <a href='tel:051-255-7392' style='color:#00305b; font-weight:700; font-size:1.2em;'>7392</a></b><br><br>평일 09:00 ~ 18:00<br><span style='color:#e65100;font-size:0.92em;'>🍽️ 점심시간(12:00~13:00)은 전화 연결이 어려울 수 있습니다.</span>",
+            text: "<b>📞 상담 위원 직통</b><br><br>☎️ <b><a href='tel:051-255-0005' style='color:#00305b; font-weight:700; font-size:1.2em;'>051-255-0005</a><br><a href='tel:051-255-7392' style='color:#00305b; font-weight:700; font-size:1.2em;'>051-255-7392</a></b><br><span style='color:#4b5563;font-size:0.92em;'>팩스 051-255-0076</span><br><br>평일 09:00 ~ 18:00<br><span style='color:#e65100;font-size:0.92em;'>🍽️ 점심시간(12:00~13:00)은 전화 연결이 어려울 수 있습니다.</span>",
             options: [{ label: "🏠 처음으로", value: "start" }]
         },
         'share_result': {
@@ -1764,7 +1774,8 @@ document.addEventListener('DOMContentLoaded', () => {
             • <b>금리</b>: 연 4.5%<br>
             • <b>기간</b>: 5년 (60개월)<br>
             <hr>
-            월 납입금: 약 <b style='color:#00305b;font-size:1.1em;'>${Math.round(monthlyPayment).toLocaleString()}원</b>
+            월 납입금: 약 <b style='color:#00305b;font-size:1.1em;'>${Math.round(monthlyPayment).toLocaleString()}원</b><br><br>
+            <span style='font-size:0.9em;color:#6b7280;'>계산기는 참고용이며 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.</span>
         `;
         addMessage(resultText, 'received');
         addOptions([{ label: "다른 금액 계산", value: "calc_start" }, { label: "메인으로", value: "start" }]);
@@ -1883,8 +1894,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const words = [
         "사회연대금융",
-        "소상공인 미소금융",
-        "사회적경제기업 지원"
+        "소상공인 금융",
+        "사회적경제 지원"
     ];
     let wordIndex = 0;
     let charIndex = 0;

@@ -695,6 +695,22 @@ body {
     -webkit-text-fill-color: currentColor;
 }
 
+.hero-text .typing-wrap {
+    min-width: min(7.8em, 100%);
+    min-height: 1.08em;
+    line-height: 1.08;
+}
+
+.hero-text .typing-txt {
+    min-height: 1.08em;
+    font-kerning: none;
+}
+
+.hero-text .typing-cursor {
+    height: 0.82em;
+    vertical-align: -0.03em;
+}
+
 .hero-text p {
     max-width: 620px;
     margin-bottom: 32px;
@@ -734,6 +750,71 @@ body {
 
 .floating-card i {
     color: var(--accent-color);
+}
+
+/* Center opening notice inside the hero */
+.hero-text .hero-news-banner {
+    width: min(100%, 720px);
+    margin: 22px 0 18px;
+    padding: 18px 20px;
+    border: 1px solid rgba(0, 48, 91, 0.14);
+    border-left: 4px solid var(--accent-color);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.1);
+}
+
+.hero-text .hero-news-kicker {
+    min-height: 24px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #e8f4fb;
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.hero-text .hero-news-banner strong {
+    display: block;
+    margin-top: 10px;
+    color: var(--text-dark);
+    font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
+.hero-text .hero-news-banner p {
+    max-width: 650px;
+    margin: 7px 0 0;
+    color: #3f5067;
+    font-size: 0.96rem;
+    line-height: 1.65;
+}
+
+.hero-text .hero-news-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.hero-text .hero-news-actions .btn {
+    min-width: 132px;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.2;
+}
+
+.hero-text .hero-news-actions .btn-outline-dark {
+    min-width: auto;
+    border-color: transparent;
+    background: transparent;
+    color: var(--primary-color);
+    box-shadow: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* Section surfaces */
