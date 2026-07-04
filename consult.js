@@ -58,8 +58,8 @@
 
     // 지점찾기 - 네이버 지도로 이동
     function openNaverMap() {
-        // 사단법인 미소금융부산중구법인 주소: 부산 중구 대청로 56
-        const address = encodeURIComponent('부산 중구 대청로 56');
+        // 사단법인 미소금융부산중구법인 주소
+        const address = encodeURIComponent('48955 부산광역시 중구 중앙대로 21 서민금융통합지원센터');
 
         // 네이버 지도 검색 URL
         const naverMapUrl = `https://map.naver.com/v5/search/${address}`;
