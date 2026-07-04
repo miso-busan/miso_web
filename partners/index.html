@@ -51,7 +51,6 @@
     />
     <link rel="stylesheet" href="../style.css?v=20260704b" />
     <link rel="stylesheet" href="../enhanced-styles.css?v=20260704b" />
-    <link rel="stylesheet" href="../calculator.css" />
     <link rel="stylesheet" href="../consult.css" />
     <link rel="stylesheet" href="../chatbot-emphasis.css" />
     <link rel="icon" type="image/png" href="../assets/miso_symbol.png" />
@@ -225,15 +224,6 @@
       <button
         type="button"
         class="quick-item"
-        id="loanCalculatorBtn"
-        aria-label="대출 계산기 열기"
-      >
-        <i class="fa-solid fa-calculator"></i>
-        <span>대출계산기</span>
-      </button>
-      <button
-        type="button"
-        class="quick-item"
         id="consultBtn"
         aria-label="상담 문의 열기"
       >
@@ -394,49 +384,24 @@
             </div>
             <ul class="doc-list">
               <li>
-                <i class="fa-solid fa-check"></i> 부산광역시 지역 정책 연계
+                <i class="fa-solid fa-check"></i> 부산광역시 및 부산 중구 지역
+                정책 연계
               </li>
               <li>
-                <i class="fa-solid fa-check"></i> 부산 중구청 지역 행정 안내
+                <i class="fa-solid fa-check"></i> 경남사회적기업협의회 등 협력
+                기관과 사회연대금융 안내
               </li>
               <li>
-                <i class="fa-solid fa-check"></i> 소상공인·자영업자 현장 지원
-                협업
+                <i class="fa-solid fa-check"></i> 상담 및 심사 결과에 따른 맞춤형
+                지원 연계
               </li>
             </ul>
           </div>
-          <div class="doc-card scroll-reveal delay-2">
-            <div class="doc-header">
-              <i class="fa-solid fa-people-arrows"></i>
-              <h4>사회적경제기업 연계</h4>
-            </div>
-            <ul class="doc-list">
-              <li>
-                <i class="fa-solid fa-check"></i> 경남사회적기업협의회 회원사 대상
-                금융지원 제도 안내
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i> 사회적기업·예비사회적기업 상담
-                연계 강화
-              </li>
-              <li>
-                <i class="fa-solid fa-check"></i> 우수 사회적경제기업 발굴 및
-                성장 지원 협력
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="doc-note">
-          <i class="fa-solid fa-up-right-from-square"></i>
-          <p>
-            관련기관 링크는 모두 새 창으로 열리며, 실제 지원 기준과 제도
-            세부사항은 각 기관의 공식 안내를 함께 확인하시는 것이 가장
-            정확합니다.
-          </p>
         </div>
       </div>
     </section>
 
+    <!-- Footer -->
     <footer id="footer">
       <div class="container footer-top">
         <div class="footer-brand">
@@ -446,7 +411,7 @@
           </div>
           <p class="footer-slogan">사회적경제기업과 금융취약계층의<br>든든한 파트너가 되겠습니다.</p>
         </div>
-        
+
         <div class="footer-links-grid">
           <div class="footer-col">
             <h4>법인안내</h4>
@@ -497,6 +462,7 @@
     </footer>
 
     <div id="modals">
+      <!-- Chatbot / Consult Modal -->
       <div id="consultModal" class="modal phone-modal">
         <div class="smartphone-frame">
           <div class="phone-screen">
@@ -538,150 +504,7 @@
         </div>
       </div>
 
-      <div id="loanCalculatorModal" class="modal modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3>대출계산기</h3>
-            <button class="modal-close" id="closeCalculator" aria-label="닫기">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-          <div class="modal-body calculator-body">
-            <p class="calculator-disclaimer" style="margin-bottom: 15px; font-size: 0.92rem; color: #4b5563; line-height: 1.6;">
-              계산기는 참고용입니다. 2026년 7월 1일 기준 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다. 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.
-            </p>
-            <div class="calculator-group" style="margin-bottom: 15px">
-              <label
-                >대출금액:
-                <input
-                  type="text"
-                  id="loanAmount"
-                  value="10,000,000"
-                  style="
-                    padding: 5px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    max-width: 150px;
-                  "
-              /></label>
-              <input
-                type="range"
-                id="loanAmountRange"
-                min="1000000"
-                max="100000000"
-                step="1000000"
-                value="10000000"
-                style="width: 100%; margin-top: 5px"
-              />
-            </div>
-            <div class="calculator-group" style="margin-bottom: 15px">
-              <label
-                >금리 (%):
-                <input
-                  type="number"
-                  id="interestRate"
-                  value="4.5"
-                  style="
-                    padding: 5px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    max-width: 80px;
-                  "
-              /></label>
-              <input
-                type="range"
-                id="interestRateRange"
-                min="1.0"
-                max="20.0"
-                step="0.1"
-                value="4.5"
-                style="width: 100%; margin-top: 5px"
-              />
-            </div>
-            <div class="calculator-group" style="margin-bottom: 15px">
-              <label
-                >대출기간 (개월):
-                <input
-                  type="number"
-                  id="loanPeriod"
-                  value="36"
-                  style="
-                    padding: 5px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    max-width: 80px;
-                  "
-              /></label>
-              <input
-                type="range"
-                id="loanPeriodRange"
-                min="12"
-                max="120"
-                step="12"
-                value="36"
-                style="width: 100%; margin-top: 5px"
-              />
-            </div>
-            <div class="calculator-group" style="margin-bottom: 20px">
-              <label
-                >상환방식:
-                <select
-                  id="repaymentMethod"
-                  style="
-                    padding: 5px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                  "
-                >
-                  <option value="equal-principal-interest">
-                    원리금균등상환
-                  </option>
-                  <option value="equal-principal">원금균등상환</option>
-                  <option value="maturity">만기일시상환</option>
-                </select>
-              </label>
-            </div>
-            <button
-              id="calculateBtn"
-              class="btn btn-primary"
-              style="width: 100%; margin-top: 10px"
-            >
-              계산하기
-            </button>
-            <div
-              id="calculatorResult"
-              class="calculator-result is-hidden"
-              style="
-                margin-top: 25px;
-                padding: 15px;
-                background: var(--bg-light);
-                border-radius: 8px;
-              "
-            >
-              <p style="margin-bottom: 8px">
-                월 상환금:
-                <span
-                  id="monthlyPayment"
-                  style="font-weight: bold; color: var(--primary-color)"
-                  >0</span
-                >원
-              </p>
-              <p style="margin-bottom: 8px">
-                총 대출이자:
-                <span id="totalInterest" style="font-weight: bold">0</span>원
-              </p>
-              <p>
-                총 상환금액:
-                <span id="totalPayment" style="font-weight: bold">0</span>원
-              </p>
-              <p style="margin-top: 10px; font-size: 0.9rem; color: #6b7280;">
-                * 위 계산 결과는 원리금 상환 방식에 따른 시뮬레이션입니다. 2026년 7월 1일 기준 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었으며, 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <!-- Site Search Modal -->
       <div id="siteSearchModal" class="modal">
         <div class="modal-content">
           <div class="modal-header">
@@ -744,15 +567,42 @@
             </button>
           </div>
           <div class="modal-body" style="text-align: left">
-            <p style="margin-bottom: 10px; font-weight: bold">
-              미소금융 부산중구법인 지원대상 등 상세 가이드
+            <p class="finance-guide-lead">
+              2026년 7월 1일 기준 신규 상담 가능한 주요 지원상품입니다.
+              실제 지원 가능 여부와 한도는 상담 및 심사 결과에 따라 달라질 수 있습니다.
             </p>
-            <ul>
-              <li>저소득, 저신용 계층을 위한 서민금융진흥원 사업입니다.</li>
+            <ul class="finance-guide-products">
               <li>
-                대출 전 반드시 관할 상담소와 예약 후 심사를 거치셔야 합니다.
+                <strong>자영업자 운영자금</strong>
+                <span>사업자등록 후 3개월 이상 운영 중인 자영업자, 최대 2,000만원</span>
+              </li>
+              <li>
+                <strong>청년운영자금</strong>
+                <span>만 19세 이상 34세 이하 청년 자영업자, 최대 3,000만원</span>
+              </li>
+              <li>
+                <strong>청년 미래이음 대출</strong>
+                <span>재직 또는 창업 1년 이내 청년과 미취업자, 최대 500만원</span>
+              </li>
+              <li>
+                <strong>금융취약계층 생계자금</strong>
+                <span>대상 유형별 증빙 및 심사 후 최대 500만원</span>
+              </li>
+              <li>
+                <strong>사회연대금융</strong>
+                <span>사회적경제기업 대상, 기업당 최대 1억원 범위 내 상담</span>
               </li>
             </ul>
+            <p class="finance-guide-notice">
+              창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.
+            </p>
+            <p class="finance-guide-note">
+              상담 전 사업자등록증명원, 소득 확인자료, 대상 유형별 증빙서류 등을 준비하시면 안내가 더 원활합니다.
+            </p>
+            <div class="finance-guide-actions">
+              <a href="../services/index.html" class="btn btn-primary">지원상품 보기</a>
+              <a href="../index.html#contact" class="btn btn-outline-dark">상담 문의하기</a>
+            </div>
           </div>
         </div>
       </div>
@@ -760,7 +610,6 @@
 
     <script src="../modal-manager.js"></script>
     <script src="../app.js?v=20260704b"></script>
-    <script src="../calculator.js?v=20260615a"></script>
     <script src="../consult.js?v=20260615a"></script>
   </body>
 </html>

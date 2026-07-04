@@ -616,17 +616,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const quickActionTargets = [];
-        const calculatorBtn = document.getElementById('loanCalculatorBtn');
-        if (calculatorBtn) {
-            quickActionTargets.push({
-                element: null,
-                title: '대출 계산기',
-                pathLabel: '빠른 메뉴',
-                searchText: normalizeText('대출 계산기 상환액 계산 월 납입금'),
-                snippet: '월 상환액을 즉시 계산할 수 있는 계산기를 엽니다.',
-                action: () => calculatorBtn.click()
-            });
-        }
 
         const consultBtn = document.getElementById('consultBtn');
         if (consultBtn) {
@@ -1345,8 +1334,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { label: "🎯 3분 완성! 맞춤 상담", value: "quick_consult" },
                 { label: "🆘 금융취약계층·청년 대출 진단", value: "diag_vuln_step1" },
                 { label: "💰 상품별 상세 안내", value: "find_product" },
-                { label: "🔢 대출금 계산기", value: "calc_start" },
-                { label: "📞 전화 번호 안내", value: "phone_info" }
+{ label: "📞 전화 번호 안내", value: "phone_info" }
             ]
         },
         // === VULNERABLE CLASS & YOUTH DIAGNOSTIC ===
@@ -1433,8 +1421,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ※ 지점 심사 과정에서 최종 한도 및 금리가 확정됩니다.`,
             options: [
                 { label: "📄 필수 서류 보기", value: "doc_social" },
-                { label: "🔢 상환액 계산", value: "calc_start" },
-                { label: "📞 전화 상담 예약", value: "phone_info" },
+{ label: "📞 전화 상담 예약", value: "phone_info" },
                 { label: "🏠 처음으로", value: "start" }
             ]
         },
@@ -1530,8 +1517,7 @@ document.addEventListener('DOMContentLoaded', () => {
             • 사업장 소유 또는 임대 관계 확인서류<br>
             • 경영교육 수료증`,
             options: [
-                { label: "🔢 월 상환액 계산", value: "calc_start" },
-                { label: "📞 전화 번호 안내", value: "phone_info" },
+{ label: "📞 전화 번호 안내", value: "phone_info" },
                 { label: "🔄 처음으로", value: "start" }
             ]
         },
@@ -1544,8 +1530,7 @@ document.addEventListener('DOMContentLoaded', () => {
             • <b>금리</b>: 거치기간 연 2.0% / 상환기간 연 4.5%<br><br>
             최종 가능 여부와 한도는 상담 및 심사 결과에 따라 확정됩니다.`,
             options: [
-                { label: "🔢 월 상환액 계산", value: "calc_start" },
-                { label: "📞 전화 번호 안내", value: "phone_info" },
+{ label: "📞 전화 번호 안내", value: "phone_info" },
                 { label: "🔄 처음으로", value: "start" }
             ]
         },
@@ -1555,8 +1540,7 @@ document.addEventListener('DOMContentLoaded', () => {
             창업자금 및 시설개선자금은 2026년 7월 1일부터 신규 신청·실행이 중단되었습니다.<br><br>
             운영 중인 사업자는 자영업자 운영자금 상담을 받아 주세요.`,
             options: [
-                { label: "🔢 상환액 계산", value: "calc_start" },
-                { label: "📞 전화 번호 안내", value: "phone_info" }
+{ label: "📞 전화 번호 안내", value: "phone_info" }
             ]
         },
         'qc_result_operation_vehicle': {
@@ -1592,18 +1576,6 @@ document.addEventListener('DOMContentLoaded', () => {
             options: [
                 { label: "📞 바로 전화하기", value: "call" },
                 { label: "🏠 처음으로", value: "start" }
-            ]
-        },
-
-        // === CALCULATOR ===
-        'calc_start': {
-            text: "<b>🔢 대출금 상환 계산기</b><br><br>계산기는 참고용입니다. 2026년 7월 1일 기준 창업자금 및 시설개선자금은 신규 신청·실행이 중단되었습니다. 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.<br><br>대출 희망 금액을 선택해 주세요.",
-            options: [
-                { label: "1,000만원", value: "calc_1000" },
-                { label: "2,000만원", value: "calc_2000" },
-                { label: "3,000만원", value: "calc_3000" },
-                { label: "5,000만원", value: "calc_5000" },
-                { label: "1억원", value: "calc_10000" }
             ]
         },
 
@@ -1738,49 +1710,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleLogic(key) {
-        if (/^calc_(\d+)$/.test(key)) {
-            trackEvent('chatbot_calculator_submit', {
-                loan_amount_manwon: parseInt(key.replace('calc_', ''), 10)
-            });
-        } else {
-            trackEvent('chatbot_step_view', {
-                chatbot_step: key
-            });
-        }
+        trackEvent('chatbot_step_view', {
+            chatbot_step: key
+        });
 
         showTyping(() => {
-            const calcMatch = /^calc_(\d+)$/.exec(key);
-            if (calcMatch) {
-                performCalculation(parseInt(calcMatch[1], 10));
-                return;
-            }
-
             const data = botBrain[key] || { text: "죄송합니다. 처리할 수 없는 요청입니다.", options: [{ label: "처음으로", value: "start" }] };
             currentChatbotStep = key;
             addMessage(data.text, 'received');
             if (data.options) addOptions(data.options);
         });
     }
-
-    function performCalculation(amt) {
-        const rate = 0.045; // 4.5%
-        const months = 60; // 5 years
-        const monthlyRate = rate / 12;
-        const monthlyPayment = (amt * 10000 * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
-
-        const resultText = `
-            <b>🔢 상환 시뮬레이션</b><br><br>
-            • <b>대출금</b>: ${amt.toLocaleString()}만원<br>
-            • <b>금리</b>: 연 4.5%<br>
-            • <b>기간</b>: 5년 (60개월)<br>
-            <hr>
-            월 납입금: 약 <b style='color:#00305b;font-size:1.1em;'>${Math.round(monthlyPayment).toLocaleString()}원</b><br><br>
-            <span style='font-size:0.9em;color:#6b7280;'>계산기는 참고용이며 실제 가능 상품과 금리는 상담 및 심사 결과에 따라 확정됩니다.</span>
-        `;
-        addMessage(resultText, 'received');
-        addOptions([{ label: "다른 금액 계산", value: "calc_start" }, { label: "메인으로", value: "start" }]);
-    }
-
     // --- Init ---
     // Initialize buttons that are present in HTML
     const initBtns = document.querySelectorAll('#chatQuickReplies .quick-reply-btn');
