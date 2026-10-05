@@ -1,0 +1,177 @@
+/* Everyday scenes and real community activity give the information room to breathe. */
+.support-photo-collage { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.support-scene { position:relative; display:block; overflow:hidden; border-radius:14px; min-width:0; background:#dde6ec; }
+.support-scene img { display:block; width:100%; height:180px; object-fit:cover; transition:transform .65s ease; }
+.support-scene.scene-0 { grid-column:1 / -1; border-radius:52px 14px 14px 14px; }
+.support-scene.scene-0 img { height:330px; object-position:55% 48%; }
+.support-scene > span { position:absolute; inset:auto 0 0; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; color:#fff; background:#243847eb; font-size:16px; line-height:1.6; }
+.support-scene.scene-0 > span { font-size:20px; padding:17px 22px; }
+.support-scene .icon { width:18px; height:18px; flex-shrink:0; }
+.support-scene:hover img { transform:scale(1.025); }
+.guide-photo-feature, .prepare-photo-feature { margin:0; border-radius:50px 14px 14px 14px; overflow:hidden; background:#293e50; border:1px solid #cedbe3; box-shadow:0 22px 55px #273b4812; }
+.guide-photo-feature > img, .prepare-photo-feature > img { display:block; width:100%; height:360px; object-fit:cover; }
+.guide-photo-feature > img { object-position:50% 46%; }
+.prepare-photo-feature > img { object-position:45% center; }
+.guide-photo-feature figcaption, .prepare-photo-feature figcaption { padding:25px 27px; color:#fff; }
+.guide-photo-feature figcaption > span { display:block; color:#d5e5ee; font-size:15px; margin-bottom:8px; }
+.guide-photo-feature figcaption > strong, .prepare-photo-feature figcaption > strong { display:block; font-size:24px; font-weight:400; line-height:1.6; letter-spacing:-.04em; color:#fff; }
+.guide-photo-feature ol { display:flex; flex-wrap:wrap; gap:10px 19px; padding:18px 0; margin:0; list-style:none; font-size:15px; color:#dbe8ef; }
+.guide-photo-feature a { display:flex; justify-content:space-between; align-items:center; gap:15px; font-size:16px; padding-top:17px; border-top:1px solid #cbdde740; color:#fff; }
+.hero-prepare { --hero-paper:#edf2f5; --accent:#41637c; }
+.page-prepare .hero-prepare { padding-top:30px; }
+.prepare-photo-feature figcaption > div { display:flex; flex-wrap:wrap; gap:15px 22px; margin-top:19px; border-top:1px solid #cbdde740; padding-top:19px; }
+.prepare-photo-feature figcaption a { display:flex; gap:7px; font-size:16px; color:#fff; align-items:center; }
+.prepare-photo-feature figcaption a span { color:#c8dfec; font-size:14px; }
+.prepare-photo-feature figcaption a:hover, .guide-photo-feature a:hover { text-decoration:underline; text-underline-offset:5px; }
+.partners-documentary { border-radius:50px 14px 14px 14px; }
+.partners-documentary > img { object-position:center; height:380px; }
+.partners-documentary figcaption { border-top:0; }
+.partners-documentary figcaption a { display:flex; align-items:center; gap:20px; color:#e1edf5; margin-top:18px; font-size:16px; }
+.partners-documentary figcaption a .icon { width:20px; height:20px; }
+
+/* The photos sit above a solid reading surface, with no financial terms on pictures. */
+.immersive-home .photographic-product { padding:0; border-top:0; min-height:0; overflow:hidden; background:#fff; }
+.product-card-picture { position:relative; overflow:hidden; background:#e7edf1; }
+.product-card-picture img { display:block; width:100%; height:auto; aspect-ratio:1.65; object-fit:cover; transition:transform .65s ease; }
+.product-card-picture .card-arrow { position:absolute; right:14px; top:14px; display:grid; place-items:center; width:33px; height:33px; border-radius:50%; background:#fff; color:#304e62; box-shadow:0 3px 12px #24384720; }
+.photographic-product:hover img { transform:scale(1.03); }
+.product-card-copy { display:flex; flex-direction:column; padding:25px; flex:1; }
+.product-card-copy .product-label { font-size:14px; line-height:1.7; color:#516675; }
+.product-card-copy h3 { margin:12px 0 15px; }
+.product-card-copy > p { margin-bottom:0; }
+.product-card-copy .product-card-bottom { padding-top:22px; }
+.page-services .product-detail-lead.photographic-detail { padding:0; }
+.product-detail-picture { position:relative; overflow:hidden; }
+.product-detail-picture img { display:block; width:100%; height:245px; object-fit:cover; }
+.photographic-detail .product-section-no { top:19px; right:20px; color:#fff; background:#243847ed; padding:5px 10px; border-radius:4px; font-size:13px; letter-spacing:.08em; }
+.product-detail-copy { padding:31px 33px 35px; }
+.page-services .product-detail-copy > .eyebrow { color:#deebf3; font-size:15px; }
+.page-services .product-detail-copy h2 { color:#fff; font-size:35px; line-height:1.5; margin:16px 0 17px; }
+.page-services .product-detail-copy > p:not(.eyebrow) { color:#e0ecf2; font-size:18px; line-height:1.85; }
+.page-services .product-detail-copy .detail-limit small { color:#dce9f1; font-size:16px; }
+.page-services .product-detail-copy .detail-limit strong { color:#fff; }
+.page-services .product-detail-copy .detail-docs { color:#f0f7fa; }
+.page-services .detail-information { align-self:start; }
+.page-process .eligibility-with-photo { overflow:hidden; }
+.eligibility-photo { display:block; width:100%; height:180px; object-fit:cover; border-radius:8px; margin-bottom:25px; }
+.finder-photo { margin:26px 0 0; border-radius:8px; overflow:hidden; }
+.finder-photo img { width:100%; height:185px; display:block; object-fit:cover; }
+.finder-photo + .finder-assurance { padding-top:22px; margin-top:auto; }
+
+.community-gallery { background:#eff3f5; }
+.community-moments { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.community-moment { display:block; background:#fff; border:1px solid #ccdbe3; border-radius:13px; overflow:hidden; }
+.community-moment figure { margin:0; }
+.community-moment img { display:block; width:100%; height:240px; object-fit:cover; }
+.community-moment figcaption { padding:25px 26px; }
+.community-moment time { display:block; color:#526b7d; font-size:15px; }
+.community-moment h3 { font-size:23px; line-height:1.65; margin:12px 0 23px; letter-spacing:-.04em; }
+.community-moment figcaption > span { display:block; font-size:16px; color:#385f7a; }
+.community-moment:hover { border-color:#7496aa; box-shadow:0 15px 35px #273b4810; }
+
+/* App guidance uses an everyday scene, rather than inventing an app screenshot. */
+.photographic-reservation.reservation-visual { padding:0; overflow:hidden; border-radius:54px 16px 16px 16px; }
+.photographic-reservation > img { display:block; width:100%; height:320px; object-fit:cover; object-position:66% center; }
+.photographic-reservation .reservation-visual-heading { padding:22px 25px 20px; background:#293e50; color:#fff; border:0; }
+.photographic-reservation .reservation-visual-heading > span { color:#d6e6ef; font-size:14px; }
+.photographic-reservation .reservation-visual-heading > strong { color:#fff; font-size:29px; line-height:1.45; margin:5px 0; }
+.photographic-reservation .reservation-visual-heading > p { color:#d6e6ef; font-size:16px; }
+.photographic-reservation ol { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:0; padding:18px 23px; gap:18px; }
+.photographic-reservation li { display:block; padding:0; border:0; min-width:0; }
+.photographic-reservation li > span { width:28px; height:28px; font-size:13px; margin-bottom:9px; }
+.photographic-reservation li strong { font-size:17px; line-height:1.6; }
+.photographic-reservation li small { font-size:14px; line-height:1.7; }
+.photographic-reservation li > .icon, .photographic-reservation .reservation-visual-footer { display:none; }
+.reservation-hero-grid { grid-template-columns:1fr 1fr; gap:65px; }
+.reservation-banner > .container { display:grid; grid-template-columns:.95fr 1.05fr; gap:65px; align-items:center; }
+.reservation-banner-photo { margin:0; border-radius:14px 50px 14px 14px; overflow:hidden; }
+.reservation-banner-photo img { display:block; width:100%; height:350px; object-fit:cover; object-position:66% center; }
+.reservation-banner .reservation-banner-copy a { display:inline-flex; font-size:17px; padding:17px 22px; gap:30px; margin-top:27px; }
+.reservation-steps-intro { display:grid; grid-template-columns:.95fr 1.05fr; gap:65px; align-items:center; margin-bottom:45px; }
+.reservation-steps-intro > figure { margin:0; border-radius:14px; overflow:hidden; }
+.reservation-steps-intro img { display:block; width:100%; height:300px; object-fit:cover; }
+.reservation-steps-intro .section-heading { margin:0; }
+.reservation-steps-intro .section-heading h2 { font-size:clamp(29px,3vw,40px); line-height:1.5; margin-top:16px; }
+.reservation-steps-intro .section-heading p { font-size:18px; line-height:1.85; }
+
+@media(max-width:1100px) {
+ .support-scene.scene-0 img { height:295px; }
+ .support-scene img { height:165px; }
+ .support-scene > span { padding:12px 14px; font-size:15px; }
+ .guide-photo-feature > img, .prepare-photo-feature > img { height:320px; }
+ .guide-photo-feature figcaption, .prepare-photo-feature figcaption { padding:23px; }
+ .product-detail-copy { padding:28px; }
+ .page-services .product-detail-copy h2 { font-size:30px; }
+ .product-detail-picture img { height:220px; }
+ .product-card-copy { padding:24px; }
+ .community-moment img { height:195px; }
+ .community-moment figcaption { padding:22px; }
+ .community-moment h3 { font-size:21px; }
+ .reservation-hero-grid, .reservation-banner > .container, .reservation-steps-intro { gap:35px; }
+ .photographic-reservation > img { height:285px; }
+ .photographic-reservation ol { gap:12px; padding:20px; }
+ .reservation-banner-photo img { height:330px; }
+}
+@media(max-width:1000px) {
+ .finder-photo { display:none; }
+ .finder-photo + .finder-assurance { padding-top:0; margin-top:13px; }
+ .eligibility-photo { height:155px; }
+}
+@media(max-width:760px) {
+ .support-photo-collage { gap:12px; }
+ .support-scene.scene-0 { border-radius:38px 12px 12px 12px; }
+ .support-scene.scene-0 img { height:260px; }
+ .support-scene img { height:180px; }
+ .support-scene.scene-0 > span { font-size:18px; padding:14px 17px; }
+ .support-scene > span { font-size:15px; padding:12px; gap:7px; }
+ .support-scene:not(.scene-0) .icon { display:none; }
+ .guide-photo-feature, .prepare-photo-feature, .partners-documentary, .photographic-reservation.reservation-visual { border-radius:38px 12px 12px 12px; }
+ .guide-photo-feature > img, .prepare-photo-feature > img, .partners-documentary > img { height:270px; }
+ .guide-photo-feature figcaption, .prepare-photo-feature figcaption { padding:23px; }
+ .guide-photo-feature figcaption > strong, .prepare-photo-feature figcaption > strong { font-size:23px; }
+ .guide-photo-feature ol { font-size:15px; gap:9px 17px; }
+ .page-prepare .hero-prepare { padding-top:23px; padding-bottom:0; }
+ .prepare-photo-feature figcaption > div { gap:13px 18px; }
+ .prepare-photo-feature figcaption a { font-size:15px; }
+ .product-card-copy { padding:25px; }
+ .product-detail-picture img { height:auto; aspect-ratio:1.6; }
+ .product-detail-copy { padding:27px 25px 30px; }
+ .page-services .product-detail-copy h2 { font-size:31px; }
+ .page-services .product-detail-copy > p:not(.eyebrow) { font-size:17px; }
+ .eligibility-photo { height:auto; aspect-ratio:1.7; }
+ .community-moments { grid-template-columns:1fr; gap:23px; }
+ .community-moment img { height:auto; aspect-ratio:1.5; }
+ .community-moment figcaption { padding:25px; }
+ .community-moment h3 { font-size:23px; }
+ .reservation-hero-grid { grid-template-columns:1fr; gap:32px; }
+ .photographic-reservation > img { height:270px; }
+ .photographic-reservation .reservation-visual-heading { padding:21px 23px; }
+ .photographic-reservation ol { padding:21px; gap:12px; }
+ .photographic-reservation li strong { font-size:16px; }
+ .photographic-reservation li small { font-size:14px; }
+ .reservation-banner > .container, .reservation-steps-intro { grid-template-columns:1fr; gap:28px; }
+ .reservation-banner-photo img { height:auto; aspect-ratio:1.35; }
+ .reservation-banner .reservation-banner-copy a { font-size:16px; padding:17px 20px; gap:25px; }
+ .reservation-steps-intro { margin-bottom:32px; }
+ .reservation-steps-intro img { height:auto; aspect-ratio:1.5; }
+ .reservation-steps-intro .section-heading p { font-size:17px; }
+}
+@media(max-width:360px) {
+ .support-scene.scene-0 img { height:230px; }
+ .support-scene img { height:160px; }
+ .guide-photo-feature > img, .prepare-photo-feature > img, .partners-documentary > img, .photographic-reservation > img { height:230px; }
+ .photographic-reservation ol { padding:20px 17px; gap:9px; }
+ .photographic-reservation li strong { font-size:16px; }
+ .photographic-reservation li small { font-size:14px; }
+ .product-card-copy { padding:24px; }
+ .guide-photo-feature figcaption, .prepare-photo-feature figcaption { padding:22px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .support-scene img, .product-card-picture img { transition:none; }
+ .support-scene:hover img, .photographic-product:hover img { transform:none; }
+}
+@media print {
+ .finder-photo, .reservation-banner, .reservation-steps-intro > figure, .product-card-picture, .product-detail-picture, .eligibility-photo, .community-gallery, .photographic-reservation, .support-photo-collage, .guide-photo-feature, .prepare-photo-feature { display:none; }
+ .product-detail-copy { padding:20px 0; }
+ .page-services .product-detail-copy > p:not(.eyebrow), .page-services .product-detail-copy > .eyebrow, .page-services .product-detail-copy h2, .page-services .product-detail-copy .detail-limit strong, .page-services .product-detail-copy .detail-limit small, .page-services .product-detail-copy .detail-docs { color:#000; }
+}
