@@ -169,8 +169,8 @@
       social: [['operation','기업 운영자금'],['facility','시설자금'],['rental','사업장 임차자금']]
     };
     function question() {
-      if (!answers.length) return ['지금 어떤 상황이신가요?','가장 가까운 상황을 선택해 주세요.',profiles];
-      if (answers.length === 1) return ['어떤 자금이 필요하신가요?','실제로 사용하려는 자금 용도를 선택해 주세요.',purposes[answers[0]]];
+      if (!answers.length) return ['현재 어떤 상황이신가요?','해당하는 항목을 선택해 주세요.',profiles];
+      if (answers.length === 1) return ['어떤 자금이 필요하신가요?','필요한 자금의 용도를 선택해 주세요.',purposes[answers[0]]];
       if (answers[0] === 'business') return ['연령대가 어떻게 되시나요?','청년 자영업자는 청년운영자금 조건을 함께 확인합니다.',[['young','만 19–34세'],['adult','만 35세 이상'],['unknown','연령 조건을 더 확인하고 싶어요']]];
       if (answers[0] === 'youth' && answers[1] === 'operation') return ['사업 운영기간을 확인해 주세요.','사업자등록 후 운영기간과 소득·신용 요건을 상담에서 확인합니다.',[['ready','3개월 이상 운영 중'],['early','사업 초기 또는 3개월 미만'],['unknown','정확한 기준을 상담하고 싶어요']]];
       if (answers[0] === 'youth') return ['현재 취업·창업 상황을 확인해 주세요.','청년 미래이음 대출은 미취업 또는 취업·창업 1년 이내 등의 요건을 확인합니다.',[['not-working','아직 취업·창업 전'],['within-year','취업·창업한 지 1년 이내'],['over-year','취업·창업한 지 1년 초과'],['unknown','정확한 기준을 상담하고 싶어요']]];
@@ -205,13 +205,13 @@
       else if (!ids.length) note = '선택하신 상황은 상품별 추가 확인이 필요합니다. 전화로 상황을 알려 주시면 지원요건과 다른 상담 경로를 안내해 드립니다.';
       else note = '선택한 상황과 관련된 상품입니다. 아래 지원요건을 확인해 주세요. 이 결과는 대출 승인이나 한도 확정을 의미하지 않습니다.';
       screen.hidden = true; result.hidden = false;
-      result.querySelector('h4').textContent = ids.length ? '이 상품부터 살펴보세요.' : '상담으로 다음 길을 함께 찾아요.';
+      result.querySelector('h4').textContent = ids.length ? '확인할 지원상품' : '추가 상담이 필요합니다.';
       $('.finder-result-note').textContent = note;
       const cards = $('.finder-result-cards'); cards.replaceChildren();
       for (const id of ids) {
         const product = productById(id), card = el('article','finder-product');
         card.append(el('span','',product.label),el('h5','',product.name),el('p','finder-product-terms',`최대 ${product.limit} · ${product.rate}`),el('p','',product.target));
-        const action = el('a','finder-prepare','이 상품으로 상담 준비하기 →');
+        const action = el('a','finder-prepare','상품·준비서류 확인 →');
         const victims = profile === 'life' && purpose === 'victim';
         action.href = `${finder.dataset.base}prepare/index.html?product=${id}${victims ? '&documents=victims' : ''}#plan`;
         if (plan && location.pathname.endsWith('/prepare/index.html')) action.addEventListener('click', event => {
