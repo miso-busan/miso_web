@@ -193,3 +193,6 @@
 @media print {
   .governance-card, .governance-board { break-inside: avoid; }
 }
+
+/* Preserve the recovery scene across wide and narrow detail layouts. */
+#miso_vulnerable .product-detail-picture img { height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
