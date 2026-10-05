@@ -1,0 +1,107 @@
+/* Public guidance and documentary photographs, using the approved ink-blue palette. */
+.finance-guide, .finance-assessment {
+  margin-top: 44px;
+  padding-top: 38px;
+  border-top: 1px solid #d3dfe4;
+}
+.finance-guide[id], .finance-assessment[id], .page-process .document-block[id] { scroll-margin-top: 100px; }
+.finance-guide-heading { margin-bottom: 26px; max-width: 900px; }
+.finance-guide-heading h3 { font-size: 28px; line-height: 1.5; margin-bottom: 14px; }
+.finance-guide-heading p:not(.eyebrow), .finance-flow-heading p,
+.finance-condition-card li, .assessment-card p {
+  font-size: var(--reading-body, 18px); line-height: 1.85; color: #4b5c66;
+}
+.finance-terms { overflow: hidden; border: 1px solid #d3dfe4; border-radius: 14px; background: #fff; }
+.finance-terms > h4 { padding: 25px 28px; font-size: 22px; color: #273d4b; }
+.page-services .finance-table { min-width: 0; width: 100%; border-collapse: collapse; font-size: 18px; line-height: 1.85; }
+.page-services .finance-table th, .page-services .finance-table td { font-size: inherit; padding: 22px 28px; text-align: left; border-top: 1px solid #dce5e8; color: #3f5361; }
+.page-services .finance-table thead th { background: #e9f0f3; color: #2b4656; font-size: 16px; }
+.page-services .finance-table th[scope=row] { width: 190px; font-weight: 600; color: #273d4b; }
+.finance-condition-grid, .assessment-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.finance-condition-grid { margin-top: 24px; }
+.finance-condition-card, .assessment-card {
+  min-width: 0; padding: 30px; border: 1px solid #d3dfe4; border-radius: 14px; background: #fff;
+}
+.finance-preference { background: #eef3f5; }
+.content-kicker { display: block; color: #496271; font-size: 14px; line-height: 1.7; font-weight: 600; margin-bottom: 10px; }
+.finance-condition-card h4, .assessment-card h4 { font-size: 22px; line-height: 1.6; margin: 0 0 18px; color: #273d4b; }
+.finance-condition-card h4 strong { color: #274b60; white-space: nowrap; }
+.finance-condition-card ul { padding-left: 22px; margin: 0; }
+.finance-condition-card li { margin-bottom: 14px; }
+.finance-condition-card li:last-child { margin-bottom: 0; }
+.finance-condition-card .text-link { display: inline-flex; margin-top: 24px; flex-wrap: wrap; font-size: 16px; }
+.finance-basis { margin-top: 21px; }
+.assessment-card { display: flex; flex-direction: column; align-items: flex-start; }
+.assessment-card .assessment-note { margin: 16px 0 24px; font-size: 16px; color: #52616b; }
+.assessment-card .button { margin-top: auto; }
+.finance-flow-heading { margin: 36px 0 22px; }
+.finance-flow-heading h4 { font-size: 22px; margin-bottom: 8px; color: #273d4b; }
+.finance-flow { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 15px; padding: 0; margin: 0; list-style: none; }
+.finance-flow > li { min-width: 0; padding: 24px; background: #eef3f5; border-radius: 12px; border: 1px solid #d8e2e7; }
+.finance-flow-number { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-bottom: 20px; border-radius: 50%; background: #304b5b; color: #f7fbfd; font-size: 16px; font-weight: 600; }
+.finance-flow h4 { font-size: 19px; line-height: 1.6; color: #273d4b; margin-bottom: 10px; }
+.finance-flow p { font-size: 16px; line-height: 1.9; color: #4b5c66; }
+.page-process #process .social-process-link { display: inline-flex; color: #dceaf0; margin-top: 20px; font-size: 17px; }
+
+/* Separate checklists make the correct documents easy to find. */
+.page-process .document-grid { gap: 26px; }
+.page-process .document-block { min-width: 0; padding: 30px; border-radius: 14px; }
+.document-category { display: block; font-size: 14px; color: #496271; font-weight: 600; line-height: 1.7; margin-bottom: 10px; }
+.page-process .document-block h3 { font-size: 23px; line-height: 1.6; }
+.page-process .document-block .document-note { margin-top: 22px; padding-top: 18px; border-top: 1px solid #dce5e8; font-size: 15px; line-height: 1.9; color: #52616b; }
+
+/* Captions sit on solid paper, outside the photographs. */
+.activity-gallery { margin: 55px 0; padding-top: 36px; border-top: 1px solid #d3dfe4; }
+.gallery-heading { margin-bottom: 28px; }
+.gallery-heading h2 { font-size: 28px; line-height: 1.5; margin-bottom: 13px; }
+.gallery-heading > p:not(.eyebrow) { font-size: 17px; line-height: 1.9; color: #4b5c66; }
+.activity-photo-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; align-items: start; }
+.activity-photo { min-width: 0; margin: 0; border: 1px solid #d3dfe4; border-radius: 14px; background: #fff; }
+.activity-photo-link { display: block; position: relative; background: #e9eef0; border-radius: 13px 13px 0 0; }
+.activity-photo-link img { display: block; width: 100%; height: auto; border-radius: 13px 13px 0 0; }
+.photo-open { display: flex; align-items: center; gap: 7px; position: absolute; right: 12px; bottom: 12px; padding: 8px 12px; border-radius: 5px; background: #253747; color: #f8fcfc; font-size: 14px; line-height: 1.5; }
+.photo-open .icon { width: 17px; height: 17px; }
+.activity-photo-link:hover .photo-open { background: #354f5f; }
+.activity-photo figcaption { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 12px; padding: 21px; color: #344e5e; font-size: 17px; line-height: 1.8; }
+.photo-number { color: #536a78; font-size: 14px; padding-top: 3px; }
+.notice-card-meta .record-tag { padding: 4px 10px; border-radius: 4px; background: #edf2f4; color: #425c6b; font-size: 14px; line-height: 1.6; }
+.is-article .article-content .article-record { margin-bottom: 28px; padding: 16px 20px; background: #eef3f5; border-left: 3px solid #829caa; color: #435d6b; font-size: 15px; line-height: 1.9; }
+.article-detail-section { margin: 30px 0; padding: 25px 28px; border: 1px solid #d3dfe4; border-radius: 12px; background: #f2f6f7; }
+.article-detail-section h2 { font-size: 23px; line-height: 1.6; margin-bottom: 18px; }
+.article-detail-section ul { margin: 0; padding-left: 22px; }
+.article-detail-section li { color: #4b5c66; font-size: 18px; line-height: 1.9; margin-bottom: 14px; }
+.article-detail-section li:last-child { margin-bottom: 0; }
+
+@media (max-width: 1020px) {
+  .finance-flow { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 760px) {
+  .finance-guide, .finance-assessment { margin-top: 30px; padding-top: 27px; }
+  .finance-guide-heading h3, .gallery-heading h2 { font-size: 25px; }
+  .finance-condition-grid, .assessment-grid, .activity-photo-grid { grid-template-columns: 1fr; gap: 18px; }
+  .finance-condition-card, .assessment-card, .page-process .document-block { padding: 23px; }
+  .finance-condition-card h4, .assessment-card h4, .finance-flow-heading h4 { font-size: 21px; }
+  .page-services .finance-table { font-size: 17px; }
+  .finance-terms > h4 { padding: 22px; font-size: 21px; }
+  .page-services .finance-table th, .page-services .finance-table td { padding: 18px 14px; }
+  .page-services .finance-table th[scope=row] { width: 100px; font-size: 16px; }
+  .page-services .finance-table thead th { font-size: 15px; }
+  .finance-flow { grid-template-columns: 1fr; gap: 12px; }
+  .finance-flow > li { display: flex; gap: 18px; padding: 23px; }
+  .finance-flow-number { flex-shrink: 0; margin: 0; }
+  .finance-flow h4 { font-size: 18px; margin-bottom: 7px; }
+  .finance-flow p { font-size: 17px; }
+  .page-process .document-grid { gap: 18px; }
+  .activity-gallery { margin: 36px 0; padding-top: 28px; }
+  .activity-photo figcaption { padding: 19px; }
+  .notice-card-meta { flex-wrap: wrap; }
+  .article-detail-section { padding: 22px; }
+  .article-detail-section h2 { font-size: 21px; }
+  .article-detail-section li { font-size: 17px; }
+}
+@media print {
+  .finance-condition-grid, .assessment-grid, .activity-photo-grid { grid-template-columns: 1fr 1fr; }
+  .finance-flow { grid-template-columns: 1fr 1fr; }
+  .finance-condition-card, .assessment-card, .document-block, .activity-photo, .article-detail-section { break-inside: avoid; }
+  .photo-open { display: none; }
+}
