@@ -151,7 +151,7 @@
 .interior-page .support-finder .finder-introduction h3 { color: #fff; font-size: clamp(26px, 2.4vw, 32px); line-height: 1.5; letter-spacing: -.04em; }
 .support-finder .finder-introduction > p { margin-top: 16px; color: #e5eef5; font-size: 17px; line-height: 1.85; word-break: keep-all; }
 .support-finder .finder-photo { margin-top: 22px; }
-.support-finder .finder-photo img { height: 140px; }
+.support-finder .finder-photo img { height: auto; object-fit: contain; }
 .support-finder .finder-assurance { margin-top: auto; padding-top: 19px; color: #d6e3ec; font-size: 14px; line-height: 1.8; }
 .support-finder .finder-interaction { padding: 30px 32px; }
 .support-finder .finder-progress { margin-bottom: 22px; padding-bottom: 20px; }
