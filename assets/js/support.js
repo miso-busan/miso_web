@@ -3,6 +3,7 @@
   const data = window.MISO_SUPPORT;
   if (!data) return;
   const productById = id => data.products.find(p => p.id === id);
+  const minimumRateText = product => Number.isFinite(product.minimumRate) ? `최저 연 ${product.minimumRate.toFixed(1)}% (${product.minimumRateCondition})` : '';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const money = value => `${Math.round(value).toLocaleString('ko-KR')}원`;
   const el = (tag, cls, text) => {
@@ -112,6 +113,10 @@
       productSelect.value = product.id;
       $('.planning-name').textContent = product.name;
       $('.planning-terms').textContent = `최대 ${product.limit} · ${product.rate} · ${product.period}`;
+      for (const selector of ['.planning-minimum', '.planning-rate-minimum']) {
+        const node = $(selector);
+        node.textContent = minimumRateText(product); node.hidden = !node.textContent;
+      }
       $('.planning-target').textContent = product.target;
       $('.planning-detail').href = `${base}services/index.html#${product.id}`;
       amount.max = range.max = product.planning.limitWon / 10000;
@@ -210,7 +215,9 @@
       const cards = $('.finder-result-cards'); cards.replaceChildren();
       for (const id of ids) {
         const product = productById(id), card = el('article','finder-product');
-        card.append(el('span','',product.label),el('h5','',product.name),el('p','finder-product-terms',`최대 ${product.limit} · ${product.rate}`),el('p','',product.target));
+        card.append(el('span','',product.label),el('h5','',product.name),el('p','finder-product-terms',`최대 ${product.limit} · ${product.rate}`));
+        if (minimumRateText(product)) card.append(el('span','rate-minimum',minimumRateText(product)));
+        card.append(el('p','',product.target));
         const action = el('a','finder-prepare','상품·준비서류 확인 →');
         const victims = profile === 'life' && purpose === 'victim';
         action.href = `${finder.dataset.base}prepare/index.html?product=${id}${victims ? '&documents=victims' : ''}#plan`;

@@ -196,3 +196,18 @@
 
 /* Preserve the recovery scene across wide and narrow detail layouts. */
 #miso_vulnerable .product-detail-picture img { height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
+
+/* Keep the repayment discount directly below the standard interest rate. */
+.rate-minimum { display: block; margin-top: 8px; color: #24546c; font-size: 16px; font-weight: 700; line-height: 1.65; }
+.rate-minimum small, .rate-minimum > span { display: block; margin-top: 2px; color: #4b6374; font-size: 14px; font-weight: 500; }
+.product-card-bottom .rate-minimum { flex-basis: 100%; margin-top: 0; text-align: right; }
+.page-services .detail-information .rate-minimum { margin: 8px 0 12px; }
+.page-services .detail-information .rate-minimum strong { color: #24546c; }
+.finder-product .rate-minimum { margin: -5px 0 12px; }
+.planning-summary .planning-minimum { margin-top: 6px; }
+.planning-rate-minimum { margin: -4px 0 10px; font-size: 15px; }
+.rate-minimum[hidden] { display: none; }
+
+.social-stats .rate-minimum { font-size: 17px; color: #fff; }
+.social-stats .rate-minimum small { font-size: 14px; color: #dbe8ef; }
+.faq-answer .rate-minimum { margin-bottom: 14px; }
