@@ -322,3 +322,90 @@
   .footer .footer-phone { display: block; }
   .footer .footer-phone small { margin-top: 14px; }
 }
+
+/* Readable, individual case narratives beneath the original testimonials. */
+.story-feature .story-feature-grid { align-items: start; }
+.story-feature .story-feature-topic { margin-top: 20px; color: #345d78; font-size: 17px; font-weight: 600; line-height: 1.6; }
+.story-feature .story-feature-heading { font-size: clamp(33px, 3.5vw, 47px); line-height: 1.4; letter-spacing: -.045em; margin: 13px 0 18px; word-break: keep-all; overflow-wrap: anywhere; }
+.story-feature .story-feature-intro { font-size: 18px; line-height: 1.9; color: #4b6274; margin: 0 0 23px; word-break: keep-all; }
+.story-feature .story-feature-copy blockquote { padding: 16px 20px; border-left: 3px solid #779db6; background: #edf3f7; border-radius: 0 10px 10px 0; font-size: 20px; line-height: 1.9; }
+.story-feature .story-feature-author { margin-top: 13px; }
+.story-feature .story-feature-note { margin-top: 18px; }
+.story-reading { background: #fff; border-top: 1px solid #dce5eb; }
+.story-reading .story-reading-grid { max-width: 1080px; display: grid; grid-template-columns: minmax(210px, 250px) minmax(0, 1fr); gap: 60px; align-items: start; }
+.story-overview { position: sticky; top: calc(var(--reading-header-height, 78px) + 25px); background: #f3f7fa; border: 1px solid #d3e0e9; border-radius: 14px; padding: 24px; }
+.story-overview .support-kicker { font-size: 14px; }
+.page-stories .story-overview h2 { margin: 12px 0 23px; color: #294b64; font-size: 23px; line-height: 1.55; letter-spacing: -.035em; word-break: keep-all; }
+.story-overview dl { margin: 0; }
+.story-overview dl > div + div { margin-top: 19px; }
+.story-overview dt { color: #526b7e; font-size: 14px; line-height: 1.7; margin-bottom: 5px; }
+.story-overview dd { margin: 0; color: #2b495f; font-size: 16px; font-weight: 600; line-height: 1.8; word-break: keep-all; }
+.story-overview nav { display: grid; gap: 8px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #cbdbe6; }
+.story-overview nav a { padding: 5px 0; font-size: 15px; color: #355f7b; line-height: 1.7; }
+.story-overview nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.story-overview nav a:focus-visible { outline: 2px solid #2e6e97; outline-offset: 3px; }
+.story-narrative { min-width: 0; }
+.story-chapter { scroll-margin-top: 24px; }
+.story-narrative .story-chapter-label { color: #3c6987; font-size: 15px; font-weight: 600; line-height: 1.7; margin: 0 0 13px; }
+.page-stories .story-chapter h2 { font-size: clamp(25px, 2.4vw, 31px); line-height: 1.6; letter-spacing: -.04em; color: #233f55; margin: 0 0 23px; word-break: keep-all; overflow-wrap: anywhere; }
+.story-chapter > p { margin: 0; font-size: 19px; line-height: 2; color: #3c5264; word-break: keep-all; overflow-wrap: anywhere; }
+.story-chapter > p + p { margin-top: 19px; }
+.story-chapter + .story-chapter { margin-top: 46px; padding-top: 39px; border-top: 1px solid #dce5eb; }
+.story-narrative .story-preparation { padding: 27px 29px; border: 1px solid #cbdde9; border-radius: 14px; background: #f1f6fa; }
+.page-stories .story-preparation h2 { font-size: 25px; margin-bottom: 16px; }
+.story-preparation > p { font-size: 17px; line-height: 1.9; }
+.story-preparation ul { padding: 0 0 0 21px; margin: 19px 0; }
+.story-preparation li { padding-left: 3px; color: #314f66; font-size: 17px; line-height: 1.9; word-break: keep-all; }
+.story-preparation li + li { margin-top: 11px; }
+.story-preparation .story-preparation-note { color: #526b7e; font-size: 15px; margin-top: 20px; padding-top: 17px; border-top: 1px solid #d3e1eb; }
+.case-copy .case-story-title { margin: 0 0 12px; font-size: 24px; line-height: 1.6; color: #24475f; letter-spacing: -.035em; word-break: keep-all; }
+.case-copy .case-story-context { font-size: 16px; color: #4a6477; line-height: 1.85; margin: 12px 0 17px; word-break: keep-all; }
+.page-stories .case-copy .case-author { margin-bottom: 0; }
+.page-stories .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.page-stories .case-card:first-child { grid-column: 1 / -1; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.page-stories .case-card:first-child .case-photo { min-height: 420px; }
+.page-stories .case-card:first-child .case-copy { padding: 33px 36px; }
+.page-stories .case-card:first-child .case-story-title { font-size: 30px; }
+.page-stories .case-copy .case-quote { display: none; }
+.page-stories .case-copy blockquote { margin-top: 5px; margin-bottom: 18px; font-size: 18px; }
+.page-stories .case-card:not(:first-child) .case-photo { aspect-ratio: 1.6; height: auto; }
+.page-stories .case-photo img { object-position: 50% 35%; }
+@media (max-width: 1000px) {
+  .story-reading .story-reading-grid { grid-template-columns: minmax(190px, 220px) minmax(0, 1fr); gap: 35px; }
+  .story-overview { padding: 21px; }
+}
+@media (max-width: 900px) {
+  .story-reading .story-reading-grid { grid-template-columns: minmax(0, 1fr); gap: 35px; }
+  .story-overview { position: static; }
+  .story-overview dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 19px; }
+  .story-overview dl > div + div { margin-top: 0; }
+  .story-overview nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+}
+@media (max-width: 600px) {
+  .story-feature .story-feature-heading { font-size: 34px; }
+  .story-feature .story-feature-topic { margin-top: 13px; font-size: 16px; }
+  .story-feature .story-feature-intro { font-size: 17px; }
+  .story-feature .story-feature-copy blockquote { padding: 15px 17px; font-size: 19px; }
+  .story-overview dl { grid-template-columns: minmax(0, 1fr); gap: 17px; }
+  .story-overview nav { display: grid; gap: 5px; }
+  .story-chapter > p { font-size: 18px; line-height: 1.95; }
+  .page-stories .story-chapter h2 { font-size: 25px; }
+  .story-chapter + .story-chapter { margin-top: 35px; padding-top: 30px; }
+  .story-narrative .story-preparation { padding: 23px 21px; }
+  .page-stories .story-preparation h2 { font-size: 23px; }
+  .story-preparation > p, .story-preparation li { font-size: 17px; }
+  .case-copy .case-story-title { font-size: 23px; }
+}
+@media (max-width: 760px) {
+  .page-stories .case-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .page-stories .case-card:first-child { display: flex; grid-column: auto; }
+  .page-stories .case-card:first-child .case-photo { min-height: 0; aspect-ratio: 1.36; height: auto; }
+  .page-stories .case-card:first-child .case-copy { padding: 27px; }
+  .page-stories .case-card:first-child .case-story-title { font-size: 24px; }
+}
+@media print {
+  .story-overview { position: static; }
+  .story-reading .story-reading-grid { display: block; }
+  .story-overview nav { display: none; }
+  .story-chapter h2 { break-after: avoid; }
+}
