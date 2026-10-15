@@ -189,7 +189,16 @@
       choices.replaceChildren(); choices.setAttribute('aria-label', title);
       for (const [id,label,detail] of items) {
         const button = el('button','finder-choice'); button.type = 'button'; button.dataset.choice = id;
-        button.append(el('strong','',label)); if (detail) button.append(el('span','',detail));
+        button.append(el('strong','',label));
+        if (detail) {
+          const caption = el('span', '');
+          const terms = detail.split('·');
+          terms.forEach((term, index) => {
+            caption.append(document.createTextNode(term));
+            if (index < terms.length - 1) caption.append(document.createTextNode('·'), el('wbr'));
+          });
+          button.append(caption);
+        }
         button.addEventListener('click', () => { answers.push(id); if (answers.length === 3) renderResult(); else renderQuestion(); });
         choices.append(button);
       }

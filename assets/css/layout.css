@@ -409,3 +409,65 @@
   .story-overview nav { display: none; }
   .story-chapter h2 { break-after: avoid; }
 }
+/* Mobile typography: balance headings without reducing the body type size. */
+@media (max-width: 760px) {
+  h1, h2, h3, h4, h5, .notice-cover-title {
+    text-wrap: balance;
+  }
+  p, li, dd, blockquote, figcaption, address, .document-check span {
+    text-wrap: pretty;
+  }
+  .button, .finder-choice, .story-feature-prepare, .reservation-prepare {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+  .button .icon, .story-feature-prepare .icon, .reservation-prepare .icon {
+    flex-shrink: 0;
+  }
+  .social-stats strong, .product-meta strong, .planning-payment,
+  .contact-call a, .story-phone, .rate-minimum {
+    font-variant-numeric: tabular-nums;
+  }
+  .social-stats strong, .product-meta strong, .planning-payment, .contact-call a {
+    white-space: nowrap;
+  }
+  .is-article .article-header {
+    padding: 28px 20px;
+  }
+  .is-article .article-header h1 {
+    font-size: clamp(25px, 6.8vw, 30px);
+    line-height: 1.5;
+    word-break: keep-all;
+    text-wrap: balance;
+  }
+}
+@media (max-width: 760px) {
+  .phone-number, .planning-call span {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .story-related-product .story-phone > span {
+    min-width: 0;
+    text-wrap: pretty;
+  }
+  .story-related-product .story-phone > .icon {
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 480px) {
+  .support-finder .finder-progress {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .support-finder .finder-progress li {
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    font-size: 14px;
+  }
+}
