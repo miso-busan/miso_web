@@ -28,11 +28,11 @@
       if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) saved = parsed;
       localStorage.setItem(storageKey, JSON.stringify(saved));
     } catch (_) { storageAvailable = false; }
-    if (!storageAvailable) $('.planning-storage-note').textContent = '체크 상태는 현재 화면에서 유지됩니다.';
+    if (!storageAvailable) $('.planning-storage-note').textContent = '체크한 내용은 저장되지 않습니다. 새로고침하거나 화면을 닫으면 사라집니다.';
     function saveChecks() {
       if (storageAvailable) try { localStorage.setItem(storageKey, JSON.stringify(saved)); } catch (_) {
         storageAvailable = false;
-        $('.planning-storage-note').textContent = '체크 상태는 현재 화면에서 유지됩니다.';
+        $('.planning-storage-note').textContent = '체크한 내용은 저장되지 않습니다. 새로고침하거나 화면을 닫으면 사라집니다.';
       }
     }
     function updatePlanUrl(nextHash) {
@@ -92,7 +92,7 @@
       const graceRate = product.id === 'social_finance' ? Number(rate.value) : product.planning.graceAnnualRate;
       const result = window.MisoCalculator.calculatePlan(principal, Number(rate.value), Number(months.value), Number(grace.value), graceRate);
       $('.planning-payment').textContent = money(result.monthly);
-      $('.planning-grace-payment').textContent = Number(grace.value) ? `거치 ${grace.value}개월 동안 예상 월 이자 ${money(result.graceMonthly)} · 연 ${graceRate}%` : '거치기간 없이 원금과 이자를 함께 상환하는 가정';
+      $('.planning-grace-payment').textContent = Number(grace.value) ? `거치 ${grace.value}개월 동안 예상 월 이자 ${money(result.graceMonthly)} · 연 ${graceRate}%` : '거치기간 없이 첫 달부터 원금과 이자를 함께 상환합니다.';
       $('.planning-principal').textContent = money(result.principal);
       $('.planning-interest').textContent = money(result.interest);
       $('.planning-total').textContent = money(result.total);
@@ -180,7 +180,7 @@
       if (answers[0] === 'youth' && answers[1] === 'operation') return ['사업 운영기간을 확인해 주세요.','사업자등록 후 운영기간과 소득·신용 요건을 상담에서 확인합니다.',[['ready','3개월 이상 운영 중'],['early','사업 초기 또는 3개월 미만'],['unknown','정확한 기준을 상담하고 싶어요']]];
       if (answers[0] === 'youth') return ['현재 취업·창업 상황을 확인해 주세요.','청년 미래이음 대출은 미취업 또는 취업·창업 1년 이내 등의 요건을 확인합니다.',[['not-working','아직 취업·창업 전'],['within-year','취업·창업한 지 1년 이내'],['over-year','취업·창업한 지 1년 초과'],['unknown','정확한 기준을 상담하고 싶어요']]];
       if (answers[0] === 'social') return ['어떤 유형의 기업인가요?','기업 유형과 최근 3개년 평균 매출 등 별도 요건을 확인합니다.',[['certified','인증 사회적기업'],['pre','예비사회적기업'],['cooperative','사회적협동조합'],['other','그 밖의 기업·조합']]];
-      return ['어떤 조건을 함께 확인할까요?','생활 안정 지원은 대상 유형과 신용·소득 요건을 함께 확인합니다.',[['care','사회적 배려대상·재난·피해 유형'],['income','신용평점 하위 50%·연소득 3,500만원 이하'],['borrower','미소금융 성실상환자'],['unknown','대상 여부를 상담하고 싶어요']]];
+      return ['해당하는 지원대상 유형을 선택해 주세요.','생활 안정 지원은 대상 유형과 신용·소득 요건을 함께 확인합니다.',[['care','사회적 배려대상·재난·피해 유형'],['income','신용평점 하위 50%·연소득 3,500만원 이하'],['borrower','미소금융 성실상환자'],['unknown','대상 여부를 상담하고 싶어요']]];
     }
     function renderQuestion(focus = true) {
       result.hidden = true; screen.hidden = false;
@@ -207,10 +207,10 @@
       if (profile === 'life') ids = ['miso_vulnerable'];
       if (profile === 'social' && detail !== 'other') ids = ['social_finance'];
       if (profile === 'business' && purpose !== 'operation') note = '일반 미소금융 창업자금·시설개선자금의 신규 신청·실행은 2026년 7월 1일부터 중단되었습니다. 현재 상황에 맞는 다른 지원은 전화로 상담해 주세요.';
-      else if (!ids.length) note = '선택하신 상황은 상품별 추가 확인이 필요합니다. 전화로 상황을 알려 주시면 지원요건과 다른 상담 경로를 안내해 드립니다.';
+      else if (!ids.length) note = '선택하신 내용만으로는 상품을 안내하기 어렵습니다. 전화로 현재 상황을 말씀해 주시면 지원요건과 이용 가능한 상담 경로를 안내해 드립니다.';
       else note = '선택한 상황과 관련된 상품입니다. 아래 지원요건을 확인해 주세요. 이 결과는 대출 승인이나 한도 확정을 의미하지 않습니다.';
       screen.hidden = true; result.hidden = false;
-      result.querySelector('h4').textContent = ids.length ? '확인할 지원상품' : '추가 상담이 필요합니다.';
+      result.querySelector('h4').textContent = ids.length ? '관련 지원상품' : '추가 상담이 필요합니다.';
       $('.finder-result-note').textContent = note;
       const cards = $('.finder-result-cards'); cards.replaceChildren();
       for (const id of ids) {
