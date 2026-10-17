@@ -100,13 +100,13 @@ html.cinema-running .cinematic-hero[data-motion-paused=true] .world-hero-shell *
 }
 
 /* Approved shop-opening hero: cool copy shade and an unobscured portrait. */
+.cinematic-hero[data-hero="shop-opening"] { background: #172b38; }
 .cinematic-hero[data-hero="shop-opening"] .cinema-city { object-position: 72.5% 50%; }
 .cinematic-hero[data-hero="shop-opening"] .cinema-scene-shade {
   background: linear-gradient(90deg, #122836c9, #172c3c8f 30%, #172c3c18 68%, transparent),
     linear-gradient(0deg, #172c3c70, transparent 28%);
 }
 @media (max-width: 760px) {
-  .cinematic-hero[data-hero="shop-opening"] { background: #172b38; }
   .cinematic-hero[data-hero="shop-opening"] .cinema-scene { top: 285px; }
   .cinematic-hero[data-hero="shop-opening"] .cinema-scene::after {
     content: "";

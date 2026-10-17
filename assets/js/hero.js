@@ -92,7 +92,7 @@
           vec3 first=vec3(0.),door=vec3(0.),wide=vec3(0.);
           if(firstCut<1.)first=shot(uFirst,uFirstSize,mix(vec2(.59,.5),vec2(.62,.51),firstMove),mix(1.12,1.025,firstMove),5.5*(1.-smoothstep(.15,1.55,t)));
           vec2 doorCentre=mix(vec2(.62,.5),vec2(.6,.49),doorMove);
-          doorCentre.x=mix(doorCentre.x,.73,1.-smoothstep(.6,1.,aspect));
+          doorCentre.x=mix(doorCentre.x,.60,1.-smoothstep(.6,1.,aspect));
           if(firstCut>0.&&lastCut<1.)door=shot(uDoor,uDoorSize,doorCentre,mix(1.14,1.025,doorMove),2.*(1.-smoothstep(3.1,4.2,t)));
           if(lastCut>0.)wide=neighbourhood(t);
           picture=mix(mix(first,door,firstCut),wide,lastCut);
@@ -192,7 +192,7 @@
   }
   function prepareOpening() {
     // Returning visitors and deep links never fetch the two extra opening shots.
-    if(!openingLoad)openingLoad=Promise.all(['assets/intro-first-light.jpg','assets/intro-open-door.jpg'].map(loadStill)).then(pictures=>{
+    if(!openingLoad)openingLoad=Promise.all(['assets/intro-shop-key.jpg','assets/intro-shop-door.jpg'].map(loadStill)).then(pictures=>{
       pictures.forEach((picture,index)=>{if(picture){stills[index+1]=picture;if(renderer)renderer.setShot(index+1,picture);}});
       return pictures.every(Boolean);
     }).catch(()=>false);
@@ -275,7 +275,7 @@
     replay.hidden=reduced.matches||!renderer;
   });
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fallback();});
-  image.addEventListener('error',()=>{if(!image.src.endsWith('hero-busan.jpg'))image.src='assets/hero-busan.jpg';else fallback();});
+  image.addEventListener('error',()=>{image.hidden=true;fallback();});
   document.body.classList.toggle('is-scrolled',scrollY>60);updateButtons();
   async function init() {
     if(reduced.matches){hero.dataset.cinema='ready';hero.dataset.renderer='reduced';replay.hidden=true;return;}
