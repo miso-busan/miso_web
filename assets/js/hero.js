@@ -34,14 +34,14 @@
   const ease = value => 1-Math.pow(1-clamp(value),3);
 
   // Three art-directed brand stills, not documentary customer photographs.
-  // The opening uses close focus, a threshold shot, then the approved neighbourhood.
+  // The opening uses close focus, a threshold shot, then the approved shop-opening portrait.
   function createRenderer() {
     const gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,powerPreference:'low-power'});
     if(!gl)throw new Error('WebGL unavailable');
     const vertex=`attribute vec2 aPosition;varying vec2 vUV;void main(){vUV=aPosition*.5+.5;gl_Position=vec4(aPosition,0.,1.);}`;
     const fragment=`precision mediump float;varying vec2 vUV;
       uniform sampler2D uPicture,uFirst,uDoor;
-      uniform vec2 uResolution,uImage,uFirstSize,uDoorSize,uPointer;uniform float uIntro,uTime;
+      uniform vec2 uResolution,uImage,uFirstSize,uDoorSize,uPointer;uniform float uIntro,uTime,uCompact;
       float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
       vec3 shot(sampler2D source,vec2 dimensions,vec2 centre,float zoom,float blur){
         float aspect=uResolution.x/uResolution.y,imageAspect=dimensions.x/dimensions.y;
@@ -62,8 +62,9 @@
         vec2 crop=vec2(min(1.,aspect/imageAspect),min(1.,imageAspect/aspect));
         float zoom=mix(1.48,1.035,travel)+sin(uTime*.09)*.005*settled;
         vec2 centre=mix(vec2(.43,.4),vec2(.5,.5),travel);
-        // Narrow devices keep their camera on the street rather than a cropped sky.
-        centre.x=mix(centre.x,.56,(1.-smoothstep(.55,1.,aspect))*travel);
+        // Keep the shopkeeper in the portrait crop on narrow screens.
+        float finalCentre=mix(max(.5,.725-crop.x/zoom*.3),.725,uCompact);
+        centre.x=mix(centre.x,finalCentre,travel);
         vec2 uv=(vUV-.5)*crop/zoom+centre;
         float foreground=pow(1.-vUV.y,2.);
         uv+=uPointer*vec2(.005,.003)*foreground*settled;
@@ -72,18 +73,18 @@
         float diagonal=vUV.x+vUV.y*.6;
         float beam=exp(-pow((diagonal-1.15+sin(uTime*.05)*.01)*3.,2.));
         picture+=vec3(.035,.022,.008)*beam;
-        // The settled shot has a soft forest-green shade behind the homepage copy.
+        // A cool neutral shade keeps the homepage copy legible over the photograph.
         float left=1.-smoothstep(.13,.78,vUV.x);
         float mobile=(1.-smoothstep(.65,1.,aspect));
         float shade=mix(left*.63,(.18+.45*smoothstep(.42,.94,vUV.y)),mobile)*settled;
-        picture=mix(picture,vec3(.045,.13,.095),shade);
+        picture=mix(picture,vec3(.055,.105,.14),shade);
         return picture;
       }
       void main(){
         float t=uIntro,aspect=uResolution.x/uResolution.y;
         vec3 picture;
         if(t>=11.8){
-          // Keep the settled homepage's existing framing, colours and GPU cost.
+          // Render the final shop scene without the opening's letterbox effects.
           picture=neighbourhood(t);
         }else{
           float firstCut=smoothstep(2.95,3.85,t),lastCut=smoothstep(6.45,7.45,t);
@@ -120,14 +121,14 @@
       else gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,picture);
     }
     stills.forEach((picture,index)=>upload(index,picture));
-    const uniforms=Object.fromEntries(['uPicture','uFirst','uDoor','uResolution','uImage','uFirstSize','uDoorSize','uPointer','uIntro','uTime'].map(n=>[n,gl.getUniformLocation(program,n)]));
+    const uniforms=Object.fromEntries(['uPicture','uFirst','uDoor','uResolution','uImage','uFirstSize','uDoorSize','uPointer','uIntro','uTime','uCompact'].map(n=>[n,gl.getUniformLocation(program,n)]));
     const attribute=gl.getAttribLocation(program,'aPosition');
-    function size(){const bounds=intro?{width:innerWidth,height:innerHeight}:hero.getBoundingClientRect();const ratio=Math.min(devicePixelRatio||1,innerWidth<761?1:1.25);canvas.width=Math.round(bounds.width*ratio);canvas.height=Math.round(bounds.height*ratio);gl.viewport(0,0,canvas.width,canvas.height);resetSize=false;}
+    function size(){const bounds=intro?{width:innerWidth,height:innerHeight}:scene.getBoundingClientRect();const ratio=Math.min(devicePixelRatio||1,innerWidth<761?1:1.25);canvas.width=Math.round(bounds.width*ratio);canvas.height=Math.round(bounds.height*ratio);gl.viewport(0,0,canvas.width,canvas.height);resetSize=false;}
     return{setShot(index,picture){stills[index]=picture;upload(index,picture);},draw(t,time,px,py){
       if(resetSize)size();gl.useProgram(program);gl.bindBuffer(gl.ARRAY_BUFFER,quad);gl.enableVertexAttribArray(attribute);gl.vertexAttribPointer(attribute,2,gl.FLOAT,false,0,0);
       textures.forEach((texture,index)=>{gl.activeTexture(gl.TEXTURE0+index);gl.bindTexture(gl.TEXTURE_2D,texture);});
       gl.uniform1i(uniforms.uPicture,0);gl.uniform1i(uniforms.uFirst,1);gl.uniform1i(uniforms.uDoor,2);
-      gl.uniform2f(uniforms.uResolution,canvas.width,canvas.height);
+      gl.uniform2f(uniforms.uResolution,canvas.width,canvas.height);gl.uniform1f(uniforms.uCompact,innerWidth<761?1:0);
       ['uImage','uFirstSize','uDoorSize'].forEach((name,index)=>gl.uniform2f(uniforms[name],stills[index].naturalWidth,stills[index].naturalHeight));
       gl.uniform2f(uniforms.uPointer,px,py);gl.uniform1f(uniforms.uIntro,t);gl.uniform1f(uniforms.uTime,time);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
     }};
