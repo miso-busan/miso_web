@@ -1,4 +1,4 @@
-/* A neighbourhood morning: storefront shutters, a crane shot and warm daylight. */
+/* A small shop, a working morning and a family goodbye. */
 html.cinema-running{overflow:hidden}
 .immersive-home:not(.is-scrolled) .header{background:#f7f6ec;border-bottom-color:#cdd7bf70;backdrop-filter:blur(15px)}
 .immersive-home:not(.is-scrolled) .header .brand strong,.immersive-home:not(.is-scrolled) .header .navigation,.immersive-home:not(.is-scrolled) .header .icon-button{color:#193e33}.immersive-home:not(.is-scrolled) .header .brand small{color:#50644d}.immersive-home:not(.is-scrolled) .header .navigation a:after{background:#4d6b42}.immersive-home:not(.is-scrolled) .header .button{background:#244a38;color:#fff9e8;border-color:#244a38}.immersive-home:not(.is-scrolled) .header .icon-button:hover{background:#dee6d3}
@@ -48,8 +48,8 @@ html.cinema-running{overflow:hidden}
 .cinema-line>span{display:block;will-change:transform,opacity}
 .cinema-sentence em{font-style:normal;color:#f6dda5}
 .cinema-overlay .cinema-subtitle{font-size:18px;line-height:1.8;letter-spacing:-.015em;font-weight:400;color:#f3f4f6;margin-top:26px;max-width:520px;text-shadow:0 1px 14px #07131ba6}
-.cinema-overlay[data-chapter="3"] .cinema-sentence{font-weight:600}
-.cinema-overlay[data-chapter="3"] .cinema-subtitle{letter-spacing:.07em;font-size:18px;font-weight:500}
+.cinema-overlay[data-chapter="5"] .cinema-sentence{font-weight:600}
+.cinema-overlay[data-chapter="5"] .cinema-subtitle{letter-spacing:.07em;font-size:18px;font-weight:500}
 .cinema-overlay .cinema-intro-bottom{left:7vw;right:7vw;bottom:max(28px,env(safe-area-inset-bottom));align-items:center}
 .cinema-overlay .cinema-intro-note{font-size:15px;line-height:1.7;color:#f0f2f5;letter-spacing:.015em}
 .cinema-overlay .cinema-intro-bottom button{min-height:44px;color:#fffaf4;font-size:15px}
@@ -69,7 +69,7 @@ html.cinema-running .cinematic-hero[data-motion-paused=true] .world-hero-shell *
  .cinema-overlay .cinema-chapter>span{font-size:14px}
  .cinema-overlay .cinema-chapter-number{padding-right:12px}
  .cinema-overlay .cinema-sentence{font-size:clamp(34px,9.7vw,46px);line-height:1.36;letter-spacing:-.06em}
- .cinema-overlay .cinema-subtitle,.cinema-overlay[data-chapter="3"] .cinema-subtitle{font-size:17px;line-height:1.8;margin-top:22px;letter-spacing:-.01em;max-width:340px;word-break:keep-all}
+ .cinema-overlay .cinema-subtitle,.cinema-overlay[data-chapter="5"] .cinema-subtitle{font-size:17px;line-height:1.8;margin-top:22px;letter-spacing:-.01em;max-width:340px;word-break:keep-all}
  .cinema-overlay .cinema-intro-bottom{left:24px;right:24px;bottom:max(24px,env(safe-area-inset-bottom));gap:12px}
  .cinema-overlay .cinema-intro-note{font-size:14px;max-width:130px;line-height:1.7}
  .cinema-overlay .cinema-intro-bottom>div{gap:17px;flex-shrink:0}
@@ -94,26 +94,54 @@ html.cinema-running .cinematic-hero[data-motion-paused=true] .world-hero-shell *
  .cinema-overlay .cinema-caption{bottom:92px}
  .cinema-overlay .cinema-chapter{display:none}
  .cinema-overlay .cinema-sentence{font-size:30px;line-height:1.23}
- .cinema-overlay .cinema-subtitle,.cinema-overlay[data-chapter="3"] .cinema-subtitle{margin-top:12px;font-size:16px;max-width:none}
+ .cinema-overlay .cinema-subtitle,.cinema-overlay[data-chapter="5"] .cinema-subtitle{margin-top:12px;font-size:16px;max-width:none}
  .cinema-overlay .cinema-intro-note{display:none}
  .cinema-overlay .cinema-intro-bottom{bottom:18px;justify-content:flex-end}
 }
 
-/* Approved shop-opening hero: cool copy shade and an unobscured portrait. */
-.cinematic-hero[data-hero="shop-opening"] { background: #172b38; }
-.cinematic-hero[data-hero="shop-opening"] .cinema-city { object-position: 72.5% 50%; }
-.cinematic-hero[data-hero="shop-opening"] .cinema-scene-shade {
-  background: linear-gradient(90deg, #122836c9, #172c3c8f 30%, #172c3c18 68%, transparent),
-    linear-gradient(0deg, #172c3c70, transparent 28%);
+/* The morning film resolves into the same, readable photographic homepage. */
+.cinematic-hero[data-hero="family-morning"] { background:#102434; }
+.cinematic-hero[data-hero="family-morning"] .cinema-picture { display:block; position:absolute; inset:0; }
+.cinematic-hero[data-hero="family-morning"] .cinema-city { object-position:50% 50%; }
+.cinematic-hero[data-hero="family-morning"] .cinema-scene-shade { background:linear-gradient(90deg,#0c2035d6,#10293b9c 29%,#10293b0a 61%,transparent),linear-gradient(0deg,#10243480,transparent 30%); }
+.cinema-overlay .cinema-caption { max-width:740px; }
+.cinema-overlay .cinema-sentence { font-size:clamp(42px,4.6vw,74px); letter-spacing:-.055em; line-height:1.34; }
+.cinema-overlay .cinema-subtitle { white-space:pre-line; font-size:18px; max-width:580px; }
+.cinema-overlay .cinema-chapter { letter-spacing:.03em; }
+.cinema-overlay .cinema-chapter>.cinema-chapter-title { letter-spacing:.03em; }
+.cinema-overlay .cinema-skip { border:1px solid #e5eaf04d; background:#0d203147; border-radius:4px; padding:12px 18px; }
+@media(max-width:980px) {
+ .cinematic-hero[data-hero="family-morning"] { display:grid; grid-template-columns:minmax(0,1fr); min-height:0; }
+ .cinematic-hero[data-hero="family-morning"] .world-hero-shell { display:contents; min-height:0; }
+ .cinematic-hero[data-hero="family-morning"] .world-hero-copy { grid-row:1; width:calc(100% - 40px); max-width:640px; justify-self:center; margin:0; padding:48px 0 30px; transform:none; }
+ .cinematic-hero[data-hero="family-morning"] h1 { font-size:clamp(35px,9.8vw,64px); line-height:1.24; }
+ .cinematic-hero[data-hero="family-morning"] .world-eyebrow { font-size:15px; margin-bottom:24px; }
+ .cinematic-hero[data-hero="family-morning"] .world-description { font-size:17px; margin-top:24px; }
+ .cinematic-hero[data-hero="family-morning"] .world-actions { margin-top:25px; flex-wrap:wrap; gap:16px 22px; }
+ .cinematic-hero[data-hero="family-morning"] .world-primary { padding:15px 19px; font-size:16px; gap:18px; }
+ .cinematic-hero[data-hero="family-morning"] .world-secondary { font-size:16px; }
+ .cinematic-hero[data-hero="family-morning"] .cinema-scene { grid-row:2; position:relative; inset:auto; width:100%; height:auto; aspect-ratio:1122 / 1402; }
+ .cinematic-hero[data-hero="family-morning"] .cinema-city { width:100%; height:100%; object-fit:contain; animation:none; transform:none; }
+ .cinematic-hero[data-hero="family-morning"] .cinema-scene::after { content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(180deg,#102434,transparent 7%,transparent 94%,#102434); }
+ .cinematic-hero[data-hero="family-morning"] .cinema-city-links { grid-row:3; position:relative; inset:auto; width:calc(100% - 40px); max-width:640px; justify-self:center; margin:22px 0 0; grid-template-columns:1fr; gap:0; }
+ .cinematic-hero[data-hero="family-morning"] .world-bottom { grid-row:4; position:relative; inset:auto; width:calc(100% - 40px); max-width:640px; justify-self:center; padding-top:22px; margin:22px 0 26px; display:flex; flex-wrap:wrap; gap:12px; }
+ .cinematic-hero[data-hero="family-morning"] .world-scroll { font-size:12px; }
+ .cinematic-hero[data-hero="family-morning"] .world-controls { width:auto; flex-wrap:wrap; gap:16px; }
 }
-@media (max-width: 760px) {
-  .cinematic-hero[data-hero="shop-opening"] .cinema-scene { top: 285px; }
-  .cinematic-hero[data-hero="shop-opening"] .cinema-scene::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background: linear-gradient(180deg, #172b38 0%, #172b3890 12%, transparent 32%);
-  }
+@media(max-width:760px) {
+ .cinema-overlay .cinema-caption { left:24px; right:24px; bottom:max(145px,19svh); }
+ .cinema-overlay .cinema-sentence { font-size:clamp(30px,8.2vw,41px); line-height:1.4; }
+ .cinema-overlay .cinema-subtitle,.cinema-overlay[data-chapter="5"] .cinema-subtitle { font-size:16px; line-height:1.8; max-width:340px; letter-spacing:-.01em; }
+ .cinema-overlay .cinema-intro-note { max-width:120px; }
+ .cinema-overlay .cinema-intro-bottom>div { gap:12px; }
+ .cinema-overlay .cinema-skip { padding:12px; }
 }
+@media(max-height:540px) and (max-width:980px) {
+ .cinema-overlay .cinema-caption { bottom:94px; }
+ .cinema-overlay .cinema-sentence { font-size:29px; line-height:1.25; }
+ .cinema-overlay .cinema-chapter { display:none; }
+ .cinema-overlay .cinema-subtitle { font-size:15px; margin-top:12px; }
+}
+
+.cinema-overlay .cinema-chapter { display:none; }
+.cinema-overlay .cinema-subtitle:empty { display:none; }

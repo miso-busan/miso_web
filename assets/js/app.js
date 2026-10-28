@@ -83,7 +83,11 @@
       const title = document.createElement('strong');
       title.textContent = item.title;
       const text = document.createElement('p');
-      text.textContent = item.text.length > 90 ? item.text.slice(0, 90) + '…' : item.text;
+      const lower = item.text.toLocaleLowerCase('ko');
+      const focus = words.reduce((best, word) => Math.max(best, lower.lastIndexOf(word)), -1);
+      const start = focus > 60 ? Math.max(0, focus - 38) : 0;
+      const end = Math.min(item.text.length, start + 120);
+      text.textContent = (start ? '…' : '') + item.text.slice(start, end) + (end < item.text.length ? '…' : '');
       a.append(title, text);
       results.append(a);
     });
@@ -147,16 +151,21 @@
     const buttons = $$('[data-story-direction]');
     const cards = [...storyRail.querySelectorAll('.case-card')];
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    const stride = () => cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(storyRail).columnGap);
+    const positions = () => cards.map(card => card.getBoundingClientRect().left - storyRail.getBoundingClientRect().left + storyRail.scrollLeft);
     function updateStories() {
       const max = storyRail.scrollWidth - storyRail.clientWidth;
       buttons[0].disabled = storyRail.scrollLeft < 2;
       buttons[1].disabled = storyRail.scrollLeft >= max - 2;
-      const first = Math.round(storyRail.scrollLeft / stride()) + 1;
+      const stops = positions();
+      const first = stops.reduce((best, position, i) => Math.abs(position-storyRail.scrollLeft)<Math.abs(stops[best]-storyRail.scrollLeft)?i:best,0)+1;
       $('#story-position').textContent = `${first} / ${cards.length}`;
     }
     function moveStories(direction) {
-      storyRail.scrollBy({left: direction * stride(), behavior: reduced.matches ? 'auto' : 'smooth'});
+      const stops=positions(), current=storyRail.scrollLeft, max=storyRail.scrollWidth-storyRail.clientWidth;
+      let target=direction>0?max:0;
+      if(direction>0){for(const position of stops)if(position>current+4){target=position;break;}}
+      else {for(let i=stops.length-1;i>=0;i--)if(stops[i]<current-4){target=stops[i];break;}}
+      storyRail.scrollTo({left:Math.max(0,Math.min(max,target)),behavior:reduced.matches?'auto':'smooth'});
     }
     buttons.forEach(button => button.addEventListener('click', () => moveStories(Number(button.dataset.storyDirection))));
     storyRail.addEventListener('keydown', event => {
@@ -168,6 +177,20 @@
     storyRail.addEventListener('scroll', updateStories, {passive:true});
     new ResizeObserver(updateStories).observe(storyRail);
     updateStories();
+  }
+
+  if (document.body.classList.contains('immersive-home')) {
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const targets = [...document.querySelectorAll('main .section-heading, main .product-card, main .social-copy, main .steps>li, main .film-bridge-copy, main .reservation-banner-copy')];
+    const reveals = new IntersectionObserver(entries => {
+      for(const entry of entries)if(entry.isIntersecting){entry.target.classList.remove('is-pending');reveals.unobserve(entry.target);}
+    },{threshold:.04,rootMargin:'0px 0px -24px 0px'});
+    targets.forEach(target=>{target.classList.add('home-reveal');if(!reduced.matches&&target.getBoundingClientRect().top>innerHeight){target.classList.add('is-pending');reveals.observe(target);}});
+    const bridge=document.querySelector('.film-bridge');let queued=false,nearby=false;
+    const paint=()=>{queued=false;if(!bridge||reduced.matches)return;const b=bridge.getBoundingClientRect();const progress=Math.min(1,Math.max(0,(innerHeight-b.top)/(innerHeight+b.height)));bridge.style.setProperty('--scene-shift',`${((progress-.5)*48).toFixed(1)}px`);};
+    if(bridge)new IntersectionObserver(entries=>{nearby=entries[0].isIntersecting;if(nearby)paint();},{rootMargin:'120px'}).observe(bridge);
+    addEventListener('scroll',()=>{if(nearby&&!queued){queued=true;requestAnimationFrame(paint);}},{passive:true});
+    reduced.addEventListener('change',()=>{if(reduced.matches){targets.forEach(t=>t.classList.remove('is-pending'));if(bridge)bridge.style.setProperty('--scene-shift','0px');}});
   }
 
   const form = $('#loan-calculator');
