@@ -1,15 +1,14 @@
 /* Shared header proportions, organization chart and product finder. */
 /* Keep the masthead compact; use the drawer before navigation wraps. */
 .header .header-inner { height:68px; min-height:68px; padding-block:0; flex-wrap:nowrap; gap:16px; }
-.header .header-consult { padding:9px 16px; min-height:44px; gap:16px; line-height:1.4; }
+.header .header-consult { display:inline-flex; padding:9px 16px; min-height:44px; gap:16px; line-height:1.4; }
+.header .mobile-search { display:none; }
 @media(min-width:1101px) {
  .header .navigation { order:0; width:auto; flex-wrap:nowrap; gap:clamp(14px,1.8vw,28px); }
 }
-@media(min-width:1101px) and (max-width:1280px) { .header .header-consult { display:none; } }
 @media(max-width:1100px) {
  .header .header-inner { height:68px; min-height:68px; padding-block:0; flex-wrap:nowrap; gap:12px; }
  .header .header-actions { margin-left:auto; gap:8px; }
- .header .header-consult { display:none; }
  .header .menu-toggle { display:inline-flex; }
  .header .navigation { display:none; position:absolute; inset:100% 0 auto; width:auto; order:0; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:0; padding:12px 24px 22px; background:#fff; border-bottom:1px solid #d7e2e8; box-shadow:0 16px 24px #19352012; font-size:18px; max-height:var(--menu-available-height,calc(100dvh - 80px)); overflow-y:auto; overscroll-behavior:contain; }
  .header .navigation.is-open { display:flex; }
@@ -17,7 +16,15 @@
  .header .navigation>a:after { display:none; }
  .header .navigation .mobile-contact { display:flex; align-items:center; }
 }
-@media(max-width:760px) { .header .header-inner { height:64px; min-height:64px; gap:8px; } .header .header-actions { gap:4px; } }
+@media(max-width:760px) {
+ .header .header-inner { height:64px; min-height:64px; gap:8px; }
+ .header .header-actions { gap:4px; min-width:0; }
+ .header .header-actions>[data-search-open] { display:none; }
+ .header .header-consult { height:44px; min-height:44px; min-width:0; padding:4px 10px; gap:0; font-size:14px; line-height:1.1; white-space:normal; text-align:center; }
+ .header .header-consult .icon { display:none; }
+ .header .menu-toggle { flex-shrink:0; }
+ .header .mobile-search { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:48px; padding:13px 8px; margin-top:4px; border:0; border-top:1px solid #d7e2e8; background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+}
 
 .page-about #orgchart { background: #f0f4f7; }
 .organization-heading { margin-bottom: 36px; }
