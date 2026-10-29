@@ -102,7 +102,7 @@
             vec2 firstCentre=vec2(.5)+vec2(.12,0.)*(vec2(1.)-firstCrop/firstZoom);
             first=shot(uFirst,uFirstSize,firstCentre,firstZoom,1.5*(1.-smoothstep(.2,1.4,t)),0.);
           }
-          if(cut1>0.&&cut2<1.){vec2 centre=mix(vec2(.67,.49),vec2(.70,.5),m2);centre.x=mix(centre.x,.70,uCompact);quiet=shot(uQuiet,uQuietSize,centre,mix(1.12,1.025,m2),1.6*(1.-smoothstep(4.3,5.5,t)),0.);quiet*=vec3(.94,.98,1.02);}
+          if(cut1>0.&&cut2<1.){vec2 centre=mix(vec2(.67,.49),vec2(.70,.5),m2);centre.x=mix(centre.x,.70,uCompact);quiet=shot(uQuiet,uQuietSize,centre,mix(1.12,1.025,m2),1.6*(1.-smoothstep(4.3,5.5,t)),0.);}
           if(cut2>0.&&cut3<1.){float fit=uFarewellSize.x/uFarewellSize.y<1.2?1.:0.;farewell=shot(uFarewell,uFarewellSize,vec2(.54,.49),mix(1.045,1.005,m3),1.8*(1.-smoothstep(9.25,10.6,t)),fit);}
           if(cut3>0.&&cut4<1.){vec2 centre=mix(vec2(.65,.49),vec2(.68,.50),m4);centre.x=mix(centre.x,.70,uCompact);work=shot(uWork,uWorkSize,centre,mix(1.12,1.025,m4),2.2*(1.-smoothstep(14.,15.3,t)),0.);}
           if(cut4>0.)wide=familyScene(t);
@@ -206,7 +206,7 @@
     const variant=innerWidth/innerHeight<1.1?'portrait':'wide';
     if(!openingLoad||openingVariant!==variant){
       openingVariant=variant;
-      const paths=['assets/cinema/opening-key.webp','assets/cinema/quiet-morning.webp',variant==='portrait'?'assets/cinema/farewell-mobile.webp':'assets/cinema/farewell.webp','assets/cinema/hands-at-work.webp'];
+      const paths=['assets/cinema/opening-key.webp','assets/cinema/quiet-morning-daylight.webp',variant==='portrait'?'assets/cinema/farewell-mobile.webp':'assets/cinema/farewell.webp','assets/cinema/hands-at-work.webp'];
       openingLoad=Promise.all(paths.map(loadStill)).then(pictures=>{
         if(openingVariant!==variant)return prepareOpening();
         pictures.forEach((picture,index)=>{if(picture){stills[index+1]=picture;if(renderer)renderer.setShot(index+1,picture);}});
