@@ -1,22 +1,23 @@
 /* Shared header proportions, organization chart and product finder. */
-@media (min-width: 1181px) {
-  .header .header-inner {
-    height: 78px;
-    min-height: 78px;
-    padding-block: 0;
-    flex-wrap: nowrap;
-  }
-  .header .header-consult { padding: 10px 18px; gap: 18px; line-height: 1.4; }
-  .immersive-home .cinematic-hero { min-height: calc(100svh - 78px); }
-  .immersive-home .cinematic-hero .world-hero-shell { min-height: max(680px, calc(100svh - 78px)); }
+/* Keep the masthead compact; use the drawer before navigation wraps. */
+.header .header-inner { height:68px; min-height:68px; padding-block:0; flex-wrap:nowrap; gap:16px; }
+.header .header-consult { padding:9px 16px; min-height:44px; gap:16px; line-height:1.4; }
+@media(min-width:1101px) {
+ .header .navigation { order:0; width:auto; flex-wrap:nowrap; gap:clamp(14px,1.8vw,28px); }
 }
-@media (min-width: 761px) and (max-width: 1180px) {
-  .immersive-home .header-inner, .interior-page .header-inner {
-    min-height: 96px;
-    padding-block: 10px;
-    gap: 6px 20px;
-  }
+@media(min-width:1101px) and (max-width:1280px) { .header .header-consult { display:none; } }
+@media(max-width:1100px) {
+ .header .header-inner { height:68px; min-height:68px; padding-block:0; flex-wrap:nowrap; gap:12px; }
+ .header .header-actions { margin-left:auto; gap:8px; }
+ .header .header-consult { display:none; }
+ .header .menu-toggle { display:inline-flex; }
+ .header .navigation { display:none; position:absolute; inset:100% 0 auto; width:auto; order:0; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:0; padding:12px 24px 22px; background:#fff; border-bottom:1px solid #d7e2e8; box-shadow:0 16px 24px #19352012; font-size:18px; max-height:var(--menu-available-height,calc(100dvh - 80px)); overflow-y:auto; overscroll-behavior:contain; }
+ .header .navigation.is-open { display:flex; }
+ .header .navigation>a { padding:13px 8px; min-height:48px; }
+ .header .navigation>a:after { display:none; }
+ .header .navigation .mobile-contact { display:flex; align-items:center; }
 }
+@media(max-width:760px) { .header .header-inner { height:64px; min-height:64px; gap:8px; } .header .header-actions { gap:4px; } }
 
 .page-about #orgchart { background: #f0f4f7; }
 .organization-heading { margin-bottom: 36px; }

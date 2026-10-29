@@ -44,7 +44,7 @@
   addEventListener('resize', fitMenu);
   addEventListener('scroll', fitMenu, {passive:true});
   if (window.visualViewport) window.visualViewport.addEventListener('resize', fitMenu);
-  matchMedia('(min-width:761px)').addEventListener('change', (event) => { if (event.matches) setMenu(false); });
+  matchMedia('(min-width:1101px)').addEventListener('change', (event) => { if (event.matches) setMenu(false); });
 
   // Homepage product explorer. Social enterprise has its own featured section.
   const productCards = $$('[data-product-category]');
