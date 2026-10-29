@@ -18,7 +18,7 @@
   const DURATION = 24;
   const HANDOFF = 23;
   const stills = [image, image, image, image, image];
-  let renderer = null, frame = 0, last = 0, lastPaint = 0, clock = 0, introTime = 0;
+  let renderer = null, frame = 0, last = 0, nextPaint = 0, clock = 0, introTime = 0;
   let intro = false, paused = reduced.matches, visible = true, chapter = -1;
   let x = 0, y = 0, targetX = 0, targetY = 0, savedFocus = null;
   let touchStart = null, resetSize = true, openingLoad = null, openingVariant = null, preparing = false;
@@ -41,7 +41,12 @@
     const gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,powerPreference:'low-power'});
     if(!gl)throw new Error('WebGL unavailable');
     const vertex=`attribute vec2 aPosition;varying vec2 vUV;void main(){vUV=aPosition*.5+.5;gl_Position=vec4(aPosition,0.,1.);}`;
-    const fragment=`precision mediump float;varying vec2 vUV;
+    const fragment=`#ifdef GL_FRAGMENT_PRECISION_HIGH
+      precision highp float;
+      #else
+      precision mediump float;
+      #endif
+      varying vec2 vUV;
       uniform sampler2D uPicture,uFirst,uQuiet,uFarewell,uWork;
       uniform vec2 uResolution,uImage,uFirstSize,uQuietSize,uFarewellSize,uWorkSize,uPointer;uniform float uIntro,uTime,uCompact;
       float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
@@ -90,7 +95,13 @@
           float cut1=smoothstep(4.05,4.95,t),cut2=smoothstep(9.1,10.,t),cut3=smoothstep(13.9,14.8,t),cut4=smoothstep(18.65,19.6,t);
           vec3 first=vec3(0.),quiet=vec3(0.),farewell=vec3(0.),work=vec3(0.),wide=vec3(0.);
           float m1=smoothstep(0.,4.95,t),m2=smoothstep(4.05,10.,t),m3=smoothstep(9.1,14.8,t),m4=smoothstep(13.9,19.6,t);
-          if(cut1<1.)first=shot(uFirst,uFirstSize,mix(vec2(.59,.5),vec2(.62,.5),m1),mix(1.14,1.02,m1),6.*(1.-smoothstep(.2,1.65,t)),0.);
+          if(cut1<1.){
+            // Keep the focal point inside the available crop throughout the move.
+            float firstAspect=uFirstSize.x/uFirstSize.y,firstZoom=mix(1.075,1.025,m1);
+            vec2 firstCrop=vec2(min(1.,aspect/firstAspect),min(1.,firstAspect/aspect));
+            vec2 firstCentre=vec2(.5)+vec2(.12,0.)*(vec2(1.)-firstCrop/firstZoom);
+            first=shot(uFirst,uFirstSize,firstCentre,firstZoom,1.5*(1.-smoothstep(.2,1.4,t)),0.);
+          }
           if(cut1>0.&&cut2<1.){vec2 centre=mix(vec2(.67,.49),vec2(.70,.5),m2);centre.x=mix(centre.x,.70,uCompact);quiet=shot(uQuiet,uQuietSize,centre,mix(1.12,1.025,m2),1.6*(1.-smoothstep(4.3,5.5,t)),0.);quiet*=vec3(.94,.98,1.02);}
           if(cut2>0.&&cut3<1.){float fit=uFarewellSize.x/uFarewellSize.y<1.2?1.:0.;farewell=shot(uFarewell,uFarewellSize,vec2(.54,.49),mix(1.045,1.005,m3),1.8*(1.-smoothstep(9.25,10.6,t)),fit);}
           if(cut3>0.&&cut4<1.){vec2 centre=mix(vec2(.65,.49),vec2(.68,.50),m4);centre.x=mix(centre.x,.70,uCompact);work=shot(uWork,uWorkSize,centre,mix(1.12,1.025,m4),2.2*(1.-smoothstep(14.,15.3,t)),0.);}
@@ -151,7 +162,7 @@
     introPause.textContent=paused?'▷':'Ⅱ';
     introPause.setAttribute('aria-label',paused?'오프닝 재생':'오프닝 멈추기');
   }
-  function stopFrame(){cancelAnimationFrame(frame);frame=0;last=0;lastPaint=0;}
+  function stopFrame(){cancelAnimationFrame(frame);frame=0;last=0;nextPaint=0;}
   function start(){if(!frame&&!paused&&!document.hidden&&(intro||visible)&&renderer)frame=requestAnimationFrame(tick);}
   function render(){if(renderer)renderer.draw(intro?introTime:DURATION,clock,x,y);}
   function setChapter(next) {
@@ -233,9 +244,14 @@
   }
   function tick(now) {
     frame=0;if(paused||document.hidden||(!intro&&!visible))return;
-    if(lastPaint&&now-lastPaint<1000/30){start();return;}
-    lastPaint=now;const delta=last?Math.min((now-last)/1000,.12):0;last=now;clock+=delta;
-    x+=(targetX-x)*.055;y+=(targetY-y)*.055;
+    // Anchor deadlines to the display clock: a slightly early callback must not
+    // turn a 33 ms interval into a 50 ms gap. Use 60 fps during the opening.
+    if(nextPaint&&now+.5<nextPaint){start();return;}
+    const interval=1000/(intro?60:30);
+    nextPaint=nextPaint&&now-nextPaint<interval?nextPaint+interval:now+interval;
+    const delta=last?Math.min((now-last)/1000,.12):0;last=now;clock+=delta;
+    const follow=1-Math.exp(-3.4*delta);
+    x+=(targetX-x)*follow;y+=(targetY-y)*follow;
     if(intro) {
       introTime+=delta;hero.dataset.introTime=introTime.toFixed(2);
       updateIntro();
