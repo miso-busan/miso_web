@@ -33,19 +33,22 @@
 .organization-heading { margin-bottom:40px; }
 .organization-heading > div > p:last-child { margin-top:16px; font-size:18px; line-height:1.8; color:#506471; }
 .governance-chart { --org-line:#a9bdc6; margin:0; }
-.governance-roots { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr); gap:32px; align-items:center; position:relative; isolation:isolate; }
-.governance-roots::before { content:""; position:absolute; top:50%; left:50%; right:10%; border-top:1px dashed var(--org-line); z-index:-1; }
-.governance-roots::after { content:""; position:absolute; top:50%; bottom:-32px; left:50%; border-left:1px solid var(--org-line); z-index:-1; }
+.governance-roots { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:min(100%,800px); margin-inline:auto; gap:40px; align-items:stretch; position:relative; isolation:isolate; }
+.governance-roots::before { content:""; position:absolute; top:50%; left:25%; right:25%; border-top:1px dashed var(--org-line); z-index:-1; }
+.governance-roots::after { content:""; position:absolute; top:50%; bottom:-32px; left:25%; border-left:1px solid var(--org-line); z-index:-1; }
 .governance-card { min-width:0; }
-.governance-assembly { grid-column:2; grid-row:1; display:flex; align-items:center; justify-content:center; min-height:80px; padding:18px 24px; border:1px solid #203e50; border-radius:12px; background:#203e50; }
+.governance-assembly { grid-column:1; grid-row:1; display:flex; align-items:center; justify-content:center; min-height:112px; padding:18px 24px; border:1px solid #203e50; border-radius:12px; background:#203e50; }
 .page-about .governance-assembly h3 { margin:0; color:#fff; font-size:25px; line-height:1.5; font-weight:600; }
-.governance-auditor { grid-column:3; grid-row:1; padding:20px 24px; border:1px solid #cbd7dd; border-radius:12px; background:#f8fafb; }
+.governance-auditor { grid-column:2; grid-row:1; display:grid; grid-template-columns:auto minmax(0,1fr); gap:2px 24px; align-content:center; padding:20px 24px; border:1px solid #cbd7dd; border-radius:12px; background:#f8fafb; }
+.governance-auditor .governance-member-heading { grid-row:1/3; flex-direction:column; align-items:flex-start; justify-content:center; }
+.page-about .governance-auditor .governance-person { grid-column:2; margin:0; }
+.governance-auditor .governance-career { grid-column:2; }
 .governance-member-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
 .page-about .governance-member-heading h3,.page-about .governance-member-heading h4 { margin:0; font-size:17px; line-height:1.5; font-weight:600; color:#4a606e; }
 .governance-status { display:inline-block; padding:3px 9px; border:1px solid #d3dde2; border-radius:30px; font-size:13px; line-height:1.5; font-weight:500; color:#506471; background:#f4f7f8; white-space:nowrap; }
 .page-about .governance-card .governance-person { margin:16px 0 4px; font-size:27px; line-height:1.45; font-weight:600; color:#203d50; letter-spacing:-.03em; }
 .page-about .governance-card .governance-career { margin:0; font-size:16px; line-height:1.75; color:#536874; word-break:keep-all; overflow-wrap:anywhere; }
-.page-about .governance-auditor .governance-person { margin-top:8px; font-size:23px; }
+.page-about .governance-auditor .governance-person { margin:0; font-size:23px; }
 .governance-structure { margin-top:32px; display:grid; grid-template-columns:minmax(0,1fr); justify-items:center; gap:32px; position:relative; }
 .governance-board { width:100%; min-width:0; padding:32px; border:1px solid #cbd7dd; border-radius:18px; background:#fff; box-shadow:0 16px 40px #203d5005; }
 .governance-board-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid #e0e7eb; }
@@ -65,7 +68,7 @@
 .page-about .governance-credit h3 { margin:0; font-size:22px; line-height:1.6; color:#2d4c5d; font-weight:600; }
 .page-about .governance-chart figcaption { margin:28px auto 0; max-width:780px; font-size:15px; line-height:1.85; text-align:center; color:#536874; word-break:keep-all; }
 @media(max-width:1000px) {
- .governance-roots { gap:20px; grid-template-columns:minmax(0,.75fr) minmax(0,1.2fr) minmax(0,1fr); }
+ .governance-roots { gap:24px; }
  .governance-auditor { padding:18px; }
  .governance-board { padding:26px; }
  .governance-board-members { grid-template-columns:minmax(0,.9fr) minmax(0,1.7fr); gap:24px; }
@@ -80,7 +83,9 @@
  .governance-roots::after { left:25%; }
  .governance-assembly { grid-column:1; padding:16px 10px; min-height:72px; }
  .page-about .governance-assembly h3 { font-size:21px; }
- .governance-auditor { grid-column:2; padding:16px; }
+ .governance-auditor { grid-column:2; display:block; padding:16px; }
+ .governance-auditor .governance-member-heading { flex-direction:row; align-items:center; justify-content:space-between; }
+ .page-about .governance-auditor .governance-person { margin:10px 0 4px; }
  .page-about .governance-auditor .governance-person { font-size:23px; }
  .page-about .governance-auditor .governance-career { font-size:15px; }
  .governance-auditor .governance-member-heading { gap:5px; }
@@ -104,6 +109,13 @@
  .governance-directors .governance-card:nth-child(n+2) { border-top:1px solid #e0e7eb; }
  .governance-directors .governance-person { margin-top:9px; }
 }
+.governance-operations { width:100%; display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); gap:24px; }
+.governance-offices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; min-width:0; }
+.governance-offices > div { position:relative; padding:18px; text-align:center; background:#fff; border:1px solid #cbd7dd; border-radius:12px; }
+.governance-offices > div::before { content:""; position:absolute; bottom:100%; height:33px; left:50%; border-left:1px solid var(--org-line); }
+.governance-operations .governance-credit { width:100%; }
+.page-about .governance-offices h3 { margin:0; font-size:21px; line-height:1.6; color:#2d4c5d; }
+@media(max-width:760px) { .governance-operations { grid-template-columns:minmax(0,1fr); gap:16px; } .governance-operations .governance-credit::before { display:none; } }
 @media print { .governance-card,.governance-board { break-inside:avoid; } }
 
 .support-finder { border-color: #c5d6e1; border-radius: 16px; }
