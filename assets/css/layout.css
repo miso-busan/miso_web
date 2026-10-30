@@ -26,132 +26,85 @@
  .header .mobile-search { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:48px; padding:13px 8px; margin-top:4px; border:0; border-top:1px solid #d7e2e8; background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; }
 }
 
-.page-about #orgchart { background: #f0f4f7; }
-.organization-heading { margin-bottom: 36px; }
-.organization-heading > div > p:last-child {
-  margin-top: 18px;
-  font-size: 18px;
-  line-height: 1.8;
-  color: #4c6274;
+/* An open, readable governance diagram; the roster remains real text. */
+.page-about #greeting .portrait { max-width:360px; width:100%; border:0; border-radius:18px; background:#e9edef; box-shadow:0 18px 45px #1e394014; }
+.page-about #greeting .portrait img { display:block; width:100%; height:auto; aspect-ratio:2/3; object-fit:contain; }
+.page-about #orgchart { background:linear-gradient(135deg,#f3f6f7,#edf2f4); }
+.organization-heading { margin-bottom:40px; }
+.organization-heading > div > p:last-child { margin-top:16px; font-size:18px; line-height:1.8; color:#506471; }
+.governance-chart { --org-line:#a9bdc6; margin:0; }
+.governance-roots { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr); gap:32px; align-items:center; position:relative; isolation:isolate; }
+.governance-roots::before { content:""; position:absolute; top:50%; left:50%; right:10%; border-top:1px dashed var(--org-line); z-index:-1; }
+.governance-roots::after { content:""; position:absolute; top:50%; bottom:-32px; left:50%; border-left:1px solid var(--org-line); z-index:-1; }
+.governance-card { min-width:0; }
+.governance-assembly { grid-column:2; grid-row:1; display:flex; align-items:center; justify-content:center; min-height:80px; padding:18px 24px; border:1px solid #203e50; border-radius:12px; background:#203e50; }
+.page-about .governance-assembly h3 { margin:0; color:#fff; font-size:25px; line-height:1.5; font-weight:600; }
+.governance-auditor { grid-column:3; grid-row:1; padding:20px 24px; border:1px solid #cbd7dd; border-radius:12px; background:#f8fafb; }
+.governance-member-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.page-about .governance-member-heading h3,.page-about .governance-member-heading h4 { margin:0; font-size:17px; line-height:1.5; font-weight:600; color:#4a606e; }
+.governance-status { display:inline-block; padding:3px 9px; border:1px solid #d3dde2; border-radius:30px; font-size:13px; line-height:1.5; font-weight:500; color:#506471; background:#f4f7f8; white-space:nowrap; }
+.page-about .governance-card .governance-person { margin:16px 0 4px; font-size:27px; line-height:1.45; font-weight:600; color:#203d50; letter-spacing:-.03em; }
+.page-about .governance-card .governance-career { margin:0; font-size:16px; line-height:1.75; color:#536874; word-break:keep-all; overflow-wrap:anywhere; }
+.page-about .governance-auditor .governance-person { margin-top:8px; font-size:23px; }
+.governance-structure { margin-top:32px; display:grid; grid-template-columns:minmax(0,1fr); justify-items:center; gap:32px; position:relative; }
+.governance-board { width:100%; min-width:0; padding:32px; border:1px solid #cbd7dd; border-radius:18px; background:#fff; box-shadow:0 16px 40px #203d5005; }
+.governance-board-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 20px; padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid #e0e7eb; }
+.page-about .governance-board-heading h3 { margin:0; font-size:28px; line-height:1.5; color:#203d50; font-weight:600; }
+.page-about .governance-board-heading p { margin:0; font-size:15px; line-height:1.7; color:#536874; }
+.governance-board-members { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,2fr); gap:28px; }
+.governance-chair { display:flex; flex-direction:column; justify-content:center; padding:30px; border:1px solid #244b58; border-radius:12px; background:linear-gradient(140deg,#203e50,#28505b); }
+.page-about .governance-chair .governance-member-heading h4 { color:#e2eef1; }
+.governance-chair .governance-status-resident { color:#e7f6f7; background:#ffffff0d; border-color:#6a8d99; }
+.page-about .governance-chair .governance-person { margin-top:28px; font-size:40px; letter-spacing:.03em; color:#fff; }
+.page-about .governance-chair .governance-career { margin-top:6px; color:#d2e2e8; }
+.governance-directors { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 28px; }
+.governance-directors .governance-card { padding:18px 0; }
+.governance-directors .governance-card:nth-child(n+3) { border-top:1px solid #e0e7eb; }
+.governance-credit { position:relative; width:min(100%,360px); padding:18px 24px; border:1px solid #b9ced6; border-radius:12px; background:#e5eef1; text-align:center; }
+.governance-credit::before { content:""; position:absolute; left:50%; bottom:100%; height:33px; border-left:1px solid var(--org-line); }
+.page-about .governance-credit h3 { margin:0; font-size:22px; line-height:1.6; color:#2d4c5d; font-weight:600; }
+.page-about .governance-chart figcaption { margin:28px auto 0; max-width:780px; font-size:15px; line-height:1.85; text-align:center; color:#536874; word-break:keep-all; }
+@media(max-width:1000px) {
+ .governance-roots { gap:20px; grid-template-columns:minmax(0,.75fr) minmax(0,1.2fr) minmax(0,1fr); }
+ .governance-auditor { padding:18px; }
+ .governance-board { padding:26px; }
+ .governance-board-members { grid-template-columns:minmax(0,.9fr) minmax(0,1.7fr); gap:24px; }
+ .governance-chair { padding:22px; }
+ .governance-directors { gap:0 20px; }
 }
-.governance-chart { margin: 0; }
-.governance-roots, .governance-structure {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(0, 2.4fr) minmax(180px, 1fr);
-  column-gap: 26px;
-  position: relative;
-  isolation: isolate;
+@media(max-width:760px) {
+ .page-about #greeting .portrait { max-width:280px; justify-self:center; }
+ .organization-heading { margin-bottom:28px; }
+ .governance-roots { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; }
+ .governance-roots::before { left:25%; right:25%; }
+ .governance-roots::after { left:25%; }
+ .governance-assembly { grid-column:1; padding:16px 10px; min-height:72px; }
+ .page-about .governance-assembly h3 { font-size:21px; }
+ .governance-auditor { grid-column:2; padding:16px; }
+ .page-about .governance-auditor .governance-person { font-size:23px; }
+ .page-about .governance-auditor .governance-career { font-size:15px; }
+ .governance-auditor .governance-member-heading { gap:5px; }
+ .governance-auditor .governance-status { padding:2px 6px; font-size:12px; }
+ .governance-board { padding:24px; }
+ .governance-board-heading { padding-bottom:18px; margin-bottom:20px; gap:4px 16px; }
+ .page-about .governance-board-heading h3 { font-size:25px; }
+ .page-about .governance-board-heading p { font-size:14px; }
+ .governance-board-members { grid-template-columns:minmax(0,1fr); gap:10px; }
+ .governance-chair { padding:24px; }
+ .page-about .governance-chair .governance-person { margin-top:15px; font-size:34px; }
+ .governance-directors { gap:0 20px; }
+ .page-about .governance-card .governance-person { font-size:25px; }
+ .page-about .governance-chair .governance-person { font-size:34px; }
+ .page-about .governance-chart figcaption { text-align:left; font-size:15px; }
 }
-.governance-roots { align-items: center; }
-.governance-roots::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 50%;
-  top: 50%;
-  height: 2px;
-  background: #adc2d0;
-  z-index: -1;
+@media(max-width:440px) {
+ .governance-board { padding:20px; }
+ .governance-directors { grid-template-columns:minmax(0,1fr); gap:0; }
+ .governance-directors .governance-card { padding:20px 0; }
+ .governance-directors .governance-card:nth-child(n+2) { border-top:1px solid #e0e7eb; }
+ .governance-directors .governance-person { margin-top:9px; }
 }
-.governance-roots::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  bottom: -38px;
-  left: calc(50% - 1px);
-  width: 2px;
-  background: #adc2d0;
-  z-index: -1;
-}
-.governance-card {
-  min-width: 0;
-  padding: 22px 24px;
-  border: 1px solid #cbd9e2;
-  border-radius: 12px;
-  background: #fff;
-}
-.governance-assembly {
-  grid-column: 2;
-  grid-row: 1;
-  width: 100%;
-  max-width: 330px;
-  justify-self: center;
-  min-height: 84px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #28475d;
-  border-color: #28475d;
-}
-.page-about .governance-assembly h3 { margin: 0; color: #fff; font-size: 26px; line-height: 1.5; font-weight: 600; }
-.governance-auditor { grid-column: 1; grid-row: 1; }
-.governance-member-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-.page-about .governance-member-heading h3, .page-about .governance-member-heading h4 {
-  margin: 0;
-  font-size: 18px;
-  line-height: 1.5;
-  font-weight: 600;
-  color: #3b566a;
-}
-.governance-status {
-  display: inline-block;
-  padding: 3px 9px;
-  border: 1px solid #c7d4dd;
-  border-radius: 5px;
-  font-size: 13px;
-  line-height: 1.5;
-  font-weight: 500;
-  color: #405c70;
-  background: #eef3f6;
-  white-space: nowrap;
-}
-.governance-status-resident { border-color: #a6c4d7; color: #25516f; background: #e4f0f7; }
-.page-about .governance-card .governance-person {
-  margin: 13px 0 5px;
-  font-size: 25px;
-  line-height: 1.45;
-  font-weight: 600;
-  color: #243e51;
-  letter-spacing: -.03em;
-}
-.page-about .governance-card .governance-career {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.75;
-  color: #506779;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-.governance-structure { margin-top: 38px; align-items: start; }
-.governance-structure::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  right: 0;
-  top: 51px;
-  height: 2px;
-  background: #adc2d0;
-  z-index: -1;
-}
-.governance-board {
-  grid-column: 2;
-  min-width: 0;
-  padding: 24px;
-  border: 1px solid #b7ccd9;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 12px 32px #29495e08;
-}
-.governance-board-heading { text-align: center; margin-bottom: 21px; }
-.page-about .governance-board-heading h3 { margin: 0; font-size: 25px; line-height: 1.5; color: #25465e; font-weight: 600; }
-.page-about .governance-board-heading p { margin: 4px 0 0; font-size: 15px; line-height: 1.7; color: #526d80; }
-.governance-chair { background: #edf5fa; border-color: #bed4e3; margin-bottom: 18px; }
-.page-about .governance-chair .governance-person { font-size: 30px; }
-.governance-directors { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.governance-directors .governance-card { padding: 20px; }
-.governance-credit { grid-column: 3; display: flex; justify-content: center; align-items: center; min-height: 104px; text-align: center; }
-.page-about .governance-credit h3 { margin: 0; font-size: 22px; line-height: 1.6; color: #2e4d63; font-weight: 600; }
-.page-about .governance-chart figcaption { margin: 25px auto 0; max-width: 760px; font-size: 16px; line-height: 1.8; text-align: center; color: #4b6274; }
+@media print { .governance-card,.governance-board { break-inside:avoid; } }
 
 .support-finder { border-color: #c5d6e1; border-radius: 16px; }
 .support-finder .finder-introduction { padding: 32px; background: #263f53; }
@@ -177,29 +130,13 @@
 @media (max-width: 1000px) {
   .support-finder .finder-assurance { margin-top: 15px; padding-top: 0; }
 }
-@media (max-width: 900px) {
-  .governance-roots, .governance-structure { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .governance-roots::before, .governance-roots::after, .governance-structure::before { display: none; }
-  .governance-assembly { grid-column: 1; grid-row: 1; max-width: none; }
-  .governance-auditor { grid-column: 1; grid-row: 2; }
-  .governance-structure { margin-top: 20px; }
-  .governance-board { grid-column: 1; grid-row: 1; }
-  .governance-credit { grid-column: 1; grid-row: 2; min-height: 84px; }
-}
 @media (max-width: 760px) {
-  .governance-card { padding: 20px; }
-  .governance-board { padding: 22px 18px; }
-  .page-about .governance-chart figcaption { font-size: 15px; text-align: left; }
   .support-finder .finder-introduction, .support-finder .finder-interaction { padding: 25px 24px; }
   .support-finder .finder-screen h4, .support-finder .finder-result h4 { font-size: 23px; }
 }
 @media (max-width: 540px) {
-  .governance-directors { grid-template-columns: minmax(0, 1fr); }
   .support-finder .finder-progress { font-size: 13px; gap: 8px; }
   .support-finder .finder-choice { padding: 15px 17px; }
-}
-@media print {
-  .governance-card, .governance-board { break-inside: avoid; }
 }
 
 /* Preserve the recovery scene across wide and narrow detail layouts. */
