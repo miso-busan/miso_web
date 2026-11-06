@@ -354,8 +354,7 @@
 @media (max-width:760px) {
   .interior-page .navigation { background: #fbfdfb; box-shadow: 0 20px 20px #4933240d; }
   .immersive-home .social-section { background: #253743; color: #f7fafb; }
-  .immersive-home .social-copy > p:not(.eyebrow) { color: #dfe9ed!important; }
-  .immersive-home .social-copy > .eyebrow { color: #c4d7df!important; }
+  .immersive-home .social-copy > p { color: #536474!important; }
   .immersive-home .news-copy { padding-inline: 16px; }
 }
 @media print {

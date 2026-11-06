@@ -13,10 +13,10 @@
     return node;
   };
   const linkedPlan = new URLSearchParams(location.search);
+  const victimDocsHandoff = 'miso-prepare-victim-docs';
   if (productById(linkedPlan.get('product'))) {
     document.querySelectorAll('[data-prepare-link]').forEach(link => {
       const url = new URL(link.href); url.searchParams.set('product', linkedPlan.get('product'));
-      if (linkedPlan.get('product') === 'miso_vulnerable' && linkedPlan.get('documents') === 'victims') url.searchParams.set('documents', 'victims');
       link.href = url.href;
     });
   }
@@ -58,8 +58,7 @@
     }
     function updatePlanUrl(nextHash) {
       const url = new URL(location.href); url.searchParams.set('product', product.id);
-      if (product.id === 'miso_vulnerable' && victim.checked) url.searchParams.set('documents', 'victims');
-      else url.searchParams.delete('documents');
+      url.searchParams.delete('documents');
       if (nextHash) url.hash = nextHash;
       try { history.replaceState(null, '', url); } catch (_) { /* File preview may restrict history. */ }
     }
@@ -175,7 +174,7 @@
     grace.addEventListener('change', () => { setPeriods(); renderCalculation(); });
     rate.addEventListener('change', renderCalculation);
     $('.planning-form').addEventListener('submit', event => { event.preventDefault(); renderCalculation(); });
-    victim.addEventListener('change', () => { renderDocuments(); saveEstimate(); updatePlanUrl(); });
+    victim.addEventListener('change', () => { renderDocuments(); saveEstimate(); });
     $('.planning-reset-checks').addEventListener('click', () => {
       Object.keys(saved).filter(key => key.startsWith(`${product.id}|`)).forEach(key => delete saved[key]);
       saveChecks(); renderDocuments();
@@ -191,8 +190,15 @@
     $('.planning-print').addEventListener('click', printPlan);
     $('.planning-print-copy').addEventListener('click', printPlan);
     addEventListener('afterprint', () => document.body.classList.remove('printing-plan'));
-    const params = new URLSearchParams(location.search);
-    selectPlan(params.get('product') || lastProduct, params.has('documents') ? params.get('documents') === 'victims' : null);
+    const linkedProduct = linkedPlan.get('product');
+    // Older links can still open the checklist. updatePlanUrl removes the old flag.
+    let includeVictims = linkedPlan.has('documents') ? linkedPlan.get('documents') === 'victims' : null;
+    try {
+      const pending = sessionStorage.getItem(victimDocsHandoff);
+      sessionStorage.removeItem(victimDocsHandoff);
+      if (linkedProduct === 'miso_vulnerable' && pending === '1') includeVictims = true;
+    } catch (_) { /* The checkbox is still available when browser storage is disabled. */ }
+    selectPlan(linkedProduct || lastProduct, includeVictims);
   }
 
   const productGuide = document.querySelector('.product-discovery');
@@ -365,10 +371,18 @@
         card.append(el('p','',product.target));
         const action = el('a','finder-prepare','상품·준비서류 확인 →');
         const victims = profile === 'life' && purpose === 'victim';
-        action.href = `${finder.dataset.base}prepare/index.html?product=${id}${victims ? '&documents=victims' : ''}#plan`;
-        if (plan && location.pathname.endsWith('/prepare/index.html')) action.addEventListener('click', event => {
-          event.preventDefault(); selectPlan(id,victims,true); document.querySelector('.plan-section').scrollIntoView({ behavior: reduced.matches ? 'instant' : 'smooth', block: 'start' });
-          productSelectFocus();
+        action.href = `${finder.dataset.base}prepare/index.html?product=${id}#plan`;
+        if (plan || victims) action.addEventListener('click', event => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (plan) {
+            event.preventDefault();
+            selectPlan(id, victims, true);
+            document.querySelector('.plan-section').scrollIntoView({ behavior: reduced.matches ? 'instant' : 'smooth', block: 'start' });
+            plan.querySelector('.planning-product').focus({ preventScroll: true });
+          } else {
+            try { sessionStorage.setItem(victimDocsHandoff, '1'); }
+            catch (_) { /* Continue to the planner so visitors can choose the checkbox. */ }
+          }
         });
         card.append(action); cards.append(card);
       }
@@ -376,7 +390,6 @@
       steps.forEach(step => { step.removeAttribute('aria-current'); step.classList.add('is-complete'); });
       result.querySelector('h4').focus({ preventScroll: true });
     }
-    function productSelectFocus() { plan.querySelector('.planning-product').focus({ preventScroll: true }); }
     $('.finder-back').addEventListener('click', () => { answers.pop(); renderQuestion(); });
     $('.finder-reset').addEventListener('click', () => { answers=[]; renderQuestion(); });
     $('.finder-fallback').hidden = true; renderQuestion(false);
