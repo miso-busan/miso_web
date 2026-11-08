@@ -721,19 +721,149 @@ body [hidden] { display:none !important; }
 .reservation-cover-caption>span { font-size:14px; color:#d2e2ed; display:block; }
 .reservation-cover-caption>strong { display:block; font-size:28px; margin:7px 0 16px; }
 .reservation-cover-caption>a { display:inline-flex; gap:24px; align-items:center; font-size:16px; color:#fff; }
-/* The actual app screen stays uncropped, including the booking menu near the bottom. */
-.reservation-app-preview { margin:0; min-width:0; padding:26px 20px; background:#fff; border:1px solid #c7d8e3; border-radius:12px; text-align:center; }
-.itta-screen { display:block; position:relative; width:100%; max-width:420px; margin-inline:auto; }
-.itta-screen>img { display:block; width:100%; height:auto; }
-.itta-menu-mark { position:absolute; left:43%; top:75.5%; width:14%; height:10%; border:3px solid #a62b24; border-radius:10px; box-shadow:0 0 0 2px #fff; pointer-events:none; }
-.reservation-app-preview figcaption { margin-top:20px; color:#425e72; }
-.reservation-app-preview figcaption>span { display:block; font-size:14px; }
-.reservation-app-preview figcaption>strong { display:block; margin-top:8px; color:#193e56; font-size:clamp(18px,2vw,23px); line-height:1.6; }
-.reservation-app-preview figcaption>p { margin-top:10px; font-size:15px; line-height:1.8; }
-.reservation-app-preview figcaption>a { display:inline-flex; gap:16px; align-items:center; padding:12px 0 3px; color:#214c67; font-size:16px; font-weight:600; }
+/* A softly lit backdrop frames the app while keeping its booking menu visible. */
+.reservation-app-preview {
+  margin: 0;
+  min-width: 0;
+  padding: 26px 24px;
+  overflow: hidden;
+  border: 1px solid #cfdfdf;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 90% 8%, #f7edcecc, transparent 52%),
+    linear-gradient(145deg, #d4e6e5, #e7f0ef 55%, #eee9dd);
+  box-shadow: inset 0 1px 0 #ffffffb3, 0 20px 50px #244d5a0a;
+  text-align: center;
+}
+.itta-preview-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  color: #315e61;
+  font-size: 14px;
+  font-weight: 600;
+}
+.itta-preview-badge {
+  padding: 7px 13px;
+  border: 1px solid #ffffffb3;
+  border-radius: 30px;
+  background: #ffffff80;
+  font-size: 13px;
+}
+.itta-app-stage {
+  position: relative;
+  isolation: isolate;
+  padding-block: 16px 12px;
+}
+.itta-app-stage::before,
+.itta-app-stage::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 490px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffffffa6;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.itta-app-stage::after {
+  width: 360px;
+  border-color: #719b9b33;
+  background: radial-gradient(ellipse, #ffffff80, transparent 70%);
+}
+.itta-screen {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin-inline: auto;
+  filter: drop-shadow(0 20px 16px #24495126);
+}
+.itta-screen>img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Hide only the stray cutout edges outside the phone. */
+  clip-path: inset(1.5% 14.8% 1.1% 14.8% round 11% / 6%);
+}
+.itta-menu-mark {
+  position: absolute;
+  left: 43%;
+  top: 75.5%;
+  width: 14%;
+  height: 10%;
+  border: 3px solid #a62b24;
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px #fff;
+  pointer-events: none;
+}
+.itta-preview-steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  position: relative;
+  margin: 8px 0 0;
+  padding: 17px 8px;
+  list-style: none;
+  border-block: 1px solid #ffffffa6;
+  color: #466466;
+  font-size: 13px;
+}
+.itta-preview-steps>li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.itta-preview-steps>li>span {
+  font-size: 11px;
+}
+.itta-preview-steps>.itta-preview-step-active {
+  color: #174c4b;
+  font-weight: 700;
+}
+.reservation-app-preview figcaption {
+  margin-top: 19px;
+  color: #425e63;
+}
+.reservation-app-preview figcaption>span {
+  display: block;
+  font-size: 14px;
+}
+.reservation-app-preview figcaption>strong {
+  display: block;
+  margin-top: 8px;
+  color: #193e48;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.6;
+}
+.reservation-app-preview figcaption>p {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.reservation-app-preview figcaption>a {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0 3px;
+  color: #214c56;
+  font-size: 16px;
+  font-weight: 600;
+}
 @media (max-width:760px) {
- .reservation-app-preview { padding:20px 6px; }
- .itta-menu-mark { border-width:2px; border-radius:7px; }
+  .reservation-app-preview { padding: 20px 12px; border-radius: 22px; }
+  .itta-preview-heading { padding-inline: 4px; font-size: 13px; }
+  .itta-preview-badge { font-size: 12px; }
+  .itta-preview-steps { gap: 8px 10px; padding-inline: 0; font-size: 12px; }
+  .itta-menu-mark { border-width: 2px; border-radius: 7px; }
 }
 .page-reservation .app-store-link { padding:22px; border-radius:6px; align-items:center; background:#fff; border-color:#c7d8e3; gap:22px; }
 .store-qr { width:124px; height:124px; flex:none; background:#fff; }
