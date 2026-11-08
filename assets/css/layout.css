@@ -721,7 +721,7 @@ body [hidden] { display:none !important; }
 .reservation-cover-caption>span { font-size:14px; color:#d2e2ed; display:block; }
 .reservation-cover-caption>strong { display:block; font-size:28px; margin:7px 0 16px; }
 .reservation-cover-caption>a { display:inline-flex; gap:24px; align-items:center; font-size:16px; color:#fff; }
-/* A softly lit backdrop frames the app while keeping its booking menu visible. */
+/* The lifestyle photograph sits behind the app without covering its booking menu. */
 .reservation-app-preview {
   margin: 0;
   min-width: 0;
@@ -757,33 +757,37 @@ body [hidden] { display:none !important; }
 .itta-app-stage {
   position: relative;
   isolation: isolate;
-  padding-block: 16px 12px;
+  padding-block: 100px 12px;
 }
-.itta-app-stage::before,
-.itta-app-stage::after {
-  content: "";
+.itta-lifestyle {
   position: absolute;
   z-index: -1;
-  top: 50%;
-  left: 50%;
-  width: 490px;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border: 1px solid #ffffffa6;
-  border-radius: 50%;
-  pointer-events: none;
+  top: 24px;
+  inset-inline: 0;
+  height: 64%;
+  overflow: hidden;
+  border-radius: 20px;
 }
-.itta-app-stage::after {
-  width: 360px;
-  border-color: #719b9b33;
-  background: radial-gradient(ellipse, #ffffff80, transparent 70%);
+.itta-lifestyle>img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
+}
+.itta-lifestyle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, #e7f0ef);
+  pointer-events: none;
 }
 .itta-screen {
   display: block;
   position: relative;
   width: 100%;
-  max-width: 400px;
-  margin-inline: auto;
+  max-width: 360px;
+  margin-left: -18px;
   filter: drop-shadow(0 20px 16px #24495126);
 }
 .itta-screen>img {
@@ -861,6 +865,9 @@ body [hidden] { display:none !important; }
 @media (max-width:760px) {
   .reservation-app-preview { padding: 20px 12px; border-radius: 22px; }
   .itta-preview-heading { padding-inline: 4px; font-size: 13px; }
+  .itta-app-stage { padding-top: 120px; }
+  .itta-lifestyle>img { object-position: 45% center; }
+  .itta-screen { max-width: 300px; margin-left: -32px; }
   .itta-preview-badge { font-size: 12px; }
   .itta-preview-steps { gap: 8px 10px; padding-inline: 0; font-size: 12px; }
   .itta-menu-mark { border-width: 2px; border-radius: 7px; }
