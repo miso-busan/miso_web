@@ -721,6 +721,20 @@ body [hidden] { display:none !important; }
 .reservation-cover-caption>span { font-size:14px; color:#d2e2ed; display:block; }
 .reservation-cover-caption>strong { display:block; font-size:28px; margin:7px 0 16px; }
 .reservation-cover-caption>a { display:inline-flex; gap:24px; align-items:center; font-size:16px; color:#fff; }
+/* The actual app screen stays uncropped, including the booking menu near the bottom. */
+.reservation-app-preview { margin:0; min-width:0; padding:26px 20px; background:#fff; border:1px solid #c7d8e3; border-radius:12px; text-align:center; }
+.itta-screen { display:block; position:relative; width:100%; max-width:420px; margin-inline:auto; }
+.itta-screen>img { display:block; width:100%; height:auto; }
+.itta-menu-mark { position:absolute; left:43%; top:75.5%; width:14%; height:10%; border:3px solid #a62b24; border-radius:10px; box-shadow:0 0 0 2px #fff; pointer-events:none; }
+.reservation-app-preview figcaption { margin-top:20px; color:#425e72; }
+.reservation-app-preview figcaption>span { display:block; font-size:14px; }
+.reservation-app-preview figcaption>strong { display:block; margin-top:8px; color:#193e56; font-size:clamp(18px,2vw,23px); line-height:1.6; }
+.reservation-app-preview figcaption>p { margin-top:10px; font-size:15px; line-height:1.8; }
+.reservation-app-preview figcaption>a { display:inline-flex; gap:16px; align-items:center; padding:12px 0 3px; color:#214c67; font-size:16px; font-weight:600; }
+@media (max-width:760px) {
+ .reservation-app-preview { padding:20px 6px; }
+ .itta-menu-mark { border-width:2px; border-radius:7px; }
+}
 .page-reservation .app-store-link { padding:22px; border-radius:6px; align-items:center; background:#fff; border-color:#c7d8e3; gap:22px; }
 .store-qr { width:124px; height:124px; flex:none; background:#fff; }
 .page-reservation .app-store-link strong { font-size:22px; line-height:1.5; }
