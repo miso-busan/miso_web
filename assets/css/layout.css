@@ -757,16 +757,17 @@ body [hidden] { display:none !important; }
 .itta-app-stage {
   position: relative;
   isolation: isolate;
-  padding-block: 100px 12px;
+  padding-block: 80px 12px;
 }
 .itta-lifestyle {
   position: absolute;
   z-index: -1;
   top: 24px;
   inset-inline: 0;
-  height: 64%;
+  height: 84%;
   overflow: hidden;
   border-radius: 20px;
+  mask-image: linear-gradient(180deg, #000 68%, transparent);
 }
 .itta-lifestyle>img {
   display: block;
@@ -775,20 +776,13 @@ body [hidden] { display:none !important; }
   object-fit: cover;
   object-position: 62% center;
 }
-.itta-lifestyle::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, #e7f0ef);
-  pointer-events: none;
-}
 .itta-screen {
   display: block;
   position: relative;
   width: 100%;
-  max-width: 360px;
-  margin-left: -18px;
-  filter: drop-shadow(0 20px 16px #24495126);
+  max-width: 310px;
+  margin-left: 4px;
+  filter: drop-shadow(0 14px 15px #24495121);
 }
 .itta-screen>img {
   display: block;
@@ -865,9 +859,9 @@ body [hidden] { display:none !important; }
 @media (max-width:760px) {
   .reservation-app-preview { padding: 20px 12px; border-radius: 22px; }
   .itta-preview-heading { padding-inline: 4px; font-size: 13px; }
-  .itta-app-stage { padding-top: 120px; }
-  .itta-lifestyle>img { object-position: 45% center; }
-  .itta-screen { max-width: 300px; margin-left: -32px; }
+  .itta-app-stage { padding-top: 100px; }
+  .itta-lifestyle>img { object-position: 58% center; }
+  .itta-screen { width: 82%; max-width: 260px; margin-left: -4px; }
   .itta-preview-badge { font-size: 12px; }
   .itta-preview-steps { gap: 8px 10px; padding-inline: 0; font-size: 12px; }
   .itta-menu-mark { border-width: 2px; border-radius: 7px; }
