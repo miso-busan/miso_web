@@ -4,8 +4,10 @@
 .header .header-consult { display:inline-flex; padding:9px 16px; min-height:44px; gap:16px; line-height:1.4; }
 .header .mobile-search { display:none; }
 @media(min-width:1101px) {
- .header .navigation { order:0; width:auto; flex-wrap:nowrap; gap:clamp(14px,1.8vw,28px); }
+ .header .navigation { order:0; width:auto; flex-wrap:nowrap; gap:clamp(12px,1.4vw,23px); }
+ .header .navigation>a { white-space:nowrap; }
 }
+.header .navigation .nav-company-docs { color:#224f61; font-weight:700; }
 @media(max-width:1100px) {
  .header .header-inner { height:68px; min-height:68px; padding-block:0; flex-wrap:nowrap; gap:12px; }
  .header .header-actions { margin-left:auto; gap:8px; }
@@ -24,6 +26,59 @@
  .header .header-consult .icon { display:none; }
  .header .menu-toggle { flex-shrink:0; }
  .header .mobile-search { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:48px; padding:13px 8px; margin-top:4px; border:0; border-top:1px solid #d7e2e8; background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+}
+
+/* A separate row keeps the mobile masthead the same height. */
+.company-quick-bar {
+  display: none;
+  background: #edf4f4;
+  border-bottom: 1px solid #cfdfdf;
+  color: #214854;
+}
+.company-quick-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(3px, 1vw, 12px);
+}
+.company-quick-inner>a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding-inline: clamp(3px, 1vw, 10px);
+  color: inherit;
+  font-size: clamp(13px, 3.3vw, 15px);
+  white-space: nowrap;
+}
+.company-quick-inner>a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.company-quick-guide { font-weight: 700; }
+.company-quick-target { font-weight: 600; }
+.company-quick-target>span[aria-hidden] { font-size: .9em; }
+@media(max-width:1100px) {
+  .company-quick-bar { display:block; }
+}
+.cinema-overlay>.cinema-company-links {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  top: max(16px, env(safe-area-inset-top));
+  right: 7vw;
+  max-width: calc(100% - 32px);
+  padding-inline: 8px;
+  border: 1px solid #ffffff59;
+  border-radius: 8px;
+  background: #102434f2;
+  color: #fffaf4;
+}
+.cinema-company-links>.company-quick-inner { width: auto; }
+.cinema-company-links a:focus-visible { outline: 2px solid #f6dda5; outline-offset: -3px; }
+@media(max-width:760px) {
+  .cinema-overlay>.cinema-company-links { inset-inline: 12px; max-width: none; }
+}
+@media print {
+  .company-quick-bar { display: none; }
 }
 
 /* An open, readable governance diagram; the roster remains real text. */

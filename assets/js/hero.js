@@ -11,8 +11,14 @@
   const introPause = hero.querySelector('.cinema-intro-pause');
   const motion = hero.querySelector('.hero-motion-toggle');
   const caption = hero.querySelector('.cinema-caption');
+  const companyLinks = document.querySelector('.company-quick-bar');
   // Escape the hero's stacking context so the intro covers the sticky header too.
   document.body.append(overlay);
+  if (companyLinks) {
+    const introCompanyLinks = companyLinks.cloneNode(true);
+    introCompanyLinks.classList.add('cinema-company-links');
+    overlay.prepend(introCompanyLinks);
+  }
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const DURATION = 24;
@@ -149,7 +155,7 @@
   function lock(active) {
     document.documentElement.classList.toggle('cinema-running',active);
     if(active) {
-      const targets=[document.querySelector('.header'),document.querySelector('.skip-link'),hero.querySelector('.world-hero-shell'),...document.querySelectorAll('#main > section:not(.cinematic-hero),body > .partner-strip,body > .footer,body > .back-top,body > dialog')];
+      const targets=[document.querySelector('.header'),document.querySelector('.skip-link'),companyLinks,hero.querySelector('.world-hero-shell'),...document.querySelectorAll('#main > section:not(.cinematic-hero),body > .partner-strip,body > .footer,body > .back-top,body > dialog')];
       targets.filter(Boolean).forEach(el=>{inertStates.set(el,el.inert);el.inert=true;});
     } else {inertStates.forEach((value,el)=>{el.inert=value;});inertStates.clear();}
   }
@@ -218,12 +224,20 @@
 
   function finish(restoreFocus=false) {
     intro=false;introTime=DURATION;hero.dataset.introTime=String(DURATION);
-    const focusInIntro=overlay.contains(document.activeElement);
+    const focused = document.activeElement;
+    const focusInIntro = overlay.contains(focused);
     overlay.hidden=true;lock(false);scene.append(canvas);resetSize=true;
     hero.dataset.cinema='ready';
     try{localStorage.setItem('miso-morning-film-20261028',String(Date.now()));}catch{}
     updateButtons();render();start();
-    if(restoreFocus&&focusInIntro){(savedFocus&&savedFocus.isConnected&&savedFocus!==document.body?savedFocus:hero.querySelector('.world-primary')).focus({preventScroll:true});}
+    if (restoreFocus && focusInIntro) {
+      const companyLink = focused.dataset.companyLink;
+      const mobileLink = companyLink && companyLinks.querySelector(`[data-company-link="${companyLink}"]`);
+      const desktopLink = companyLink && document.querySelector('.header .nav-company-docs');
+      const target = [mobileLink, desktopLink, savedFocus, hero.querySelector('.world-primary')]
+        .find(node => node && node !== document.body && node.getClientRects().length);
+      target?.focus({ preventScroll: true });
+    }
   }
   async function begin(returnTo=document.activeElement) {
     if(!renderer||reduced.matches||intro||preparing)return;
@@ -265,10 +279,13 @@
   introPause.addEventListener('click',toggle);motion.addEventListener('click',toggle);
   overlay.addEventListener('keydown',event=>{
     if(event.key==='Escape'){event.preventDefault();finish(true);}
-    if(event.key==='Tab') {
+    if (event.key === 'Tab') {
       event.preventDefault();
-      const next=document.activeElement===overlay?(event.shiftKey?skip:introPause):document.activeElement===introPause?skip:introPause;
-      next.focus();
+      const controls = [...overlay.querySelectorAll('a[href], button:not([disabled])')]
+        .filter(control => control.getClientRects().length);
+      const current = controls.indexOf(document.activeElement);
+      const next = event.shiftKey ? (current <= 0 ? controls.length - 1 : current - 1) : (current + 1) % controls.length;
+      controls[next]?.focus();
     }
   });
   overlay.addEventListener('wheel',event=>{if(event.deltaY>30)finish(true);},{passive:true});
