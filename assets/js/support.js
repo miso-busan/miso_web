@@ -150,6 +150,8 @@
       }
       $('.planning-target').textContent = product.target;
       $('.planning-detail').href = `${base}services/index.html#${product.id}`;
+      const assessmentLink = $('.planning-assessment-link');
+      if (assessmentLink) assessmentLink.hidden = product.id !== 'social_finance';
       amount.max = range.max = product.planning.limitWon / 10000;
       amount.value = range.value = Number.isInteger(previous.amount) && previous.amount >= 1 && previous.amount <= Number(amount.max) ? previous.amount : Math.min(1000, Number(amount.max));
       $('.planning-limit').textContent = `최대 ${product.limit}`;
@@ -219,8 +221,8 @@
         if (link.hash === `#${selected}`) link.setAttribute('aria-current', 'true');
         else link.removeAttribute('aria-current');
       });
-      // Deep links into a folded social-finance condition still open correctly.
-      for (let parent = target && target.parentElement; parent; parent = parent.parentElement) {
+      // Reveal both a directly linked accordion and any enclosing accordion.
+      for (let parent = target; parent; parent = parent.parentElement) {
         if (parent.tagName === 'DETAILS') parent.open = true;
       }
     }

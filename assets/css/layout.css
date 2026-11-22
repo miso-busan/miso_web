@@ -413,9 +413,14 @@
 .section-heading h2 { font-size:clamp(31px,3.15vw,46px); line-height:1.35; letter-spacing:-.045em; text-wrap:balance; }
 .section-heading p:not(.eyebrow) { font-size:18px; line-height:1.85; }
 .section-heading .eyebrow { margin-bottom:18px; font-size:14px; letter-spacing:.09em; }
-.immersive-home .quick-links { margin-top:0; border-bottom:1px solid var(--miso-rule); padding-block:26px; gap:0; }
-.immersive-home .quick-links>a { border:0; border-right:1px solid var(--miso-rule); background:transparent; border-radius:0; box-shadow:none; padding:8px 25px; }
+.immersive-home .quick-links { margin-top:0; grid-template-columns:repeat(5,minmax(0,1fr)); border-bottom:1px solid var(--miso-rule); padding-block:26px; gap:0; }
+.immersive-home .quick-links>a { min-width:0; border:0; border-right:1px solid var(--miso-rule); background:transparent; border-radius:0; box-shadow:none; padding:10px clamp(10px,1.35vw,22px); gap:12px; }
 .immersive-home .quick-links>a:last-child { border-right:0; }
+.immersive-home .quick-links>a>.icon { flex-shrink:0; }
+.immersive-home .quick-links>a>span { min-width:0; word-break:keep-all; overflow-wrap:anywhere; }
+.immersive-home .quick-links>a.quick-company-docs { background:#eaf2f6; border:1px solid #c9dce6; border-radius:6px; color:#183c54; }
+.immersive-home .quick-links>a.quick-company-docs:hover { background:#e0edf4; }
+.immersive-home .quick-links>a.quick-company-docs small { color:#384f60; }
 .immersive-home .quick-links strong { font-size:19px; }
 .immersive-home .quick-links p { font-size:15px; }
 .immersive-home .cinematic-hero[data-hero="family-morning"] .cinema-city-links>a { border:0; border-top:1px solid #e3e9ef57; border-radius:0; background:#10243421; box-shadow:none; backdrop-filter:blur(8px); color:#fffaf1; padding:15px 20px; }
@@ -470,6 +475,8 @@
 .immersive-home .social-stats span, .immersive-home .social-note { color:#536474; }
 .immersive-home .social-stats .rate-minimum { color:#2e596e; }
 .immersive-home .social-copy .button { background:#1c3b50; border-color:#1c3b50; color:#fff; }
+.immersive-home .social-actions { display:flex; flex-wrap:wrap; gap:12px 22px; align-items:center; }
+.immersive-home .social-actions .text-link { color:#244d65; font-size:16px; }
 .immersive-home .social-visual { border-radius:6px; box-shadow:none; border:1px solid #dae3e8; }
 .immersive-home .social-visual>div { background:#eef3f6; color:#24485e; padding:25px; }
 .immersive-home .social-visual>div>span { color:#425c70; }
@@ -541,6 +548,7 @@
 @media(max-width:980px) {
  .immersive-home .quick-links { display:grid; grid-template-columns:1fr 1fr; gap:0; }
  .immersive-home .quick-links>a { padding:15px 20px; border-right:0; }
+ .immersive-home .quick-links>a.quick-company-docs { grid-column:1 / -1; }
  .immersive-home .home-stories .case-rail { grid-auto-columns:minmax(300px,75%); }
  .immersive-home .home-stories .case-card:first-child { grid-column:span 1; }
  .immersive-home .home-stories .case-card:first-child blockquote { font-size:22px; }
@@ -555,7 +563,8 @@
  .section-heading p:not(.eyebrow) { font-size:17px; }
  .section-heading .eyebrow { font-size:13px; margin-bottom:15px; }
  .immersive-home .quick-links { padding-block:12px; }
- .immersive-home .quick-links>a { padding:16px 11px; }
+ .immersive-home .quick-links>a { padding:14px 8px !important; gap:9px; }
+ .immersive-home .quick-links>a.quick-company-docs { padding-inline:13px !important; }
  .immersive-home .quick-links strong { font-size:17px; }
  .immersive-home .quick-links p { font-size:14px; }
  .finder-introduction, .finder-interaction { padding:25px 22px; }
