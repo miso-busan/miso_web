@@ -11,14 +11,8 @@
   const introPause = hero.querySelector('.cinema-intro-pause');
   const motion = hero.querySelector('.hero-motion-toggle');
   const caption = hero.querySelector('.cinema-caption');
-  const companyLinks = document.querySelector('.company-quick-bar');
   // Escape the hero's stacking context so the intro covers the sticky header too.
   document.body.append(overlay);
-  if (companyLinks) {
-    const introCompanyLinks = companyLinks.cloneNode(true);
-    introCompanyLinks.classList.add('cinema-company-links');
-    overlay.prepend(introCompanyLinks);
-  }
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const DURATION = 24;
@@ -155,7 +149,11 @@
   function lock(active) {
     document.documentElement.classList.toggle('cinema-running',active);
     if(active) {
-      const targets=[document.querySelector('.header'),document.querySelector('.skip-link'),companyLinks,hero.querySelector('.world-hero-shell'),...document.querySelectorAll('#main > section:not(.cinematic-hero),body > .partner-strip,body > .footer,body > .back-top,body > dialog')];
+      const targets = [
+        document.querySelector('.skip-link'),
+        hero.querySelector('.world-hero-shell'),
+        ...document.querySelectorAll('body > .header, body > .company-quick-bar, #main > :not(.cinematic-hero), body > .partner-strip, body > .footer, body > .back-top, body > dialog')
+      ];
       targets.filter(Boolean).forEach(el=>{inertStates.set(el,el.inert);el.inert=true;});
     } else {inertStates.forEach((value,el)=>{el.inert=value;});inertStates.clear();}
   }
@@ -224,19 +222,16 @@
 
   function finish(restoreFocus=false) {
     intro=false;introTime=DURATION;hero.dataset.introTime=String(DURATION);
-    const focused = document.activeElement;
-    const focusInIntro = overlay.contains(focused);
+    const focusInIntro = overlay.contains(document.activeElement);
     overlay.hidden=true;lock(false);scene.append(canvas);resetSize=true;
     hero.dataset.cinema='ready';
     try{localStorage.setItem('miso-morning-film-20261028',String(Date.now()));}catch{}
     updateButtons();render();start();
     if (restoreFocus && focusInIntro) {
-      const companyLink = focused.dataset.companyLink;
-      const mobileLink = companyLink && companyLinks.querySelector(`[data-company-link="${companyLink}"]`);
-      const desktopLink = companyLink && document.querySelector('.header .nav-company-docs');
-      const target = [mobileLink, desktopLink, savedFocus, hero.querySelector('.world-primary')]
-        .find(node => node && node !== document.body && node.getClientRects().length);
-      target?.focus({ preventScroll: true });
+      const target = savedFocus && savedFocus.isConnected && savedFocus !== document.body
+        ? savedFocus
+        : hero.querySelector('.world-primary');
+      target.focus({ preventScroll: true });
     }
   }
   async function begin(returnTo=document.activeElement) {
@@ -281,11 +276,11 @@
     if(event.key==='Escape'){event.preventDefault();finish(true);}
     if (event.key === 'Tab') {
       event.preventDefault();
-      const controls = [...overlay.querySelectorAll('a[href], button:not([disabled])')]
-        .filter(control => control.getClientRects().length);
-      const current = controls.indexOf(document.activeElement);
-      const next = event.shiftKey ? (current <= 0 ? controls.length - 1 : current - 1) : (current + 1) % controls.length;
-      controls[next]?.focus();
+      const focused = document.activeElement;
+      const next = focused === overlay
+        ? (event.shiftKey ? skip : introPause)
+        : (focused === introPause ? skip : introPause);
+      next.focus();
     }
   });
   overlay.addEventListener('wheel',event=>{if(event.deltaY>30)finish(true);},{passive:true});
