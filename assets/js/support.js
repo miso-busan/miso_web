@@ -164,7 +164,10 @@
       if (product.planning.preferentialRate) option(rate, product.planning.preferentialRate, `우대요건 충족 시 연 ${product.planning.preferentialRate}%`);
       if ([...rate.options].some(o => Number(o.value) === previous.rate)) rate.value = String(previous.rate);
       $('.victim-option').hidden = product.id !== 'miso_vulnerable'; victim.checked = includeVictims === null ? previous.victims === true : includeVictims;
-      const phone = product.category === 'social' ? data.socialPhone : data.phone;
+      const isSocial = product.category === 'social';
+      const alternateCall = $('.planning-call-alt');
+      if (alternateCall) alternateCall.hidden = isSocial;
+      const phone = isSocial ? data.socialPhone : data.phone;
       $('.planning-call').href = `tel:${phone}`; $('.planning-call span').textContent = phone;
       renderDocuments(); renderCalculation();
       updatePlanUrl(moveToPlan ? 'plan' : null);
