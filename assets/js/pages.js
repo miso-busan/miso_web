@@ -29,7 +29,7 @@
       storyFilters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.storyFilter === current)));
       const active = storyFilters.find(button => button.dataset.storyFilter === current);
       const label = active.firstChild.textContent.trim();
-      count.textContent = `${label} ${cards.filter(card => !card.hidden).length}개의 이야기`;
+      count.textContent = `${label} 후기 ${cards.filter(card => !card.hidden).length}건`;
       document.querySelector('.case-grid').classList.toggle('is-filtered', current !== 'all');
       if (updateUrl) {
         const url = new URL(location.href);

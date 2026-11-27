@@ -57,7 +57,7 @@
       if (show) count++;
     });
     $$('[data-product-filter]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.productFilter === category)));
-    $('#product-status').textContent = `${count}개 상품이 표시됩니다. 상품 선택 시 자세한 안내로 이동합니다.`;
+    $('#product-status').textContent = `상품 ${count}개`;
   }
   if (productCards.length) {
     filterProducts('all');
@@ -136,7 +136,7 @@
       row.hidden = !(matchesCategory && matchesText);
       if (!row.hidden) count++;
     });
-    $('#news-status').textContent = `${count}개의 소식`;
+    $('#news-status').textContent = `${count}건의 소식`;
     $('#news-empty').hidden = count !== 0;
     $$('[data-news-filter]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.newsFilter === newsCategory)));
   }

@@ -363,8 +363,8 @@
       if (profile === 'life') ids = ['miso_vulnerable'];
       if (profile === 'social' && detail !== 'other') ids = ['social_finance'];
       if (profile === 'business' && purpose !== 'operation') note = '일반 미소금융 창업자금·시설개선자금의 신규 신청·실행은 2026년 7월 1일부터 중단되었습니다. 현재 상황에 맞는 다른 지원은 전화로 상담해 주세요.';
-      else if (!ids.length) note = '선택하신 내용만으로는 상품을 안내하기 어렵습니다. 전화로 현재 상황을 말씀해 주시면 지원요건과 이용 가능한 상담 경로를 안내해 드립니다.';
-      else note = '선택한 상황과 관련된 상품입니다. 아래 지원요건을 확인해 주세요. 이 결과는 대출 승인이나 한도 확정을 의미하지 않습니다.';
+      else if (!ids.length) note = '전화로 현재 상황을 말씀해 주세요. 상담원이 지원 요건과 이용할 수 있는 상품을 함께 확인합니다.';
+      else note = '아래에서 상품별 지원 요건과 준비서류를 확인하세요. 대출 승인 여부와 한도는 심사를 거쳐 결정됩니다.';
       screen.hidden = true; result.hidden = false;
       result.querySelector('h4').textContent = ids.length ? '관련 지원상품' : '추가 상담이 필요합니다.';
       $('.finder-result-note').textContent = note;
